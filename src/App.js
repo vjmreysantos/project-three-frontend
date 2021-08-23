@@ -1,10 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
 import Nav from './components/common/Nav'
 import Home from './components/common/Home'
 import EventIndex from './components/events/EventIndex'
 import OnlineEventIndex from './components/onlineEvents/OnlineEventIndex'
 import GroupIndex from './components/groups/GroupIndex'
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 
 function App() {
   return (
@@ -22,6 +25,12 @@ function App() {
         </Route>
         <Route exact path="/groups">
           <GroupIndex />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/register">
+          <Register />
         </Route>
       </Switch>
     </BrowserRouter>
