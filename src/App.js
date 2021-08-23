@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Nav from './components/common/Nav'
 import Home from './components/common/Home'
 import EventIndex from './components/events/EventIndex'
+import EventShow from './components/events/EventShow'
 import OnlineEventIndex from './components/onlineEvents/OnlineEventIndex'
 import GroupIndex from './components/groups/GroupIndex'
 
@@ -13,6 +14,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/events/:eventId">
+          <EventShow />
         </Route>
         <Route exact path="/events">
           <EventIndex />
