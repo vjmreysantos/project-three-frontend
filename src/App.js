@@ -10,6 +10,7 @@ import GroupIndex from './components/groups/GroupIndex'
 import GroupShow from './components/groups/GroupShow'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
+import EventForm from './components/events/EventForm'
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/events/new-event">
+          <EventForm />
         </Route>
         <Route exact path="/events/:eventId">
           <EventShow />
