@@ -37,6 +37,10 @@ export function attendOnlineEvent(id) {
   window.alert('You\'re attending!')
 }
 
+export function createOnlineEvent(formData) {
+  return axios.post(`${baseUrl}/online-events/new-online-event`, formData, getHeaders())
+}
+
 // GROUPS
 
 export function getAllGroups() {
@@ -50,6 +54,11 @@ export function getSingleGroup(groupId) {
 export function createGroup(formData) {
   return axios.post(`${baseUrl}/groups/new-group`, formData, getHeaders())
 }
+
+export function joinGroup(groupId) {
+  return axios.post(`${baseUrl}/group/${groupId}`, getHeaders())
+}
+
 // * Auth Requests
 
 export function registerUser(formdata) {

@@ -1,7 +1,9 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 
 import GroupCard from './GroupCard'
 import { getAllGroups } from '../../lib/api'
+import { isAuthenticated } from '../../lib/auth'
 
 
 function GroupIndex() {
@@ -9,6 +11,7 @@ function GroupIndex() {
   const [searchValue, setSearchValue] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const isLoading = !groups && !isError
+  const history = useHistory()
   
   React.useEffect(() => {
     const getData = async () => {
@@ -36,6 +39,7 @@ function GroupIndex() {
     return comparison
   }
 
+
   const handleSearch = (e) => {
     setSearchValue(e.target.value)
   }
@@ -43,12 +47,12 @@ function GroupIndex() {
   const filteredGroups = () => {
     return groups.sort(compareEvents).filter(group => {
       return (group.name.toLowerCase().includes(searchValue.toLocaleLowerCase())) 
-    // &&
-    // (artist.classifications.includes(filterValue)
-    // || filterValue === 'All')
     })
   }
 
+  const handleClick = () => {
+    history.push('/groups/new-group')
+  }
 
   return (
     <section className="event-index-section">
@@ -60,6 +64,9 @@ function GroupIndex() {
             onChange={handleSearch}
           />  
         </div>
+      </div>
+      <div>
+        {isAuthenticated && <button onClick={handleClick}>Create New Group</button>}
       </div>
       <div className="events-page-list">
         {isError && <p>Sorry, used the wrong spell.</p>}

@@ -1,5 +1,8 @@
 import React from 'react'
+import { useHistory } from 'react-router'
+
 import { getAllOnlineEvents } from '../../lib/api'
+import { isAuthenticated } from '../../lib/auth'
 import OnlineEventCard from './OnlineEventCard'
 
 function OnlineEventIndex() {
@@ -8,6 +11,7 @@ function OnlineEventIndex() {
   const [searchValue, setSearchValue] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvents && !isError
+  const history = useHistory()
 
   React.useEffect(() => {
     const getData = async () => {
@@ -43,6 +47,10 @@ function OnlineEventIndex() {
     })
   }
 
+  const handleClick = () => {
+    history.push('/online-events/new-online-event')
+  }
+
   return (
     <section className="event-index-section">
       <div className="events-page-controls">
@@ -52,6 +60,9 @@ function OnlineEventIndex() {
             onChange = {handleSearch}
           />
         </div>
+      </div>
+      <div>
+        {isAuthenticated && <button onClick={handleClick}>Create New Online Event</button>}
       </div>
       <div className="events-page-list">
         {isError && <p>Oops!</p>}
