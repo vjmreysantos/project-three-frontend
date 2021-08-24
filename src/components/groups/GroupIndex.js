@@ -3,6 +3,7 @@ import React from 'react'
 import GroupCard from './GroupCard'
 import { getAllGroups } from '../../lib/api'
 
+
 function GroupIndex() {
   const [groups, setGroups] = React.useState(null)
   const [searchValue, setSearchValue] = React.useState('')

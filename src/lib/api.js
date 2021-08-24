@@ -32,6 +32,10 @@ export function getSingleOnlineEvent(id) {
   return axios.get(`/api/online-events/${id}`)
 }
 
+
+
+
+// * GROUP REQUESTS
 export function getAllGroups() {
   return axios.get(`${baseUrl}/groups`)
 }
@@ -40,3 +44,6 @@ export function getSingleGroup(groupId) {
   return axios.get(`${baseUrl}/groups/${groupId}`)
 }
 
+export function createGroup(formData) {
+  return axios.post(`${baseUrl}/groups/new-group`, formData)
+}

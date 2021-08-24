@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import { getSingleGroup } from '../../lib/api'
 import GroupComments from '../comments/GroupComments'
 
+
 function GroupShow() {
   const { groupId } = useParams()
   const [group, setGroup] = React.useState(null)
@@ -46,7 +47,7 @@ function GroupShow() {
                 <p>Location: {group.location}</p>
                 <p>Members: {group.members.length}</p>
                 {/* <p>{group.addedBy}</p> */}
-                <button className="button" onClick={handleClick}>
+                <button className="button btn btn-primary" onClick={handleClick}>
                   {joinGroup === true ? 'Leave Group' : 'Join Group'}
                 </button>
               </div>
