@@ -26,7 +26,7 @@ function GroupShow() {
 
   const handleClick = () => {
     setJoinGroup(!joinGroup)
-    console.log(joinGroup)
+    
   } 
 
   
