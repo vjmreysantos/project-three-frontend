@@ -47,6 +47,9 @@ export function getSingleGroup(groupId) {
   return axios.get(`${baseUrl}/groups/${groupId}`)
 }
 
+export function createGroup(formData) {
+  return axios.post(`${baseUrl}/groups/new-group`, formData)
+}
 // * Auth Requests
 
 export function registerUser(formdata) {
