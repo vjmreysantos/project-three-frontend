@@ -6,21 +6,17 @@ function OnlineEventCard({ onlineEvent }) {
       <Link to={`/online-events/${onlineEvent._id}`}>
         <div className="card">
           <div className="card-header">
-            <div className="card-header-title title is-4">{onlineEvent.name}</div>
+            <div className="card-header-title">{onlineEvent.name}</div>
           </div>
-          <div className="card-image is-fullwidth">
-            <figure className="image image is-4by3">
+          <div className="card-image">
+            <figure className="image image-is-1by1">
               <img src={onlineEvent.image} alt={onlineEvent.name} />
             </figure>
           </div>
           <div className="card-content">
-            <h1>{onlineEvent.description}</h1>
-            <hr />
-            <h3>{onlineEvent.category}</h3>
-            <hr />
-            <h4>{onlineEvent.date}</h4>
-            <hr />
-            <a href="/">{onlineEvent.meetingLink}</a>
+            <h2>{onlineEvent.date}<h2></h2>{onlineEvent.meetingLink}</h2>
+            <h3>{onlineEvent.description}</h3>
+            <h5>{onlineEvent.category}</h5>
           </div>
         </div>
       </Link>
