@@ -32,6 +32,13 @@ export function getSingleOnlineEvent(id) {
   return axios.get(`/api/online-events/${id}`)
 }
 
+export function attendOnlineEvent(id) {
+  axios.post(`${baseUrl}/online-events/${id}`, getHeaders())
+  window.alert('You\'re attending!')
+}
+
+// GROUPS
+
 export function getAllGroups() {
   return axios.get(`${baseUrl}/groups`)
 }
@@ -40,3 +47,12 @@ export function getSingleGroup(groupId) {
   return axios.get(`${baseUrl}/groups/${groupId}`)
 }
 
+// * Auth Requests
+
+export function registerUser(formdata) {
+  return axios.post(`${baseUrl}/register`, formdata)
+}
+
+export function loginUser(formdata) {
+  return axios.post(`${baseUrl}/login`, formdata)
+}
