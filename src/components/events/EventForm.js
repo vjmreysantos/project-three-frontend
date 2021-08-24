@@ -1,14 +1,10 @@
 import React from 'react'
-import axios from 'axios'
 import Select from 'react-select'
 import { useHistory } from 'react-router'
-import { getHeaders } from '../../lib/api'
-import { useParams } from 'react-router-dom'
-import { Form, FormLabel, FormControl, Button } from 'react-bootstrap'
+import { createEvent } from '../../lib/api'
+import { FormLabel, FormControl, Button } from 'react-bootstrap'
 
 function EventForm () {
-
-  const { eventId } = useParams()
   const history = useHistory()
 
   const selectOptions = [
@@ -20,7 +16,7 @@ function EventForm () {
     { value: 'drinks', label: 'Drinks' }
   ]
 
-  const [formData, setFormData] = React.useState(
+  const initialState =
     {
       name: '',
       image: '',
@@ -36,21 +32,23 @@ function EventForm () {
         longitude: '',
       },
     }
-  )
+  
+  const [formData, setFormData] = React.useState(initialState)
+  const [formErrors, setFormErrors] = React.useState(initialState)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    setFormErrors({ ...formErrors, [e.target.name]: '' })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('/api/events/new-event', formData, getHeaders())
-      history.push(`/events/${eventId}`)
-      location.reload()
-      console.log(response.data)
+      const { data } = await createEvent(formData)
+      history.push(`/events/${data._id}`)
     } catch (err) {
-      console.log(err)
+      setFormErrors(err.response.data.errors)
+      alert('Sorry, you are not allowed to do that. Please, login.')
     }
   }
 
@@ -62,8 +60,7 @@ function EventForm () {
   return (
     <div className="create-event-form-container">
       <h2>New event</h2>
-      <Form
-        className="mb-3"
+      <form
         onSubmit={handleSubmit}
       >
         <FormLabel className="label">Event name</FormLabel>
@@ -79,6 +76,15 @@ function EventForm () {
           className="input"
           placeholder="Link to your event image here"
           name="image"
+          onChange={handleChange}
+        >
+        </FormControl>
+        <FormLabel className="label">Description</FormLabel>
+        <FormControl
+          className="input"
+          type="text-input"
+          placeholder="Describe your group here"
+          name="description"
           onChange={handleChange}
         >
         </FormControl>
@@ -131,20 +137,20 @@ function EventForm () {
         </FormControl>
         <FormControl
           className="input"
-          placeholder="Longitude"
-          name="location.longitude"
-          onChange={handleChange}
-        >
-        </FormControl>
-        <FormControl
-          className="input"
           placeholder="Latitude"
           name="location.latitude"
           onChange={handleChange}
         >
         </FormControl>
-        <Button className="create-event-button" variant="primary">Create event</Button>
-      </Form>
+        <FormControl
+          className="input"
+          placeholder="Longitude"
+          name="location.longitude"
+          onChange={handleChange}
+        >
+        </FormControl>
+        <Button className="create-event-button" variant="primary" type="submit">Create event</Button>
+      </form>
     </div>
   )
 }

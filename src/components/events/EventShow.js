@@ -1,15 +1,17 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { getSingleEvent, getAllEvents } from '../../lib/api'
+import { useHistory } from 'react-router'
+import { getSingleEvent, getAllEvents, attendEvent, deleteEvent } from '../../lib/api'
 import EventMap from './EventMap'
-import Button from 'react-bootstrap/Button'
-import { attendEvent } from '../../lib/api'
+import { Button } from 'react-bootstrap'
+import { isOwner } from '../../lib/auth'
 
 function EventShow() {
   const { eventId } = useParams()
   const [events, setEvents] = React.useState(null)
   const [event, setEvent] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
+  const history = useHistory()
   const isLoading = !event && !isError
 
   React.useEffect(()=> {
@@ -53,6 +55,17 @@ function EventShow() {
     )
   }
 
+  const handleSubmit = async () => {
+    try {
+      const response = await deleteEvent(eventId)
+      window.alert('you have successfully deleted this event')
+      console.log(response)
+      history.push('/events')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <section className="event-show-section">
       {isError && <p>Oops!</p>}
@@ -62,10 +75,21 @@ function EventShow() {
         <div className="event-show-header">
           <p>{new Date(event.date).toString().split('GMT')[0]}</p>
           <h1>{event.name}</h1>
-          <div className="hosted-by">
-            <img className="hosted-by-image" src={event.addedBy.avatar} alt={event.addedBy.username}></img>
-            <p>Hosted by <span>{event.addedBy.username}</span></p>
-          </div>
+          {isOwner(event.addedBy._id) ?
+            <div className="hosted-by">
+              <img className="hosted-by-image" src={event.addedBy.avatar} alt={event.addedBy.username}></img>
+              <p>You are hosting this event</p>
+              <Button variant="danger"
+                onClick={handleSubmit}>
+                Delete event
+              </Button>
+            </div>
+            :
+            <div className="hosted-by">
+              <img className="hosted-by-image" src={event.addedBy.avatar} alt={event.addedBy.username}></img>
+              <p>Hosted by <span>{event.addedBy.username}</span></p>
+            </div>
+          }
         </div>
         <div className="event-show-main">
           <div className="event-show-left">
@@ -110,6 +134,29 @@ function EventShow() {
         <div className="event-show-lower">
           <h3>Similar events on Mugglemore</h3>
           <div className="similar-events-container">
+
+
+            {/* <Carousel>
+              {categoriesMatchCheck(events, event.category) ?
+                similarEvents.map(event => (
+                  <Carousel.Item key={event.name}>
+                    <img
+                      className="d-block w-100"
+                      src={event.image}
+                      alt={event.name}
+                    />
+                    <Carousel.Caption>
+                      <p>{new Date(event.date).toString().split('GMT')[0]}</p>
+                      <h5>{event.name}</h5>
+                      <p><span>📍</span>{event.location.placeName}</p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                ))
+                :
+                ''
+              }
+            </Carousel> */}
+
             {categoriesMatchCheck(events, event.category) ?
               <>
                 {similarEvents.map(event => (
@@ -139,7 +186,7 @@ function EventShow() {
             <h4>{event.name}</h4>
           </div>
           <div className="attend-footer-right">
-            <Button variant="danger" onClick = {() => attendEvent(event._id)}>Attend</Button>
+            <Button variant="primary" onClick = {() => attendEvent(event._id)}>Attend</Button>
           </div>
         </div>
       </>

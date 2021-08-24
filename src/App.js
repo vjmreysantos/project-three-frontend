@@ -12,6 +12,7 @@ import NewGroup from './components/groups/NewGroup'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import EventForm from './components/events/EventForm'
+import Profile from './components/auth/Profile'
 
 function App() {
   return (
@@ -50,6 +51,9 @@ function App() {
         </Route>
         <Route exact path="/register">
           <Register />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
       </Switch>
     </BrowserRouter>
