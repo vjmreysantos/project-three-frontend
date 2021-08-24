@@ -13,11 +13,9 @@ export function getSingleEvent(id) {
 export function getAllOnlineEvents() {
   return axios.get('/api/online-events')
 }
-<<<<<<< HEAD
 export function getSingleOnlineEvent(id) {
   return axios.get(`/api/online-events/${id}`)
 }
-=======
 
 export function getAllGroups() {
   return axios.get(`${baseUrl}/groups`)
@@ -27,4 +25,3 @@ export function getSingleGroup(groupId) {
   return axios.get(`${baseUrl}/groups/${groupId}`)
 }
 
->>>>>>> development

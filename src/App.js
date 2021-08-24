@@ -28,13 +28,11 @@ function App() {
         <Route exact path="/online-events">
           <OnlineEventIndex />
         </Route>
-<<<<<<< HEAD
         <Route exact path="/online-events/:onlineEventId">
           <OnlineEventShow />
-=======
+        </Route>
         <Route exact path="/groups/:groupId">
           <GroupShow />
->>>>>>> development
         </Route>
         <Route exact path="/groups">
           <GroupIndex />
