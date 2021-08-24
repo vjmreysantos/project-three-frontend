@@ -7,3 +7,8 @@ export function getAllEvents() {
 export function getSingleEvent(id) {
   return axios.get(`/api/events/${id}`)
 }
+const baseUrl = '/api'
+
+export function getAllOnlineEvents() {
+  return axios.get(`${baseUrl}/online-events`)
+}
