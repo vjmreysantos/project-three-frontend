@@ -6,6 +6,7 @@ import EventIndex from './components/events/EventIndex'
 import EventShow from './components/events/EventShow'
 import OnlineEventIndex from './components/onlineEvents/OnlineEventIndex'
 import GroupIndex from './components/groups/GroupIndex'
+import GroupShow from './components/groups/GroupShow'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route exact path="/online-events">
           <OnlineEventIndex />
+        </Route>
+        <Route exact path="/groups/:groupId">
+          <GroupShow />
         </Route>
         <Route exact path="/groups">
           <GroupIndex />

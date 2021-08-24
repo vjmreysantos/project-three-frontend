@@ -1,21 +1,22 @@
+import { Link } from 'react-router-dom'
+
 function GroupCard({ group }) {
   return (
-    <div key={group._id}>
-      <h2>{group.name}</h2>
-      <figure>
-        <img src={group.image} alt={group.name} width="300px" />
-      </figure>
-      <p>{group.description}</p>
-      <p>{group.category.map(category => {
-        return <span key={category}>{category} </span>
-      })}</p>
-      <div>
-        {group.comments}
-      </div>
-      <ul>Members</ul>
-      {group.members.map(member => {
-        return <li key={member._id}>{member.name}</li>
-      })}
+    <div className="event-cards-container">
+      <Link to={`/groups/${group._id}`}>
+        <div className="event-card">
+          <div className="event-card-left">
+            <figure>
+              <img className="event-card-image" src={group.image} alt={group.name} />
+            </figure>
+          </div>
+          <div className="event-card-right">
+            <h2>{group.name}</h2>
+            <p>Location: {group.location}</p>
+            <p>Members: {group.members.length}</p>
+          </div>
+        </div>
+      </Link>  
     </div>
   )
 }

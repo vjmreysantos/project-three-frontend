@@ -1,19 +1,19 @@
 import React from 'react'
-import axios from 'axios'
 
 import GroupCard from './GroupCard'
+import { getAllGroups } from '../../lib/api'
 
 function GroupIndex() {
   const [groups, setGroups] = React.useState(null)
+  const [searchValue, setSearchValue] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const isLoading = !groups && !isError
   
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const res = await axios.get('/api/groups')
+        const res = await getAllGroups()
         setGroups(res.data)
-        console.log(groups)
       } catch (err) {
         console.log(err)
         setIsError(true)
@@ -22,13 +22,48 @@ function GroupIndex() {
     getData()    
   }, [])
 
+  // function copied from Google to sort an array of objects (events) in order
+  function compareEvents(a, b) {
+    const bandA = a.date
+    const bandB = b.date
+    let comparison = 0
+    if (bandA > bandB) {
+      comparison = 1
+    } else if (bandA < bandB) {
+      comparison = -1
+    }
+    return comparison
+  }
+
+  const handleSearch = (e) => {
+    setSearchValue(e.target.value)
+  }
+
+  const filteredGroups = () => {
+    return groups.sort(compareEvents).filter(group => {
+      return (group.name.toLowerCase().includes(searchValue.toLocaleLowerCase())) 
+    // &&
+    // (artist.classifications.includes(filterValue)
+    // || filterValue === 'All')
+    })
+  }
+
+
   return (
-    <section>
-      <h1>Groups</h1>
-      <div>
+    <section className="event-index-section">
+      <div className="events-page-controls">
+        <div className="search">
+          <input 
+            className="input"
+            placeholder="Search groups by name"
+            onChange={handleSearch}
+          />  
+        </div>
+      </div>
+      <div className="events-page-list">
         {isError && <p>Sorry, used the wrong spell.</p>}
         {isLoading && <p>...loading groups</p>}
-        {groups && groups.map(group => {
+        {groups && filteredGroups().map(group => {
           return <GroupCard key={group._id} group={group} />          
         })
         }

@@ -54,3 +54,20 @@
 section.section {
   min-height: calc(100vh - 11.25rem);
 }
+
+.join-button {
+
+}
+
+// * Group Show Styling
+.container-row {
+  display: flex;
+
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: auto 15px;
+}
