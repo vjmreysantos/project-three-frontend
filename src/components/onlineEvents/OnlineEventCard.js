@@ -1,29 +1,22 @@
-import { Link } from 'react-router-dom'
 
-function OnlineEventCard({ onlineEvent }) {
+function OnlineEventCard({ _id, name, image, date, location, attendees }) {
   return (
-    <div className="column is-one-quarter-desktop is-one-third-tablet">
-      <Link to={`/online-events/${onlineEvent._id}`}>
-        <div className="card">
-          <div className="card-header">
-            <div className="card-header-title title is-4">{onlineEvent.name}</div>
-          </div>
-          <div className="card-image is-fullwidth">
-            <figure className="image image is-4by3">
-              <img src={onlineEvent.image} alt={onlineEvent.name} />
+    <div className="event-cards-container">
+      <a href={`/online-events/${_id}`}>
+        <div className="event-card">
+          <div className="event-card-left">
+            <figure>
+              <img className="event-card-image" src={image} alt={name}></img>
             </figure>
           </div>
-          <div className="card-content">
-            <h1>{onlineEvent.description}</h1>
-            <hr />
-            <h3>{onlineEvent.category}</h3>
-            <hr />
-            <h4>{onlineEvent.date}</h4>
-            <hr />
-            <a href="/">{onlineEvent.meetingLink}</a>
+          <div className="event-card-right">
+            <h2>{date}</h2>
+            <h3>{name}</h3>
+            <p><span>{console.log(location)}</span></p>
+            <p><span>{attendees.length}</span> attendees</p>
           </div>
         </div>
-      </Link>
+      </a>
     </div>
   )
 }

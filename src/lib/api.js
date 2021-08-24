@@ -26,5 +26,17 @@ export function attendEvent(id) {
 // ONLINE EVENTS
 
 export function getAllOnlineEvents() {
-  return axios.get(`${baseUrl}/online-events`)
+  return axios.get('/api/online-events')
 }
+export function getSingleOnlineEvent(id) {
+  return axios.get(`/api/online-events/${id}`)
+}
+
+export function getAllGroups() {
+  return axios.get(`${baseUrl}/groups`)
+}
+
+export function getSingleGroup(groupId) {
+  return axios.get(`${baseUrl}/groups/${groupId}`)
+}
+
