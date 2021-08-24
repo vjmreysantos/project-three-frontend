@@ -19,16 +19,14 @@ function OnlineEventIndex() {
   }, [])
 
   return (
-    <section className="section">
-      <div className="container">
-        <div className="columns is-multiline">
-          {onlineEvents &&
-            onlineEvents.map(onlineEvent => (
-              <OnlineEventCard key={onlineEvent._id} onlineEvent={onlineEvent} />
-            ))}
-        </div>
+    <section className="event-index-section">
+      <div className="events-page-list">
+        {onlineEvents &&
+        onlineEvents.map(onlineEvent => (
+          <OnlineEventCard key={onlineEvent._id} onlineEvent={onlineEvent} />
+        ))}
       </div>
     </section>
-  )
+  ) 
 }
 export default OnlineEventIndex
