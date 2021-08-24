@@ -12,8 +12,8 @@ function EventCard({ _id, name, image, date, location, attendees }) {
             </figure>
           </div>
           <div className="event-card-right">
-            <h2>{new Date(date).toString().split('GMT')[0]}</h2>
-            <h3>{name}</h3>
+            <h3>{new Date(date).toString().split('GMT')[0]}</h3>
+            <h4>{name}</h4>
             <p><span>{console.log(location)}</span></p>
             <p><span>{attendees.length}</span> attendees</p>
           </div>
