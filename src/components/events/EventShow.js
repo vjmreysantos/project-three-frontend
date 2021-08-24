@@ -71,7 +71,7 @@ function EventShow() {
           <div className="event-show-left">
             <h2>Details</h2>
             <p>{event.description}</p>
-            <h2>Attendees - <span>{event.attendees.length}</span></h2>
+            <h2>Attendees</h2>
             <div className="attendee-card">
               {event.attendees.length === 0 ?
                 <p>No attendees yet!</p>
