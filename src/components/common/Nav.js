@@ -1,20 +1,20 @@
 import React from 'react'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { isAuthenticated, removeToken } from '../../lib/auth'
 
 function Nav() {
   const isAuth = isAuthenticated()
-  const { pathname } = useLocation()
+  // const { pathname } = useLocation()
   const history = useHistory()
-  const [isOpen, setIsOpen] = React.useState(false)
+  // const [isOpen, setIsOpen] = React.useState(false)
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen)
-  }
+  // const handleToggle = () => {
+  //   setIsOpen(!isOpen)
+  // }
 
-  React.useEffect(() => {
-    setIsOpen(false)
-  }, [pathname])
+  // React.useEffect(() => {
+  //   setIsOpen(false)
+  // }, [pathname])
   
   const handleLogout = () => {
     removeToken()

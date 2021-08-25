@@ -160,12 +160,7 @@ function OnlineEventShow() {
             </div>
             <div className="attend-footer-right">
               <Button variant="danger" onClick={handleClick}>
-<<<<<<< HEAD
-                {/* {attendingToggle === true ? 'Cancel' : 'I\'ll be there'} */}
-                Attend
-=======
                 {isAttending ? 'No Longer Attending' : 'I Will Be There!'}
->>>>>>> development
               </Button>
             </div>
           </div>
