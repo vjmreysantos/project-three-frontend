@@ -1,15 +1,17 @@
 import React from 'react'
 import { useParams } from 'react-router'
-import { getSingleGroup, joinGroup } from '../../lib/api'
+import { getSingleGroup, joinGroup, getProfile } from '../../lib/api'
 import GroupComments from '../comments/GroupComments'
+
 
 
 function GroupShow() {
   const { groupId } = useParams()
   const [group, setGroup] = React.useState(null)
+  const [currentUser, setCurrentUser] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
   const isLoading = !group
-  const [joinedToggle, setJoinedToggle] = React.useState(false)
+  // const [joinedToggle, setJoinedToggle] = React.useState(false)
   
   React.useEffect(() => {
     const getData = async () => {
@@ -23,20 +25,32 @@ function GroupShow() {
     getData()
   }, [groupId])
 
-  // const handleClick = () => {
-  //   history.push(`/groups/${groupId}/join`)
-  // } 
-
   const handleClick = async () => {
     try { 
       await joinGroup(groupId)
-      setJoinedToggle(!joinedToggle)
-      location.reload()
+      const res = await getSingleGroup(groupId)
+      setGroup(res.data)
     } catch (err) {
       console.log(err)
     }
   } 
 
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await getProfile()
+        setCurrentUser(res.data)
+        console.log(res.data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [])
+
+  const isMember = group?.members.some(member => {
+    return member._id === currentUser?._id
+  })
 
   return (
     <section>
@@ -56,7 +70,7 @@ function GroupShow() {
                 <p>Members: {group.members.length}</p>
                 {/* <p>{group.addedBy}</p> */}
                 <button className="button btn btn-primary" onClick={handleClick}>
-                  {joinedToggle === true ? 'Leave Group' : 'Join Group'}
+                  {isMember ? 'Leave Group' : 'Join Group'}
                 </button>
               </div>
             </div>

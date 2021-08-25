@@ -78,3 +78,4 @@ export function loginUser(formdata) {
 export function getProfile() {
   return axios.get(`${baseUrl}/profile`, getHeaders())
 }
+

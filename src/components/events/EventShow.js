@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router'
-import { getSingleEvent, getAllEvents, attendEvent, deleteEvent } from '../../lib/api'
+import { getSingleEvent, getAllEvents, attendEvent, deleteEvent, getProfile } from '../../lib/api'
 import EventMap from './EventMap'
 import { Button } from 'react-bootstrap'
 import { isOwner } from '../../lib/auth'
@@ -11,6 +11,7 @@ function EventShow() {
   const [events, setEvents] = React.useState(null)
   const [event, setEvent] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
+  const [currentUser, setCurrentUser] = React.useState(null)
   const history = useHistory()
   const isLoading = !event && !isError
   
@@ -70,12 +71,29 @@ function EventShow() {
   const handleClick = async () => {
     try { 
       await attendEvent(eventId)
-      location.reload()
-      console.log(event.attendees)
+      const response = await getSingleEvent(eventId)
+      setEvent(response.data)
     } catch (err) {
       console.log(err)
     }
   } 
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await getProfile()
+        setCurrentUser(res.data)
+        console.log(res.data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [])
+
+  const isAttending = event?.attendees.some(attendee => {
+    return attendee._id === currentUser?._id
+  })
 
   return (
     <section className="event-show-section">
@@ -193,7 +211,9 @@ function EventShow() {
             <h4>{event.name}</h4>
           </div>
           <div className="attend-footer-right">
-            <Button variant="primary" onClick = {handleClick}>Attend</Button>
+            <Button variant="primary" onClick = {handleClick}>
+              {isAttending ? 'No Longer Attending' : 'I\'ll be there!'}
+            </Button>
           </div>
         </div>
       </>
