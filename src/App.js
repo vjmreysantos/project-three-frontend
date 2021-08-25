@@ -15,6 +15,7 @@ import Register from './components/auth/Register'
 import EventForm from './components/events/EventForm'
 import Profile from './components/auth/Profile'
 import JoinGroup from './components/groups/JoinGroup'
+import CreateEventComment from './components/events/CreateEventComment'
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route exact path="/events/new-event">
           <EventForm />
+        </Route>
+        <Route exact path="/events/:eventId/create-comment">
+          <CreateEventComment />
         </Route>
         <Route exact path="/events/:eventId">
           <EventShow />

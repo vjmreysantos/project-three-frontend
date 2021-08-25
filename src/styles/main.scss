@@ -1,5 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
 
+body {
+  background-image: url('https://i.pinimg.com/originals/c8/c1/1d/c8c11d37774b9ac8afdbeee61de3fcd4.jpg');
+  color: white;
+}
+
 // EVENTS STYLING
 
 // Index and card
@@ -88,13 +93,28 @@
     align-items: center;
     width: 800px;
     .event-show-left {
-      width: 50%;
+      width: 65%;
     }
     .event-show-right {
-      width: 50%;
+      width: 35%;
       .map-container {
         height: 300px;
         border-top: 2px solid black;
+      }
+    }
+    .comments-container {
+      display: flex;
+      flex-direction: column;
+      .comment {
+        display: flex;
+        .comment-left {
+          display: flex;
+          flex-direction: column;
+          img {
+          max-width: 100px;
+          max-height: 100px;
+          }
+        }
       }
     }
   }
@@ -118,7 +138,7 @@
         align-items: center;
         border: 1px solid black;
         border-radius: 10px;
-        color: black;
+        color: white;
         margin: 10px;
         margin-bottom: 120px;
         height: 270px;

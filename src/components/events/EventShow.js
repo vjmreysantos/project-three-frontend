@@ -1,18 +1,22 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router'
-import { getSingleEvent, getAllEvents, attendEvent, deleteEvent } from '../../lib/api'
+import { getSingleEvent, getAllEvents, attendEvent, deleteEvent, getProfile } from '../../lib/api'
 import EventMap from './EventMap'
 import { Button } from 'react-bootstrap'
 import { isOwner } from '../../lib/auth'
+// import CommentForm from '../comments/CommentForm'
 
 function EventShow() {
   const { eventId } = useParams()
   const [events, setEvents] = React.useState(null)
   const [event, setEvent] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
+  const [currentUser, setCurrentUser] = React.useState(null)
   const history = useHistory()
   const isLoading = !event && !isError
+  // const isAuth = isAuthenticated()
+  
 
   React.useEffect(()=> {
     const getData = async () => {
@@ -66,6 +70,34 @@ function EventShow() {
     }
   }
 
+  const handleClick = async () => {
+    try { 
+      await attendEvent(eventId)
+      const response = await getSingleEvent(eventId)
+      setEvent(response.data)
+    } catch (err) {
+      console.log(err)
+      window.alert('You need to login to attend this event')
+    }
+  } 
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await getProfile()
+        setCurrentUser(res.data)
+        console.log(res.data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [])
+
+  const isAttending = event?.attendees.some(attendee => {
+    return attendee._id === currentUser?._id
+  })
+
   return (
     <section className="event-show-section">
       {isError && <p>Oops!</p>}
@@ -95,32 +127,38 @@ function EventShow() {
           <div className="event-show-left">
             <h2>Details</h2>
             <p>{event.description}</p>
-            <h2>Attendees</h2>
+            <h2>Attendees {event.attendees.length}</h2>
             <div className="attendee-card">
               {event.attendees.length === 0 ?
                 <p>No attendees yet!</p>
                 :
-                event.attendees.map(attendee=>(
-                  <>
-                    <img src={attendee.avatar} alt={attendee.username}></img>
-                    <p>{attendee.username}</p>
-                  </>
-                ))
-              }
+                event.attendees.map(attendee => {
+                  return <li key={attendee._id}>{attendee.username}</li>
+                })}
             </div>
             <h2>Comments</h2>
-            {event.comments.length === 0 ?
-              <p>No comments yet!</p>
-              :
-              event.comments.map(comment=>(
-                <>
-                  <img src={comment.addedBy.avatar} alt={comment.addedBy.username}></img>
-                  <p>{comment.addedBy.username}</p>
-                  <p>{comment.text}</p>
-                  <p>{comment.rating}</p>
-                </>
-              ))
-            }
+            <div className="comments-container">
+              {event.comments.length === 0 ?
+                <p>No comments yet!</p>
+                :
+                event.comments.map(comment=>(
+                  <div key={comment._id} className="comment">
+                    <div className="comment-left">
+                      <img src={comment.addedBy.avatar} alt={comment.addedBy.username}></img>
+                      <p>{comment.addedBy.username}</p>
+                    </div>
+                    <div className="comment-right">
+                      <p>{comment.text}</p>
+                    </div>
+                  </div>
+                ))
+              }
+              <h3>Want to add a comment?</h3>
+              <button><a href={`/events/${eventId}/create-comment`}>Add your comment here</a></button>
+            </div>
+            {/* <CommentForm 
+              {...event}
+            /> */}
 
           </div>
           <div className="event-show-right">
@@ -186,7 +224,9 @@ function EventShow() {
             <h4>{event.name}</h4>
           </div>
           <div className="attend-footer-right">
-            <Button variant="primary" onClick = {() => attendEvent(event._id)}>Attend</Button>
+            <Button variant="primary" onClick = {handleClick}>
+              {isAttending ? 'No Longer Attending' : 'I\'ll be there!'}
+            </Button>
           </div>
         </div>
       </>

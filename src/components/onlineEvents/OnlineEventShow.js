@@ -1,15 +1,16 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { getSingleOnlineEvent, getAllOnlineEvents } from '../../lib/api'
-import { attendOnlineEvent } from '../../lib/api'
+import { getSingleOnlineEvent, getAllOnlineEvents, attendOnlineEvent, getProfile } from '../../lib/api'
 import Button from 'react-bootstrap/Button'
 
 function OnlineEventShow() {
   const { onlineEventId } = useParams()
   const [onlineEvent, setOnlineEvent] = React.useState(null)
   const [onlineEvents, setOnlineEvents] = React.useState(null)
+  const [currentUser, setCurrentUser] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvent && !isError
+  // const [attendingToggle, setAttendingToggle] = React.useState(false)
 
   React.useEffect(()=> {
     const getData = async () => {
@@ -34,6 +35,33 @@ function OnlineEventShow() {
     }
     getData()
   },[])
+
+  const handleClick = async () => {
+    try { 
+      await attendOnlineEvent(onlineEventId)
+      const response = await getSingleOnlineEvent(onlineEventId)
+      setOnlineEvent(response.data)
+    } catch (err) {
+      console.log(err)
+    }
+  } 
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await getProfile()
+        setCurrentUser(res.data)
+        console.log(res.data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [])
+
+  const isAttending = onlineEvent?.attendees.some(attendee => {
+    return attendee._id === currentUser?._id
+  })
 
   const similarEvents = []
 
@@ -75,12 +103,12 @@ function OnlineEventShow() {
                 {onlineEvent.attendees.length === 0 ?
                   <p>No attendees yet!</p>
                   :
-                  onlineEvent.attendees.map(attendee=>(
-                    <>
+                  onlineEvent.attendees.map(attendee => {
+                    return <div key={attendee._id}>
                       <img src={attendee.avatar} alt={attendee.username}></img>
                       <p>{attendee.username}</p>
-                    </>
-                  ))
+                    </div> 
+                  })
                 }
               </div>
               <h2>Comments</h2>
@@ -131,7 +159,9 @@ function OnlineEventShow() {
               <h4>{onlineEvent.name}</h4>
             </div>
             <div className="attend-footer-right">
-              <Button variant="danger" onClick = {() => attendOnlineEvent(onlineEvent._id)}>Attend</Button>
+              <Button variant="danger" onClick={handleClick}>
+                {isAttending ? 'No Longer Attending' : 'I Will Be There!'}
+              </Button>
             </div>
           </div>
         </>

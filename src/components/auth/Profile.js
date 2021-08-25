@@ -65,10 +65,10 @@ function Profile() {
           </div>
           <h2>Your events</h2>
           <div className="joined-events-container">
-            {user.events.length === 0 ?
+            {user.joinedEvent.length === 0 ?
               <p>You have not joined any events yet!</p>
               :
-              user.events.map(event => (
+              user.joinedEvent.map(event => (
                 <div className="attended-events" key={event._id}>
                   <p>{event.date}</p>
                   <p>{event.name}</p>
