@@ -19,7 +19,7 @@ export function getSingleEvent(id) {
 }
 
 export function attendEvent(id) {
-  axios.post(`${baseUrl}/events/${id}`, getHeaders())
+  return axios.post(`${baseUrl}/events/${id}`, null, getHeaders())
 }
 
 export function createEvent(formData) {

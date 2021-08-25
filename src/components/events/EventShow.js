@@ -13,6 +13,7 @@ function EventShow() {
   const [isError, setIsError] = React.useState(false)
   const history = useHistory()
   const isLoading = !event && !isError
+  
 
   React.useEffect(()=> {
     const getData = async () => {
@@ -66,6 +67,16 @@ function EventShow() {
     }
   }
 
+  const handleClick = async () => {
+    try { 
+      await attendEvent(eventId)
+      location.reload()
+      console.log(event.attendees)
+    } catch (err) {
+      console.log(err)
+    }
+  } 
+
   return (
     <section className="event-show-section">
       {isError && <p>Oops!</p>}
@@ -95,18 +106,14 @@ function EventShow() {
           <div className="event-show-left">
             <h2>Details</h2>
             <p>{event.description}</p>
-            <h2>Attendees</h2>
+            <h2>Attendees {event.attendees.length}</h2>
             <div className="attendee-card">
               {event.attendees.length === 0 ?
                 <p>No attendees yet!</p>
                 :
-                event.attendees.map(attendee=>(
-                  <>
-                    <img src={attendee.avatar} alt={attendee.username}></img>
-                    <p>{attendee.username}</p>
-                  </>
-                ))
-              }
+                event.attendees.map(attendee => {
+                  return <li key={attendee._id}>{attendee.username}</li>
+                })}
             </div>
             <h2>Comments</h2>
             {event.comments.length === 0 ?
@@ -186,7 +193,7 @@ function EventShow() {
             <h4>{event.name}</h4>
           </div>
           <div className="attend-footer-right">
-            <Button variant="primary" onClick = {() => attendEvent(event._id)}>Attend</Button>
+            <Button variant="primary" onClick = {handleClick}>Attend</Button>
           </div>
         </div>
       </>
