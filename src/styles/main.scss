@@ -88,13 +88,28 @@
     align-items: center;
     width: 800px;
     .event-show-left {
-      width: 50%;
+      width: 65%;
     }
     .event-show-right {
-      width: 50%;
+      width: 35%;
       .map-container {
         height: 300px;
         border-top: 2px solid black;
+      }
+    }
+    .comments-container {
+      display: flex;
+      flex-direction: column;
+      .comment {
+        display: flex;
+        .comment-left {
+          display: flex;
+          flex-direction: column;
+          img {
+          max-width: 100px;
+          max-height: 100px;
+          }
+        }
       }
     }
   }

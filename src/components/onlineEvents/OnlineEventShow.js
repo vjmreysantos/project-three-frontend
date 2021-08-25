@@ -10,7 +10,7 @@ function OnlineEventShow() {
   // const [isAttending, setIsAttending] = React.useState(false)
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvent && !isError
-  const [attendingToggle, setAttendingToggle] = React.useState(false)
+  // const [attendingToggle, setAttendingToggle] = React.useState(false)
 
   React.useEffect(()=> {
     const getData = async () => {
@@ -142,7 +142,8 @@ function OnlineEventShow() {
             </div>
             <div className="attend-footer-right">
               <Button variant="danger" onClick={handleClick}>
-                {attendingToggle === true ? 'Cancel' : 'I\'ll be there'}
+                {/* {attendingToggle === true ? 'Cancel' : 'I\'ll be there'} */}
+                Attend
               </Button>
             </div>
           </div>
