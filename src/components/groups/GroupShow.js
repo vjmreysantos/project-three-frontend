@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router'
 import { getSingleGroup, joinGroup, getProfile } from '../../lib/api'
+import { isAuthenticated } from '../../lib/auth'
 import GroupComments from '../comments/GroupComments'
 
 
@@ -27,6 +28,9 @@ function GroupShow() {
 
   const handleClick = async () => {
     try { 
+      if (!isAuthenticated) {
+        // window.alert.("You need to login first!")
+      }
       await joinGroup(groupId)
       const res = await getSingleGroup(groupId)
       setGroup(res.data)
