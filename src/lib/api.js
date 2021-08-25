@@ -40,8 +40,7 @@ export function getSingleOnlineEvent(id) {
 }
 
 export function attendOnlineEvent(id) {
-  axios.post(`${baseUrl}/online-events/${id}`, getHeaders())
-  window.alert('You\'re attending!')
+  return axios.post(`${baseUrl}/online-events/${id}`, null, getHeaders())
 }
 
 export function createOnlineEvent(formData) {

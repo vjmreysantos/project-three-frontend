@@ -1,15 +1,16 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { getSingleOnlineEvent, getAllOnlineEvents } from '../../lib/api'
-import { attendOnlineEvent } from '../../lib/api'
+import { getSingleOnlineEvent, getAllOnlineEvents, attendOnlineEvent } from '../../lib/api'
 import Button from 'react-bootstrap/Button'
 
 function OnlineEventShow() {
   const { onlineEventId } = useParams()
   const [onlineEvent, setOnlineEvent] = React.useState(null)
   const [onlineEvents, setOnlineEvents] = React.useState(null)
+  // const [isAttending, setIsAttending] = React.useState(false)
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvent && !isError
+  const [attendingToggle, setAttendingToggle] = React.useState(false)
 
   React.useEffect(()=> {
     const getData = async () => {
@@ -34,6 +35,15 @@ function OnlineEventShow() {
     }
     getData()
   },[])
+
+  const handleClick = async () => {
+    try { 
+      await attendOnlineEvent(onlineEventId)
+      location.reload()
+    } catch (err) {
+      console.log(err)
+    }
+  } 
 
   const similarEvents = []
 
@@ -75,12 +85,12 @@ function OnlineEventShow() {
                 {onlineEvent.attendees.length === 0 ?
                   <p>No attendees yet!</p>
                   :
-                  onlineEvent.attendees.map(attendee=>(
-                    <>
+                  onlineEvent.attendees.map(attendee => {
+                    return <div key={attendee._id}>
                       <img src={attendee.avatar} alt={attendee.username}></img>
                       <p>{attendee.username}</p>
-                    </>
-                  ))
+                    </div> 
+                  })
                 }
               </div>
               <h2>Comments</h2>
@@ -131,7 +141,9 @@ function OnlineEventShow() {
               <h4>{onlineEvent.name}</h4>
             </div>
             <div className="attend-footer-right">
-              <Button variant="danger" onClick = {() => attendOnlineEvent(onlineEvent._id)}>Attend</Button>
+              <Button variant="danger" onClick={handleClick}>
+                {attendingToggle === true ? 'Cancel' : 'I\'ll be there'}
+              </Button>
             </div>
           </div>
         </>
