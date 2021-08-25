@@ -1,6 +1,6 @@
 import React from 'react'
-import { useHistory, useParams } from 'react-router'
-import { getSingleGroup } from '../../lib/api'
+import { useParams } from 'react-router'
+import { getSingleGroup, joinGroup } from '../../lib/api'
 import GroupComments from '../comments/GroupComments'
 
 
@@ -9,8 +9,7 @@ function GroupShow() {
   const [group, setGroup] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
   const isLoading = !group
-  // const [joinedToggle, setJoinedToggle] = React.useState(false)
-  const history = useHistory()
+  const [joinedToggle, setJoinedToggle] = React.useState(false)
   
   React.useEffect(() => {
     const getData = async () => {
@@ -24,8 +23,18 @@ function GroupShow() {
     getData()
   }, [groupId])
 
-  const handleClick = () => {
-    history.push(`/groups/${groupId}/join`)
+  // const handleClick = () => {
+  //   history.push(`/groups/${groupId}/join`)
+  // } 
+
+  const handleClick = async () => {
+    try { 
+      await joinGroup(groupId)
+      setJoinedToggle(!joinedToggle)
+      location.reload()
+    } catch (err) {
+      console.log(err)
+    }
   } 
 
 
@@ -47,7 +56,7 @@ function GroupShow() {
                 <p>Members: {group.members.length}</p>
                 {/* <p>{group.addedBy}</p> */}
                 <button className="button btn btn-primary" onClick={handleClick}>
-                  {/* {joinedToggle === true ? 'Leave Group' : 'Join Group'} */}
+                  {joinedToggle === true ? 'Leave Group' : 'Join Group'}
                 </button>
               </div>
             </div>
