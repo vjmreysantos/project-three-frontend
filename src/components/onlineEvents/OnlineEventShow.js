@@ -1,13 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { getSingleOnlineEvent, getAllOnlineEvents, attendOnlineEvent } from '../../lib/api'
+import { getSingleOnlineEvent, getAllOnlineEvents, attendOnlineEvent, getProfile } from '../../lib/api'
 import Button from 'react-bootstrap/Button'
 
 function OnlineEventShow() {
   const { onlineEventId } = useParams()
   const [onlineEvent, setOnlineEvent] = React.useState(null)
   const [onlineEvents, setOnlineEvents] = React.useState(null)
-  // const [isAttending, setIsAttending] = React.useState(false)
+  const [currentUser, setCurrentUser] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvent && !isError
   // const [attendingToggle, setAttendingToggle] = React.useState(false)
@@ -39,11 +39,29 @@ function OnlineEventShow() {
   const handleClick = async () => {
     try { 
       await attendOnlineEvent(onlineEventId)
-      location.reload()
+      const response = await getSingleOnlineEvent(onlineEventId)
+      setOnlineEvent(response.data)
     } catch (err) {
       console.log(err)
     }
   } 
+
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await getProfile()
+        setCurrentUser(res.data)
+        console.log(res.data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [])
+
+  const isAttending = onlineEvent?.attendees.some(attendee => {
+    return attendee._id === currentUser?._id
+  })
 
   const similarEvents = []
 
@@ -142,8 +160,12 @@ function OnlineEventShow() {
             </div>
             <div className="attend-footer-right">
               <Button variant="danger" onClick={handleClick}>
+<<<<<<< HEAD
                 {/* {attendingToggle === true ? 'Cancel' : 'I\'ll be there'} */}
                 Attend
+=======
+                {isAttending ? 'No Longer Attending' : 'I Will Be There!'}
+>>>>>>> development
               </Button>
             </div>
           </div>
