@@ -52,7 +52,7 @@ function EventIndex() {
       <div className="events-page-controls">
         <div className="search">
           <input className="input"
-            placeholder="Search for keywords or location"
+            placeholder="Search for keywords"
             onChange = {handleSearch}
           />
         </div>
