@@ -30,6 +30,10 @@ export function deleteEvent(id) {
   return axios.delete(`${baseUrl}/events/${id}`, getHeaders())
 }
 
+export function createEventComment(id, formData) {
+  return axios.post(`${baseUrl}/events/${id}/create-comment`, formData, getHeaders())
+}
+ 
 // ONLINE EVENTS
 
 export function getAllOnlineEvents() {

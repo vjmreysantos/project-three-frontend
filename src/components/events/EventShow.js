@@ -5,6 +5,7 @@ import { getSingleEvent, getAllEvents, attendEvent, deleteEvent, getProfile } fr
 import EventMap from './EventMap'
 import { Button } from 'react-bootstrap'
 import { isOwner } from '../../lib/auth'
+// import CommentForm from '../comments/CommentForm'
 
 function EventShow() {
   const { eventId } = useParams()
@@ -14,6 +15,7 @@ function EventShow() {
   const [currentUser, setCurrentUser] = React.useState(null)
   const history = useHistory()
   const isLoading = !event && !isError
+  // const isAuth = isAuthenticated()
   
 
   React.useEffect(()=> {
@@ -75,6 +77,7 @@ function EventShow() {
       setEvent(response.data)
     } catch (err) {
       console.log(err)
+      window.alert('You need to login to attend this event')
     }
   } 
 
@@ -134,18 +137,28 @@ function EventShow() {
                 })}
             </div>
             <h2>Comments</h2>
-            {event.comments.length === 0 ?
-              <p>No comments yet!</p>
-              :
-              event.comments.map(comment=>(
-                <>
-                  <img src={comment.addedBy.avatar} alt={comment.addedBy.username}></img>
-                  <p>{comment.addedBy.username}</p>
-                  <p>{comment.text}</p>
-                  <p>{comment.rating}</p>
-                </>
-              ))
-            }
+            <div className="comments-container">
+              {event.comments.length === 0 ?
+                <p>No comments yet!</p>
+                :
+                event.comments.map(comment=>(
+                  <div key={comment._id} className="comment">
+                    <div className="comment-left">
+                      <img src={comment.addedBy.avatar} alt={comment.addedBy.username}></img>
+                      <p>{comment.addedBy.username}</p>
+                    </div>
+                    <div className="comment-right">
+                      <p>{comment.text}</p>
+                    </div>
+                  </div>
+                ))
+              }
+              <h3>Want to add a comment?</h3>
+              <button><a href={`/events/${eventId}/create-comment`}>Add your comment here</a></button>
+            </div>
+            {/* <CommentForm 
+              {...event}
+            /> */}
 
           </div>
           <div className="event-show-right">
