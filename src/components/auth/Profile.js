@@ -20,6 +20,8 @@ function Profile() {
     // setTimeout(getData, 3000)
   },[])
 
+  console.log(user)
+
   return (
     
     <section className="profile-section">
@@ -33,7 +35,7 @@ function Profile() {
           <h3>Hello <span>{user.username}</span></h3>
         </div>
         <div className="profile-main">
-          <h3>Groups you are an admin for</h3>
+          <h3>Groups you are an admin for:</h3>
           <div className="groups-created-container">
             {user.createdGroup.length === 0 ?
               <p>You are not an admin for any groups yet!</p>
@@ -48,7 +50,7 @@ function Profile() {
               ))
             }
           </div>
-          <h2>Groups you are a member of</h2>
+          <h2>Groups you are a member of:</h2>
           <div className="joined-groups-container">
             {user.joinedGroup.length === 0 ?
               <p>You have not joined any groups yet!</p>
@@ -63,7 +65,7 @@ function Profile() {
               ))
             }
           </div>
-          <h2>Your events</h2>
+          <h2>Your in-person events:</h2>
           <div className="joined-events-container">
             {user.joinedEvent.length === 0 ?
               <p>You have not joined any events yet!</p>
@@ -78,6 +80,21 @@ function Profile() {
                 </div>
               ))
             }
+          </div>
+          <h2>Your online events:</h2>
+          <div className="joined-events-container">  
+            {user.joinedOnlineEvent.length === 0 ? 
+              <p>You have not signed up for any online events yet!</p>
+              :
+              user.joinedOnlineEvent.map(onlineEvent => {
+                return <div className="attended-events" key={onlineEvent._id}>
+                  <p>{onlineEvent.date}</p>
+                  <p>{onlineEvent.name}</p>
+                  <figure className="attended-event-image">
+                    <img src={onlineEvent.image} alt={onlineEvent.name} />
+                  </figure>
+                </div>
+              })}
           </div>
         </div>
       </div>

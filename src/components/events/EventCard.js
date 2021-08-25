@@ -14,7 +14,7 @@ function EventCard({ _id, name, image, date, location, attendees }) {
           <div className="event-card-right">
             <h3>{new Date(date).toString().split('GMT')[0]}</h3>
             <h4>{name}</h4>
-            <p><span>{console.log(location)}</span></p>
+            {/* <p><span>{location}</span></p> */}
             <p><span>{attendees.length}</span> attendees</p>
           </div>
         </div>

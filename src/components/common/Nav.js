@@ -22,48 +22,71 @@ function Nav() {
   }
 
   return (
-    <nav>
-      <Link to="/">
-        Home
-      </Link>
-      <Link to="/events">
-        Events
-      </Link>
-      <Link to="/online-events">
-        Online Events
-      </Link>
-      <Link to="/groups">
-        Groups
-      </Link>
-      <div className="navbar-end">
-        <div className="navbar-item">
-          <div className="buttons">
-            {!isAuth && (
-              <>
-                <Link to="/login" className="btn btn-info">
+    <nav className="navbar navbar-expand-md navbar-dark">
+      <div className="container-fluid">
+        <button 
+          className="navbar-toggler navbar-dark" 
+          type="button" 
+          data-toggle="collapse" 
+          data-target="#main-navigation"
+        > 
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="main-navigation">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link to="/" className="nav-link">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/events" className="nav-link">
+                Events
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/online-events" className="nav-link">
+                Online Events
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/groups" className="nav-link">
+                Groups
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              {!isAuth && (
+                <>
+                  <Link to="/login" className="btn btn-info">
                   Login
-                </Link>
-                <Link to="/register" className="btn btn-info">
+                  </Link>
+                  <Link to="/register" className="btn btn-info">
                   Register
-                </Link>
-              </>  
-            )}
-            {isAuth && (
-              <button 
-                className="btn btn-danger" 
-                onClick={handleLogout}
-                type="button"
-              >
-                Log Out
-              </button>
-            )}
+                  </Link>
+                </>  
+              )}
+              {isAuth && (
+                <>
+                  <Link to="/profile" className="btn btn-info">
+                    Profile
+                  </Link>
+                  <button 
+                    className="btn btn-danger" 
+                    onClick={handleLogout}
+                    type="button"
+                  >
+                    Log Out
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      
-      
-      
-      
+      </div> 
     </nav>
   )
 }

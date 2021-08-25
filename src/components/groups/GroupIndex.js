@@ -12,6 +12,7 @@ function GroupIndex() {
   const [isError, setIsError] = React.useState(false)
   const isLoading = !groups && !isError
   const history = useHistory()
+  const isAuth = isAuthenticated()
   
   React.useEffect(() => {
     const getData = async () => {
@@ -66,7 +67,7 @@ function GroupIndex() {
         </div>
       </div>
       <div>
-        {isAuthenticated && <button onClick={handleClick}>Create New Group</button>}
+        {isAuth && <button onClick={handleClick}>Create New Group</button>}
       </div>
       <div className="events-page-list">
         {isError && <p>Sorry, used the wrong spell.</p>}

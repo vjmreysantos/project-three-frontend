@@ -2,12 +2,14 @@ import React from 'react'
 import { getAllEvents } from '../../lib/api'
 import EventCard from './EventCard'
 import { Button } from 'react-bootstrap'
+import { isAuthenticated } from '../../lib/auth'
 
 function EventIndex() {
   const [events, setEvents] = React.useState(null)
   const [searchValue, setSearchValue] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const isLoading = !events && !isError
+  const isAuth = isAuthenticated()
 
   React.useEffect(() => {
     const getData = async () => {
@@ -57,7 +59,7 @@ function EventIndex() {
             onChange = {handleSearch}
           />
         </div>
-        <Button variant="primary"><a href={'/events/new-event'}>Create an event</a></Button>
+        {isAuth && <Button variant="primary"><a href={'/events/new-event'}>Create an event</a></Button>}
       </div>
       <div className="events-page-list">
         {isError && <p>Oops!</p>}
