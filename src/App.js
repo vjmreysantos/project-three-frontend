@@ -14,6 +14,7 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import EventForm from './components/events/EventForm'
 import Profile from './components/auth/Profile'
+import JoinGroup from './components/groups/JoinGroup'
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
         </Route>
         <Route exact path="/groups/new-group">
           <NewGroup />
+        </Route>
+        <Route exact path="/groups/:groupId/join">
+          <JoinGroup />
         </Route>
         <Route exact path="/groups/:groupId">
           <GroupShow />

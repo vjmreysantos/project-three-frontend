@@ -63,7 +63,7 @@ export function createGroup(formData) {
 }
 
 export function joinGroup(groupId) {
-  return axios.post(`${baseUrl}/group/${groupId}`, getHeaders())
+  return axios.post(`${baseUrl}/groups/${groupId}/join`, null, getHeaders())
 }
 
 // * Auth Requests
