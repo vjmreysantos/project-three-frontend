@@ -1,5 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
 
+body {
+  background-image: url('https://i.pinimg.com/originals/c8/c1/1d/c8c11d37774b9ac8afdbeee61de3fcd4.jpg');
+  color: white;
+}
+
 // EVENTS STYLING
 
 // Index and card
@@ -118,7 +123,7 @@
         align-items: center;
         border: 1px solid black;
         border-radius: 10px;
-        color: black;
+        color: white;
         margin: 10px;
         margin-bottom: 120px;
         height: 270px;
