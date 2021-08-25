@@ -1,12 +1,31 @@
 import React from 'react'
+import { getAllOnlineEvents } from '../../lib/api'
 import { Link } from 'react-router-dom'
 import { Card, Button, Container } from 'react-bootstrap'
 
 function Home() {
 
+  const [onlineEvents, setOnlineEvents] = React.useState('')
+  const [isError, setIsError] = React.useState(false)
+  const isLoading = !onlineEvents && !isError
+  
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await getAllOnlineEvents()
+        setOnlineEvents(response.data)
+      } catch (err) {
+        setIsError(true)
+      }
+    }
+    getData()
+  }, [])
+  
   return (
     <Container>
       <div className="container-row">
+        {isError && <p>Oops!</p>}
+        {isLoading && <p>...loading</p>}
         <div className="container-column">
           <h1 className="display-4">Welcome to the world of Muggles</h1>
           <p>Join a group to meet fellow Muggles and make new friends! Explore your interests in the Wizarding World of Harry Potter. New events are happening both online and in person!</p>
@@ -59,30 +78,41 @@ function Home() {
         <Button variant="info">Magic</Button>
       </div>
       <hr />
-      <div className="input-group">
-        <input type="search" className="form-control rounded" placeholder="Keyword" label="Search"></input>
-        <input type="search" className="form-control rounded" placeholder="Location" label="Search"></input>
-        <Button variant="danger">Search</Button>
-      </div>
-      <hr />
-      <p className="h3">Upcoming events</p>
+
+      <p className="h3">Upcoming online events</p>
       <div className="container-row justify-content-center">
-        <Card>
-          <p>Upcoming events</p>
-        </Card>
-        <Card>
-          <p>Upcoming events</p>
-        </Card>
-        <Card>
-          <p>Upcoming events</p>
-        </Card>
-        <Card>
-          <p>Upcoming events</p>
-        </Card>
+        {onlineEvents &&
+          onlineEvents.sort((a, b) => b.date < a.date).splice(0, 4).map(onlineEvent => (          
+            <>
+              <Link to="/online-events">  
+                <Card>
+                  <Card.Img src={onlineEvent.image} alt={onlineEvent.name} width="100" height="200"/>
+                  <Card.Body>
+                    <Card.Title>{onlineEvent.name}</Card.Title>
+                    <Card.Text>
+                      {onlineEvent.date}
+                      <p><span>{onlineEvent.attendees.length}</span> Attendees</p>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </>
+          ))}
       </div>
       <hr />
       <footer>
-        <p>footer</p>
+        <div className="footer-content">
+          <div className="footer-links">
+            <a href="">Contact Us</a>
+            <br />
+            <a href="">View Our Cookie Policy</a>
+            <br />
+            <a href="">Our Privacy Policy</a>
+          </div>
+          <div className="bottom-footer">
+            <p>Copyright &copy; 2021 All Rights Reserved</p>
+          </div>
+        </div>
       </footer>
     </Container>
   )
