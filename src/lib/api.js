@@ -20,7 +20,14 @@ export function getSingleEvent(id) {
 
 export function attendEvent(id) {
   axios.post(`${baseUrl}/events/${id}`, getHeaders())
-  window.alert('You\'re attending!')
+}
+
+export function createEvent(formData) {
+  return axios.post(`${baseUrl}/events/new-event`, formData, getHeaders())
+}
+
+export function deleteEvent(id) {
+  return axios.delete(`${baseUrl}/events/${id}`, getHeaders())
 }
 
 // ONLINE EVENTS
@@ -37,6 +44,10 @@ export function attendOnlineEvent(id) {
   window.alert('You\'re attending!')
 }
 
+export function createOnlineEvent(formData) {
+  return axios.post(`${baseUrl}/online-events/new-online-event`, formData, getHeaders())
+}
+
 // GROUPS
 
 export function getAllGroups() {
@@ -50,6 +61,14 @@ export function getSingleGroup(groupId) {
 export function createGroup(formData) {
   return axios.post(`${baseUrl}/groups/new-group`, formData, getHeaders())
 }
+
+<<<<<<< HEAD
+=======
+export function joinGroup(groupId) {
+  return axios.post(`${baseUrl}/group/${groupId}`, getHeaders())
+}
+
+>>>>>>> 36b028181b4f1c49b2d558f1a57aade55945fd33
 // * Auth Requests
 
 export function registerUser(formdata) {
@@ -58,4 +77,8 @@ export function registerUser(formdata) {
 
 export function loginUser(formdata) {
   return axios.post(`${baseUrl}/login`, formdata)
+}
+
+export function getProfile() {
+  return axios.get(`${baseUrl}/profile`, getHeaders())
 }

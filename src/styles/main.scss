@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
+@import "react-alice-carousel/lib/scss/alice-carousel.scss";
 
 // EVENTS STYLING
 
@@ -10,6 +11,22 @@
   justify-content: center;
   a {
     text-decoration: none;
+  }
+  .events-page-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 20px 0;
+    a {
+      color: white;
+    }
+    .search {
+      margin-right: 30px;
+    }
+    button {
+      margin-left: 20px;
+      cursor: pointer;
+    }
   }
   .event-cards-container {
     margin: 0 auto;
@@ -56,6 +73,9 @@
     .hosted-by {
       display: flex;
       align-items: center;
+      p {
+        margin-right: 20px;
+      }
       .hosted-by-image {
         width: 100px;
         border: 1px solid black;
@@ -67,15 +87,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 800px;
     .event-show-left {
-      margin-right: 50px;
       width: 50%;
     }
     .event-show-right {
-      margin-left: 50px;
+      width: 50%;
       .map-container {
         height: 300px;
-        width: 100%;
         border-top: 2px solid black;
       }
     }
@@ -152,6 +171,30 @@
   
 }
 
+<<<<<<< HEAD
+// 
+
+.card {
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+}
+
+.card-content {
+  margin-top: auto;
+}
+
+section.section {
+  min-height: calc(100vh - 11.25rem);
+}
+
+
+.join-button {
+
+}
+
+=======
+>>>>>>> 36b028181b4f1c49b2d558f1a57aade55945fd33
 // * Group Show Styling
 .container-row {
   display: flex;
@@ -163,4 +206,47 @@
   flex-direction: column;
   align-content: center;
   margin: auto 15px;
+}
+
+// PROFILE PAGE
+.profile-section {
+  .profile-container {
+    width: 90%;
+    margin: 0 auto;
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+      .user-avatar {
+        width: 100px;
+      }
+    }
+    .groups-created-container, .joined-groups-container, .joined-events-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .created-group {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border: 1px solid black;
+      border-radius: 10px;
+      color: black;
+      margin: 10px;
+      height: 240px;
+      width: 20%;
+      padding: 10px;
+      cursor: pointer;
+      img {
+        max-width: 80%;
+        max-height: 150px;
+        margin: 10px 0 0 10px;
+        border-radius: 10px;
+      }
+    }
+  }
 }
