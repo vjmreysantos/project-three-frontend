@@ -60,7 +60,7 @@ function EventForm () {
 
   return (
     <div className="create-form-container">
-      <h2>New event</h2>
+      <h2>Summon a new event</h2>
       <form
         onSubmit={handleSubmit}
       >
@@ -114,7 +114,7 @@ function EventForm () {
             <FormControl
               type="time"
               className="input"
-              name="date"
+              name="time"
               onChange={handleChange}
             />
           </FormGroup>
@@ -156,10 +156,10 @@ function EventForm () {
           name="location.longitude"
           onChange={handleChange}
         />
-        <FormText muted>Need a little help? You can find latitudes and longitudes  <a href='https://www.latlong.net/' target='_blank' rel='noreferrer'>here</a>
+        <FormText muted>Need a little help? You can find latitudes and longitudes  <a href='https://www.latlong.net/' target='_blank' rel='noreferrer'>here.</a>
         </FormText>
         <br></br>
-        <Button className="create-event-button" variant="primary" type="submit">Create event</Button>
+        <Button className="create-event-button" variant="primary" type="submit">Accio event!</Button>
       </form>
     </div>
   )

@@ -20,6 +20,7 @@ function Nav() {
   const handleLogout = () => {
     removeToken()
     history.push('/')
+    location.reload()
   }
 
   return (
@@ -28,15 +29,7 @@ function Nav() {
         <figure>
           <img className="logo" src={logo} alt="logo"/>
         </figure>
-        <button 
-          className="navbar-toggler navbar-dark" 
-          type="button" 
-          data-toggle="collapse" 
-          data-target="#main-navigation"
-        > 
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="main-navigation">
+        <div id="main-navigation">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link to="/" className="nav-link">
@@ -65,26 +58,25 @@ function Nav() {
             <div className="buttons">
               {!isAuth && (
                 <>
-                  <Link to="/login" className="btn btn-info">
+                  <Link to="/login" className="btn btn-info nav-element">
                   Login
                   </Link>
-                  <Link to="/register" className="btn btn-info">
+                  <Link to="/register" className="btn btn-info nav-element">
                   Register
                   </Link>
                 </>  
               )}
               {isAuth && (
                 <>
-                  <Link to="/profile" className="btn btn-info">
+                  <Link to="/profile" className="nav-element">
                     Profile
                   </Link>
-                  <button 
-                    className="btn btn-danger" 
+                  <a
+                    className="nav-element" 
                     onClick={handleLogout}
-                    type="button"
                   >
                     Log Out
-                  </button>
+                  </a>
                 </>
               )}
             </div>

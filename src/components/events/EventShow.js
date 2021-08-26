@@ -175,7 +175,7 @@ function EventShow() {
           <h3>Similar events on Mugglemore</h3>
           <div className="similar-events-container">
 
-            {categoriesMatchCheck(events, event.category) ?
+            {events && categoriesMatchCheck(events, event.category) ?
               <>
                 {similarEvents.map(event => (
                   <>

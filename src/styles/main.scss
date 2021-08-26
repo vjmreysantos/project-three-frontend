@@ -1,16 +1,19 @@
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Yeseva+One&display=swap');
 
-body {
+body, #root {
   background: black;
   background-image: url('https://raw.githubusercontent.com/Carla-Codes/starry-night-css-animation/master/stars.png');
-  color: white;
+  background-repeat: repeat;
+  background-size: 110% 100%;
+  font-family: 'Yeseva One', cursive;
 }
 
-.in-front {
-  display:block;
-    position: relative;
-    z-index: 3;
+// IN FRONT
+.in-front, .container-row, .input-group, .section, .container, .event-show-section, .create-form-container, .profile-section, .comments-container, .comments-form-container {
+  position: relative;
+  z-index: 3;
+  color: white;
 }
 
 // STARRY NIGHT BACKGROUND
@@ -30,9 +33,9 @@ top:0;
 left:0;
 right:0;
 bottom:0;
-width:100%;
-height:230%;
-display:block;
+width: 100%;
+height: 100%;
+background-size: cover;
 }
 
 .stars {
@@ -62,16 +65,12 @@ nav {
   background-color: #10141b;
   position: relative;
   z-index: 3;
-  .mugglemore {
-    color: white;
-    font-family: 'Leckerli One', cursive;
-    margin-right: 60px;
-  }
+  text-transform: uppercase;
+  font-family: sans-serif;
   .nav-element {
     color: white;
     text-decoration: none;
     margin: 10px 30px;
-    text-transform: uppercase;
   }
   .nav-element:hover {
     color: white;
@@ -83,11 +82,19 @@ nav {
   }
 }
 
-// IN FRONT
-.container-row, .input-group, .section, .container, .event-show-section, .create-form-container, .profile-section, .comments-container, .comments-form-container {
-  position: relative;
-  z-index: 3;
-  color: white;
+// INDEX HERO IMAGES 
+.event-index-hero-image {
+
+  h1 {
+    color: white;
+    width: 50%;
+    margin: 300px auto;
+  }
+  height: 600px;
+  background-image: url('https://images.ctfassets.net/usf1vwtuqyxm/mMhcduVS6W4ewosuSiaKo/1c1ffb948803c93dd5c8beb981a5ea17/TheThreeBroomsticks_PM_B4C24M2_GoblinsInThreeBroomsticks.jpg');
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0px 0px 50px 30px black;
 }
 
 // EVENTS STYLING
@@ -106,18 +113,26 @@ nav {
   }
   .events-page-controls {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    margin: 40px 0 20px 0;
+    margin: 40px 0 20px 150px;
+    width: 100%;
     a {
       color: white;
     }
     .search {
       margin-right: 30px;
+      .input {
+        padding: 10px;
+      }
     }
     button {
       margin-left: 20px;
+      background-color: #6b63b5;
+      border: 0;
       cursor: pointer;
     }
+
   }
     h4 {
       color: white;
@@ -171,6 +186,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 40px;
   .event-show-header {
     margin: 10px 0 10px 0;
     p, h1 {
@@ -185,6 +201,7 @@ nav {
       .hosted-by-image {
         width: 100px;
         border: 1px solid black;
+        border-radius: 55%;
         margin-right: 10px;
       }
     }
@@ -293,12 +310,27 @@ nav {
   width: 70%;
   margin: 0 auto;
   margin-top: 40px;
-  color: white;
+  padding: 0 40px 60px 40px;
+  .multiselect {
+    color: black;
+  }
+  h2 {
+    margin-bottom: 15px;
+  }
   .label {
     margin: 15px 0 2px 5px;
   }
+  .input {
+    font-family: sans-serif;
+  }
+  a {
+    text-decoration: none;
+    color: #6b63b5;
+  }
   button {
     margin-top: 10px;
+    background-color: #6b63b5;
+    border: none;
   }
   
 }
@@ -360,4 +392,20 @@ nav {
     }
   }
 }
+
+// * REGISTRATION PAGE 
+
+
+  .registration-form-container {
+    display: flex;
+    .registration-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+
+
+
 

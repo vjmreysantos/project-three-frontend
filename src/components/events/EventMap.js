@@ -9,7 +9,6 @@ function EventMap ({ event }) {
     zoom: 15,
   })
 
-  // const [popup, setPopup] = React.useState(null)
 
   return (
     <div className="map-container">
@@ -19,7 +18,6 @@ function EventMap ({ event }) {
         width="100%"
         mapStyle='mapbox://styles/mapbox/streets-v11'
         {...viewport}
-        // onClick={() => setPopup(null)}
         onViewportChange={(viewport) => setViewport(viewport)}
       >
         <Marker
@@ -31,29 +29,11 @@ function EventMap ({ event }) {
             role="img"
             aria-label="map-marker"
             className="map-marker"
-            // onClick={() => setPopup(event)}
           >
               📍
           </span>
         </Marker>
         ))
-        {/* {popup &&
-        <Link to={`/women-artists/${popup.id}`}>
-          <Popup
-            closeOnClick={true}
-            onClose={() => setPopup(null)}
-            latitude={popup.latitude}
-            longitude={popup.longitude}
-          >
-            <div className="artist-popup">
-              <p>{popup.name}</p>
-              <figure>
-                <img src={popup.bioImage} alt={popup.name}></img>
-              </figure>
-            </div>
-          </Popup>
-        </Link>
-        }  */}
       </ReactMapGL>
     </div>
   )
