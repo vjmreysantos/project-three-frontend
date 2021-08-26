@@ -1,7 +1,92 @@
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Yeseva+One&display=swap');
 
 body {
-  background-image: url('https://i.pinimg.com/originals/c8/c1/1d/c8c11d37774b9ac8afdbeee61de3fcd4.jpg');
+  background: black;
+  background-image: url('https://raw.githubusercontent.com/Carla-Codes/starry-night-css-animation/master/stars.png');
+  color: white;
+}
+
+.in-front {
+  display:block;
+    position: relative;
+    z-index: 3;
+}
+
+// STARRY NIGHT BACKGROUND
+@keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+  from {background-position:0 0;}
+  to {background-position:10000px 0;}
+}
+
+.stars, .twinkling, .clouds {
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+width:100%;
+height:230%;
+display:block;
+}
+
+.stars {
+background:#000 url('https://raw.githubusercontent.com/Carla-Codes/starry-night-css-animation/master/stars.png') repeat top center;
+z-index:0;
+}
+
+.twinkling{
+background:transparent url('https://raw.githubusercontent.com/Carla-Codes/starry-night-css-animation/master/twinkling.png') repeat top center;
+z-index:1;
+animation:move-twink-back 400s linear infinite;
+}
+
+.clouds{
+  background:transparent url('https://raw.githubusercontent.com/Carla-Codes/starry-night-css-animation/master/clouds.png') repeat top center;
+  z-index:2;
+  opacity: .4;
+  animation:move-clouds-back 200s linear infinite;
+}
+
+
+// NAVBAR
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #10141b;
+  position: relative;
+  z-index: 3;
+  .mugglemore {
+    color: white;
+    font-family: 'Leckerli One', cursive;
+    margin-right: 60px;
+  }
+  .nav-element {
+    color: white;
+    text-decoration: none;
+    margin: 10px 30px;
+    text-transform: uppercase;
+  }
+  .nav-element:hover {
+    color: white;
+    border-bottom: 3px solid #f0d99c;
+  }
+  .logo {
+    height: 80px;
+    padding: 10px 40px 0px 10px;
+  }
+}
+
+// IN FRONT
+.container-row, .input-group, .section, .container, .event-show-section, .create-form-container, .profile-section, .comments-container {
+  position: relative;
+  z-index: 3;
   color: white;
 }
 
@@ -13,14 +98,16 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: 'Yeseva One', cursive;
+  position: relative;
+  z-index: 3;
   a {
     text-decoration: none;
   }
   .events-page-controls {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 20px 0 20px 0;
+    margin: 40px 0 20px 0;
     a {
       color: white;
     }
@@ -32,25 +119,35 @@ body {
       cursor: pointer;
     }
   }
+    h4 {
+      color: white;
+      margin: 30px 0;
+    }
+
   .event-cards-container {
     margin: 0 auto;
     .event-card{
       display: flex;
       justify-content: center;
-      color: black;
-      border-top: 1px solid black;
+      align-items: center;
+      color: white;
+      border-top: 2px solid #10141b;
       cursor: pointer;
+      width: 100%;
+      margin: 20px auto;
       .event-card-left {
-        margin-right: 20px;
+        margin: 0 40px 0 90px;
         .event-card-image {
           margin-top: 15px;
-          width: 150px;
+          width: 180px;
           border-radius: 10px;
         }
       }
       .event-card-right {
         padding: 20px 20px 20px 0;
         text-decoration: none;
+        margin-left: 40px;
+        width: 70%;
         h2 {
           margin: 0;
           text-decoration: none;
@@ -59,6 +156,11 @@ body {
           margin: 0;
         }
       }
+    }
+    .event-card:hover {
+      transform: scale(1.1);
+      background-color: rgba(0,0,0,0.5);
+      color: rgba(255, 255, 255, 1);
     }
   }
 }
@@ -92,6 +194,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 800px;
+    color: white;
     .event-show-left {
       width: 65%;
     }
@@ -100,6 +203,13 @@ body {
       .map-container {
         height: 300px;
         border-top: 2px solid black;
+      }
+    }
+    .attendee-card {
+      display: flex;
+      img {
+        max-width: 100px;
+        max-width: 100px;
       }
     }
     .comments-container {
@@ -118,8 +228,10 @@ body {
       }
     }
   }
+
   .event-show-lower {
     margin-top: 20px;
+    color: white;
     .similar-events-container{
       display: flex;
       flex-wrap: wrap;
@@ -177,10 +289,11 @@ body {
 }
 }
 // Create Event
-.create-event-form-container {
+.create-form-container {
   width: 70%;
   margin: 0 auto;
   margin-top: 40px;
+  color: white;
   .label {
     margin: 15px 0 2px 5px;
   }
@@ -208,6 +321,8 @@ body {
   .profile-container {
     width: 90%;
     margin: 0 auto;
+    position: relative;
+    z-index: 3;
     .profile-header {
       display: flex;
       align-items: center;
@@ -230,7 +345,7 @@ body {
       text-align: center;
       border: 1px solid black;
       border-radius: 10px;
-      color: black;
+      color: white;
       margin: 10px;
       height: 240px;
       width: 20%;
@@ -245,3 +360,4 @@ body {
     }
   }
 }
+

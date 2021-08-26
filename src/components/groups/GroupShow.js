@@ -2,9 +2,6 @@ import React from 'react'
 import { useParams } from 'react-router'
 import { getSingleGroup, joinGroup, getProfile } from '../../lib/api'
 import { isAuthenticated } from '../../lib/auth'
-import GroupComments from '../comments/GroupComments'
-
-
 
 function GroupShow() {
   const { groupId } = useParams()
@@ -12,7 +9,6 @@ function GroupShow() {
   const [currentUser, setCurrentUser] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
   const isLoading = !group
-  // const [joinedToggle, setJoinedToggle] = React.useState(false)
   
   React.useEffect(() => {
     const getData = async () => {
@@ -100,18 +96,42 @@ function GroupShow() {
                   return <li key={member._id}>{member.username}</li>
                 })}
               </div>
-            </div> 
-            <div className="container-column">
-              <h3 id="#discussion">Discussion</h3>
-              <GroupComments />
-              {group.comments.map(comment => {
-                return <li key={comment._id}>{comment.text}</li>
-              })}
+            </div>
+            <h3>Discussion</h3> 
+            <div className="comments-container">
+              {group.comments.length === 0 ?
+                <p>No comments yet!</p>
+                :
+                group.comments.map(comment=>(
+                  <div key={comment._id} className="comment">
+                    <div className="comment-left">
+                      <img src={comment.addedBy.avatar} alt={comment.addedBy.username}></img>
+                      <p>{comment.addedBy.username}</p>
+                    </div>
+                    <div className="comment-right">
+                      <p>{comment.text}</p>
+                    </div>
+                    {/* {isOwner(comment.addedBy._id) ?
+                      <div className="field">
+                        <button type="button"
+                          className="comment-delete-button"
+                          onClick={() => deleteGroupComment(comment._id)}>
+                            Delete comment
+                        </button>
+                      </div>
+                      :
+                      ''  
+                    } */}
+                  </div>
+                ))
+              }
+              <h3>Want to add a comment?</h3>
+              <button><a href={`/groups/${groupId}/create-comment`}>Add your comment here</a></button>
             </div>  
-          </div>}  
+          </div> 
+        }
       </div>
     </section>
-    
   )
 }
 

@@ -37,10 +37,10 @@ export function createEventComment(id, formData) {
 // ONLINE EVENTS
 
 export function getAllOnlineEvents() {
-  return axios.get('/api/online-events')
+  return axios.get(`${baseUrl}/online-events`)
 }
 export function getSingleOnlineEvent(id) {
-  return axios.get(`/api/online-events/${id}`)
+  return axios.get(`${baseUrl}/online-events/${id}`)
 }
 
 export function attendOnlineEvent(id) {
@@ -49,6 +49,14 @@ export function attendOnlineEvent(id) {
 
 export function createOnlineEvent(formData) {
   return axios.post(`${baseUrl}/online-events/new-online-event`, formData, getHeaders())
+}
+
+export function deleteOnlineEvent(id) {
+  return axios.delete(`${baseUrl}/online-events/${id}`, getHeaders())
+}
+
+export function createOnlineEventComment(id, formData) {
+  return axios.post(`${baseUrl}/online-events/${id}/create-comment`, formData, getHeaders())
 }
 
 // GROUPS
@@ -67,6 +75,14 @@ export function createGroup(formData) {
 
 export function joinGroup(groupId) {
   return axios.post(`${baseUrl}/groups/${groupId}`, null, getHeaders())
+}
+
+export function createGroupComment(id, formData) {
+  return axios.post(`${baseUrl}/groups/${id}/create-comment`, formData, getHeaders())
+}
+
+export function deleteGroupComment(id) {
+  return axios.delete(`${baseUrl}/groups/${id}`, getHeaders())
 }
 
 // * Auth Requests

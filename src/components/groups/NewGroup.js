@@ -49,7 +49,7 @@ function NewGroup() {
   }
   
   return (
-    <section>
+    <section className="create-form-container">
       <div className="container-column">
         <h1>Create a new group!</h1>
         <form onSubmit={handleSubmit}>
