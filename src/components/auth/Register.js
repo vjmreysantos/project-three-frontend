@@ -22,9 +22,11 @@ function Register() {
   const [formData, setFormData] = React.useState(initialState)
   const [formErrors, setFormErrors] = React.useState(initialState)
 
-  const handleChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-    setFormErrors({ ...formErrors, [e.target.name]: '' })
+  const handleChange = event => {
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
+    setFormData({ ...formData, [event.target.name]: value })
+    // setFormData({ ...formData, [e.target.name]: e.target.value })
+    setFormErrors({ ...formErrors, [event.target.name]: '' })
   }
 
   const handleSubmit = async e => {
@@ -272,7 +274,7 @@ function Register() {
                         name="details.favoriteSweet"
                         value="licoriceWand"
                         // onChange={handleChange}
-                        // checked={formData.trait === 'ravenclaw'}
+                        // checked={formData.details.favoriteSweet === 'licoriceWand'}
                       />
                       Licorice Wand
                     </label>
@@ -284,11 +286,11 @@ function Register() {
                         className="form-check-input"
                         id="inlineCheckbox2"
                         name="details.favoriteSweet"
-                        value="chocolateFrogs"
-                        // onChange={handleChange}
-                        // checked={formData.trait === 'gryffindor'}
+                        value="chocolateFrog"
+                      //   onChange={handleChange}
+                      //   checked={formData.details.favoriteSweet === 'chocolateFrog'}
                       />
-                      Chocolate Frogs
+                      Chocolate Frog
                     </label>
                   </div>
                   <div className="form-check form-check-inline">
@@ -298,15 +300,22 @@ function Register() {
                         className="form-check-input"
                         id="inlineCheckbox3"
                         name="details.favoriteSweet"
-                        value="cauldronCakes"
+                        value="cauldronCake"
                         // onChange={handleChange}
-                        // checked={formData.trait === 'hufflepuff'}
+                        // checked={formData.details.favoriteSweet === 'cauldronCake'}
                       />
-                      Cauldron Cakes
+                      Cauldron Cake
                     </label>
                   </div>
                   <div className="form-check form-check-inline">
                     <label className="radio">
+                      {/* <input 
+                        className="input"
+                        placeholder="Favorite Sweet"
+                        name="details.favoriteSweet"
+                        value={formData.details.favoriteSweet}
+                        onChange={handleChange}
+                      /> */}
                       <input
                         type="radio"
                         className="form-check-input"
@@ -314,7 +323,7 @@ function Register() {
                         name="details.favoriteSweet"
                         value="pumpkinPasties"
                         // onChange={handleChange}
-                        // checked={formData.trait === 'slytherin'}
+                        // checked={formData.details.favoriteSweet === 'pumpkinPasties'}
                       />
                       Pumpkin Pasties
                     </label>

@@ -18,7 +18,6 @@ import JoinGroup from './components/groups/JoinGroup'
 import CreateEventComment from './components/events/CreateEventComment'
 import CreateOnlineEventComment from './components/onlineEvents/CreateOnlineEventComment'
 import CreateGroupComment from './components/groups/CreateGroupComment'
-import FilteredCategories from './components/common/CategoriesIndex'
 
 
 function App() {
@@ -32,9 +31,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
-          </Route>
-          <Route exact path="/categories">
-            <FilteredCategories />
           </Route>
           <Route exact path="/events/new-event">
             <EventForm />
