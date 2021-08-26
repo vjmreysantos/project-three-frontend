@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 import { createEventComment } from '../../lib/api'
+import { Button } from 'react-bootstrap'
 
 function CommentForm ({ _id, comments }) {
   const history = useHistory()
@@ -47,7 +48,7 @@ function CommentForm ({ _id, comments }) {
         </div>
 
         <div className="field">
-          <button type="submit">Submit comment</button>
+          <Button variant="primary" type="submit">Submit comment</Button>
         </div>
       </form>
     </div>

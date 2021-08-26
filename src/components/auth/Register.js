@@ -1,6 +1,7 @@
 import React from 'react'
 import { registerUser } from '../../lib/api'
 import { useHistory } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 const initialState = {
   username: '',
@@ -137,9 +138,9 @@ function Register() {
               )}
             </div>
             <div className="field">
-              <button type="submit" className="Button">
+              <Button variant="primary" type="submit" className="Button">
                 Sign Me Up!
-              </button>
+              </Button>
             </div>
           </form>
         </div>

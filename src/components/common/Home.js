@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { Card, Button, Container } from 'react-bootstrap'
 
 function Home() {
-
   const [onlineEvents, setOnlineEvents] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvents && !isError
@@ -31,14 +30,14 @@ function Home() {
           <p>Join a group to meet fellow Muggles and make new friends! Explore your interests in the Wizarding World of Harry Potter. New events are happening both online and in person!</p>
         </div>
         <figure className="image">
-          <img src="https://www.meetup.com/_next/image/?url=%2Fimages%2Fshared%2Fonline_events.svg&w=640&q=75" alt="Meetup" width="300" height="400" /> 
+          <img src="https://www.meetup.com/_next/image/?url=%2Fimages%2Fshared%2Fonline_events.svg&w=640&q=75" width="300" height="400" /> 
         </figure>
       </div>
       <hr />
       <div className="container-row justify-content-center">
         <Card>
           <Link to="/events">
-            <Card.Img src="https://www.maryjanevaughan.co.uk/wp-content/uploads/2016/04/middle-temple-2-2.jpg" width="100" height="200"/>
+            <Card.Img src="https://www.maryjanevaughan.co.uk/wp-content/uploads/2016/04/middle-temple-2-2.jpg" width="150" height="200"/>
             <Card.Body>
               <Card.Title>
                 Explore events ➔
@@ -48,7 +47,7 @@ function Home() {
         </Card>
         <Card>
           <Link to="/online-events">
-            <Card.Img src="https://i.ytimg.com/vi/2FDjMige9dI/maxresdefault.jpg" width="100" height="200"/>
+            <Card.Img src="https://i.ytimg.com/vi/2FDjMige9dI/maxresdefault.jpg" width="150" height="200"/>
             <Card.Body>
               <Card.Title>
                 Connect over tech ➔
@@ -58,7 +57,7 @@ function Home() {
         </Card>
         <Card>
           <Link to="/groups">
-            <Card.Img src="https://www.kindpng.com/picc/m/197-1976732_harry-potter-large-set-of-sorcery-wizard-icons.png" width="100" height="200"/>
+            <Card.Img src="https://www.kindpng.com/picc/m/197-1976732_harry-potter-large-set-of-sorcery-wizard-icons.png" width="150" height="200"/>
             <Card.Body>
               <Card.Title>
                 Make new friends ➔
@@ -79,7 +78,7 @@ function Home() {
       </div>
       <hr />
 
-      <p className="h3">Upcoming online events</p>
+      <div className="h3">Upcoming online events</div>
       <div className="container-row justify-content-center">
         {onlineEvents &&
           onlineEvents.sort((a, b) => b.date < a.date).splice(0, 4).map(onlineEvent => (          
