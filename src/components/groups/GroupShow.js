@@ -77,17 +77,10 @@ function GroupShow() {
             <hr />
             <div className="container-row">
               <a href="#about">About</a>
-              <a href="#events">Events</a>
               <a href="#members">Members</a>
               <a href="#discussion">Discussion</a>
             </div>
             <div className="container-row">
-              <div className="container-column">
-                <h3 id="about">About {group.name}</h3>
-                <p>{group.description}</p>
-                <h3 id="events">Upcoming Events</h3>
-                <p>upcoming events go here</p>
-              </div>
               <div className="container-column">
                 <h3>Organizer</h3>
                 <p>{group.addedBy.username}</p>
@@ -97,7 +90,7 @@ function GroupShow() {
                 })}
               </div>
             </div>
-            <h3>Discussion</h3> 
+            <h3 id="discussion">Discussion</h3> 
             <div className="comments-container">
               {group.comments.length === 0 ?
                 <p>No comments yet!</p>

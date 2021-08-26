@@ -1,25 +1,26 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { isAuthenticated, removeToken } from '../../lib/auth'
 import logo from './mugglemore-logo.png'
 
 function Nav() {
   const isAuth = isAuthenticated()
-  // const { pathname } = useLocation()
+  const { pathname } = useLocation()
   const history = useHistory()
-  // const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false)
 
-  // const handleToggle = () => {
-  //   setIsOpen(!isOpen)
-  // }
+  const handleToggle = () => {
+    setIsOpen(!isOpen)
+  }
 
-  // React.useEffect(() => {
-  //   setIsOpen(false)
-  // }, [pathname])
+  React.useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
   
   const handleLogout = () => {
     removeToken()
     history.push('/')
+    location.reload()
   }
 
   return (
@@ -28,15 +29,7 @@ function Nav() {
         <figure>
           <img className="logo" src={logo} alt="logo"/>
         </figure>
-        <button 
-          className="navbar-toggler navbar-dark" 
-          type="button" 
-          data-toggle="collapse" 
-          data-target="#main-navigation"
-        > 
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="main-navigation">
+        <div id="main-navigation">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link to="/" className="nav-link">
