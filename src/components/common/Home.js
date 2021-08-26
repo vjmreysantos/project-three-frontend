@@ -1,12 +1,14 @@
 import React from 'react'
 import { getAllOnlineEvents } from '../../lib/api'
 import { Link } from 'react-router-dom'
-import { Card, Button, Container } from 'react-bootstrap'
+import { Card, Container, Button } from 'react-bootstrap'
 
 function Home() {
+
   const [onlineEvents, setOnlineEvents] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvents && !isError
+
   
   React.useEffect(() => {
     const getData = async () => {
@@ -19,7 +21,13 @@ function Home() {
     }
     getData()
   }, [])
-  
+
+
+  function handleButtonClick(e) {
+    e.preventDefault()
+
+  }
+
   return (
     <Container>
       <div className="container-row">
@@ -40,7 +48,7 @@ function Home() {
             <Card.Img src="https://www.maryjanevaughan.co.uk/wp-content/uploads/2016/04/middle-temple-2-2.jpg" width="150" height="200"/>
             <Card.Body>
               <Card.Title>
-                Explore events ➔
+              Explore events ➔
               </Card.Title>
             </Card.Body>
           </Link>
@@ -50,7 +58,7 @@ function Home() {
             <Card.Img src="https://i.ytimg.com/vi/2FDjMige9dI/maxresdefault.jpg" width="150" height="200"/>
             <Card.Body>
               <Card.Title>
-                Connect over tech ➔
+              Connect over tech ➔
               </Card.Title>
             </Card.Body>
           </Link>
@@ -60,45 +68,47 @@ function Home() {
             <Card.Img src="https://www.kindpng.com/picc/m/197-1976732_harry-potter-large-set-of-sorcery-wizard-icons.png" width="150" height="200"/>
             <Card.Body>
               <Card.Title>
-                Make new friends ➔
+              Make new friends ➔
               </Card.Title>
             </Card.Body>
           </Link>
         </Card>
       </div>
       <hr />
-      <div className="container-row justify-content-center">
-        <Button variant="info">Sports</Button>
-        <Button variant="info">Books</Button>
-        <Button variant="info">Movies</Button>
-        <Button variant="info">Games</Button>
-        <Button variant="info">Food</Button>
-        <Button variant="info">Drinks</Button>
-        <Button variant="info">Magic</Button>
+
+      <div className="btn-toolbar justify-content-center">
+        <Button variant="info" onClick={handleButtonClick} value="sports">Sports</Button>
+        <Button variant="info" onClick={handleButtonClick} value="books">Books</Button>
+        <Button variant="info" onClick={handleButtonClick} value="movies">Movies</Button>
+        <Button variant="info" onClick={handleButtonClick} value="games">Games</Button>
+        <Button variant="info" onClick={handleButtonClick} value="food">Food</Button>
+        <Button variant="info" onClick={handleButtonClick} value="drinks">Drinks</Button>
+        <Button variant="info" onClick={handleButtonClick} value="magic">Magic</Button>
       </div>
       <hr />
 
       <div className="h3">Upcoming online events</div>
       <div className="container-row justify-content-center">
         {onlineEvents &&
-          onlineEvents.sort((a, b) => b.date < a.date).splice(0, 4).map(onlineEvent => (          
-            <>
-              <Link to="/online-events">  
-                <Card>
-                  <Card.Img src={onlineEvent.image} alt={onlineEvent.name} width="100" height="200"/>
-                  <Card.Body>
-                    <Card.Title>{onlineEvent.name}</Card.Title>
-                    <Card.Text>
-                      {onlineEvent.date}
-                      <p><span>{onlineEvent.attendees.length}</span> Attendees</p>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Link>
-            </>
-          ))}
+        onlineEvents.sort((a, b) => b.date < a.date).splice(0, 4).map(onlineEvent => (          
+          <>
+            <Link to="/online-events">  
+              <Card>
+                <Card.Img src={onlineEvent.image} alt={onlineEvent.name} width="100" height="200"/>
+                <Card.Body>
+                  <Card.Title>{onlineEvent.name}</Card.Title>
+                  <Card.Text>
+                    {onlineEvent.date}
+                    <p><span>{onlineEvent.attendees.length}</span> Attendees</p>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Link>
+          </>
+        ))}
       </div>
       <hr />
+
       <footer>
         <div className="footer-content">
           <div className="footer-links">

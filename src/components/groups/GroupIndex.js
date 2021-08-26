@@ -4,6 +4,7 @@ import { useHistory } from 'react-router'
 import GroupCard from './GroupCard'
 import { getAllGroups } from '../../lib/api'
 import { isAuthenticated } from '../../lib/auth'
+import { Button } from 'react-bootstrap'
 
 
 function GroupIndex() {
@@ -65,9 +66,7 @@ function GroupIndex() {
             onChange={handleSearch}
           />  
         </div>
-      </div>
-      <div>
-        {isAuth && <button onClick={handleClick}>Create New Group</button>}
+        {isAuth && <Button onClick={handleClick}>Create New Group</Button>}
       </div>
       <div className="events-page-list">
         {isError && <p>Sorry, used the wrong spell.</p>}

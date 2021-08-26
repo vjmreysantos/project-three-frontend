@@ -3,6 +3,7 @@ import { getAllOnlineEvents } from '../../lib/api'
 import { isAuthenticated } from '../../lib/auth'
 import OnlineEventCard from './OnlineEventCard'
 import { useHistory } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 function OnlineEventIndex() {
   
@@ -60,9 +61,7 @@ function OnlineEventIndex() {
             onChange = {handleSearch}
           />
         </div>
-      </div>
-      <div>
-        {isAuth && <button onClick={handleClick}>Create New Online Event</button>}
+        {isAuth && <Button onClick={handleClick}>Create New Online Event</Button>}
       </div>
       <div className="events-page-list">
         {isError && <p>Oops!</p>}
