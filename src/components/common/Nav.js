@@ -27,7 +27,7 @@ function Nav() {
     <nav className="navbar navbar-expand-md navbar-dark">
       <div className="container-fluid">
         <figure>
-          <img className="logo" src={logo} alt="logo"/>
+          <Link to="/"><img className="logo" src={logo} alt="logo"/></Link>
         </figure>
         <div id="main-navigation">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">

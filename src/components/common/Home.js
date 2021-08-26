@@ -22,12 +22,6 @@ function Home() {
     getData()
   }, [])
 
-
-  function handleButtonClick(e) {
-    e.preventDefault()
-
-  }
-
   return (
     <Container>
       <div className="container-row">
@@ -77,13 +71,13 @@ function Home() {
       <hr />
 
       <div className="btn-toolbar justify-content-center">
-        <Button variant="info" onClick={handleButtonClick} value="sports">Sports</Button>
-        <Button variant="info" onClick={handleButtonClick} value="books">Books</Button>
-        <Button variant="info" onClick={handleButtonClick} value="movies">Movies</Button>
-        <Button variant="info" onClick={handleButtonClick} value="games">Games</Button>
-        <Button variant="info" onClick={handleButtonClick} value="food">Food</Button>
-        <Button variant="info" onClick={handleButtonClick} value="drinks">Drinks</Button>
-        <Button variant="info" onClick={handleButtonClick} value="magic">Magic</Button>
+        <Button variant="info" value="sports">Sports</Button>
+        <Button variant="info" value="books">Books</Button>
+        <Button variant="info" value="movies">Movies</Button>
+        <Button variant="info" value="games">Games</Button>
+        <Button variant="info" value="food">Food</Button>
+        <Button variant="info" value="drinks">Drinks</Button>
+        <Button variant="info" value="magic">Magic</Button>
       </div>
       <hr />
 
