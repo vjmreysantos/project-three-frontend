@@ -6,21 +6,57 @@ import { Card, Container, Button } from 'react-bootstrap'
 function Home() {
 
   const [onlineEvents, setOnlineEvents] = React.useState('')
+  // const [events, setEvents] = React.useState('')
+  // const [groups, setGroups] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvents && !isError
 
+  // const categories = (
+  //   'Sports',
+  //   'Books',
+  //   'Movies',
+  //   'Games',
+  //   'Food',
+  //   'Drinks',
+  //   'Magic'
+  // )
   
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const response = await getAllOnlineEvents()
-        setOnlineEvents(response.data)
+        const res = await getAllOnlineEvents()
+        setOnlineEvents(res.data)
       } catch (err) {
         setIsError(true)
       }
     }
     getData()
   }, [])
+
+  // React.useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const res = await getAllEvents()
+  //       setEvents(res.data)
+  //     } catch (err) {
+  //       setIsError(true)
+  //     }
+  //   }
+  //   getData()
+  // }, [])
+
+  // React.useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const res = await getAllGroups()
+  //       setGroups(res.data)
+  //     } catch (err) {
+  //       setIsError(true)
+  //     }
+  //   }
+  //   getData()
+  // }, [])
+
 
   return (
     <Container>
