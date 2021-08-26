@@ -44,14 +44,14 @@ function EventIndex() {
   const filteredEvents = () => {
     return events.sort(compareEvents).filter(event => {
       return (event.name.toLowerCase().includes(searchValue.toLocaleLowerCase())) 
-      // &&
-      // (artist.classifications.includes(filterValue)
-      // || filterValue === 'All')
     })
   }
 
   return (
     <section className="event-index-section">
+      <div className="event-index-hero-image">
+        <h1>Explore some of the magical events happening in and around London on Mugglemore below</h1>
+      </div>
       <div className="events-page-controls">
         <div className="search">
           <input className="input"
@@ -59,13 +59,16 @@ function EventIndex() {
             onChange = {handleSearch}
           />
         </div>
-        {isAuth && <Button variant="primary"><a href={'/events/new-event'}>Create an event</a></Button>}
+        {isAuth ? 
+          <Button variant="primary"><a href={'/events/new-event'}>Create an event</a></Button>
+          :
+          <Button variant="primary"><a href={'/login'}>Login to create an event</a></Button>
+        }
       </div>
       {isError && <p>Oops!</p>}
       {isLoading && <p>...loading</p>}
       {events &&
           <div className="events-page-list">
-            <h4>Take a look at some of the magical events in and around London on Mugglemore.</h4>
             {filteredEvents().map(event => (
               <EventCard key={event._id} {...event}/>
             )

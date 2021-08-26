@@ -37,54 +37,46 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="main-navigation">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link to="/" className="nav-link">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/events" className="nav-link">
-                Events
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/online-events" className="nav-link">
-                Online Events
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/groups" className="nav-link">
-                Groups
-              </Link>
-            </li>
-          </ul>
+          <Link to="/" className="nav-element">
+            Home
+          </Link>
+
+          <Link to="/events" className="nav-element">
+            Events
+          </Link>
+
+          <Link to="/online-events" className="nav-element">
+            Online Events
+          </Link>
+
+          <Link to="/groups" className="nav-element">
+            Groups
+          </Link>
         </div>
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
               {!isAuth && (
                 <>
-                  <Link to="/login" className="btn btn-info">
+                  <Link to="/login" className="btn btn-info nav-element">
                   Login
                   </Link>
-                  <Link to="/register" className="btn btn-info">
+                  <Link to="/register" className="btn btn-info nav-element">
                   Register
                   </Link>
                 </>  
               )}
               {isAuth && (
                 <>
-                  <Link to="/profile" className="btn btn-info">
+                  <Link to="/profile" className="nav-element">
                     Profile
                   </Link>
-                  <button 
-                    className="btn btn-danger" 
+                  <a
+                    className="nav-element" 
                     onClick={handleLogout}
-                    type="button"
                   >
                     Log Out
-                  </button>
+                  </a>
                 </>
               )}
             </div>
