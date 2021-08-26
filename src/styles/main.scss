@@ -361,3 +361,19 @@ nav {
   }
 }
 
+// * REGISTRATION PAGE 
+
+
+  .registration-form-container {
+    display: flex;
+    .registration-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+
+
+
+
