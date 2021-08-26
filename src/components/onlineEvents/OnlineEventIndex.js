@@ -1,9 +1,8 @@
 import React from 'react'
-import { useHistory } from 'react-router'
-
 import { getAllOnlineEvents } from '../../lib/api'
 import { isAuthenticated } from '../../lib/auth'
 import OnlineEventCard from './OnlineEventCard'
+import { useHistory } from 'react-router-dom'
 
 function OnlineEventIndex() {
   
@@ -57,7 +56,7 @@ function OnlineEventIndex() {
       <div className="events-page-controls">
         <div className="search">
           <input className="input"
-            placeholder="Search for keywords or location"
+            placeholder="Search for keywords"
             onChange = {handleSearch}
           />
         </div>

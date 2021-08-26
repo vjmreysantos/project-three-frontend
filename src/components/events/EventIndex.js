@@ -61,15 +61,17 @@ function EventIndex() {
         </div>
         {isAuth && <Button variant="primary"><a href={'/events/new-event'}>Create an event</a></Button>}
       </div>
-      <div className="events-page-list">
-        {isError && <p>Oops!</p>}
-        {isLoading && <p>...loading</p>}
-        {events &&
-          filteredEvents().map(event => (
-            <EventCard key={event._id} {...event}/>
-          )
-          )}
-      </div>
+      {isError && <p>Oops!</p>}
+      {isLoading && <p>...loading</p>}
+      {events &&
+          <div className="events-page-list">
+            <h4>Take a look at some of the magical events in and around London on Mugglemore.</h4>
+            {filteredEvents().map(event => (
+              <EventCard key={event._id} {...event}/>
+            )
+            )}
+          </div>
+      }
     </section>
   )
   

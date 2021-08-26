@@ -1,5 +1,5 @@
 import React from 'react'
-import CommentForm from '../comments/CommentForm'
+import EventCommentForm from '../comments/CommentForm'
 import { getSingleEvent } from '../../lib/api'
 import { useParams } from 'react-router'
 
@@ -7,7 +7,6 @@ import { useParams } from 'react-router'
 function CreateEventComment() {
   const { eventId } = useParams()
   const [event, setEvent] = React.useState(null)
-  // const [isError, setIsError] = React.useState(false)
 
   React.useEffect(()=> {
     const getData = async () => {
@@ -22,7 +21,7 @@ function CreateEventComment() {
   },[eventId])
   
   return (
-    <CommentForm 
+    <EventCommentForm 
       {...event}
     />
   )

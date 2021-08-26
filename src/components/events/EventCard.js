@@ -1,6 +1,6 @@
 
 
-function EventCard({ _id, name, image, date, location, attendees }) {
+function EventCard({ _id, name, image, date, time, location, attendees }) {
 
   return (
     <div className="event-cards-container">
@@ -12,9 +12,9 @@ function EventCard({ _id, name, image, date, location, attendees }) {
             </figure>
           </div>
           <div className="event-card-right">
-            <h3>{new Date(date).toString().split('GMT')[0]}</h3>
+            <h3>{date}, {time}</h3>
             <h4>{name}</h4>
-            {/* <p><span>{location}</span></p> */}
+            <p>{location.placeName}, {location.streetName}</p>
             <p><span>{attendees.length}</span> attendees</p>
           </div>
         </div>

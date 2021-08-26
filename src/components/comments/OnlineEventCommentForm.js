@@ -1,9 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router'
-import { createEventComment } from '../../lib/api'
-import { Button } from 'react-bootstrap'
+import { createOnlineEventComment } from '../../lib/api'
 
-function EventCommentForm ({ _id, comments }) {
+function OnlineEventCommentForm ({ _id, comments }) {
   const history = useHistory()
 
   const [formData, setFormData] = React.useState(
@@ -19,8 +18,8 @@ function EventCommentForm ({ _id, comments }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await createEventComment(_id, formData)
-      history.push(`/events/${_id}`)
+      await createOnlineEventComment(_id, formData)
+      history.push(`/online-events/${_id}`)
       console.log(comments)
     } catch (err) {
       console.log(err)
@@ -49,11 +48,11 @@ function EventCommentForm ({ _id, comments }) {
         </div>
 
         <div className="field">
-          <Button variant="primary" type="submit">Submit comment</Button>
+          <button type="submit">Submit comment</button>
         </div>
       </form>
     </div>
   )
 }
 
-export default EventCommentForm
+export default OnlineEventCommentForm

@@ -12,6 +12,7 @@ function NewOnlineEvent() {
     image: '',
     description: '',
     date: '',
+    time: '',
     category: [],
     meetingLink: '',
   }
@@ -52,7 +53,7 @@ function NewOnlineEvent() {
   
   return (
     <section>
-      <div className="container-column">
+      <div className="create-form-container">
         <h1>Create a new online event!</h1>
         <form onSubmit={handleSubmit}>
           <div className="field">
@@ -73,6 +74,17 @@ function NewOnlineEvent() {
                 className="form-control"
                 type="date"
                 name="date"
+                onChange={handleChange}
+              />  
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Event Time</label>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="time"
+                name="time"
                 onChange={handleChange}
               />  
             </div>

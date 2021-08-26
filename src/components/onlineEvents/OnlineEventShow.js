@@ -1,7 +1,9 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { getSingleOnlineEvent, getAllOnlineEvents, attendOnlineEvent, getProfile } from '../../lib/api'
-import Button from 'react-bootstrap/Button'
+import { useHistory } from 'react-router'
+import { getSingleOnlineEvent, getAllOnlineEvents, attendOnlineEvent, deleteOnlineEvent, getProfile } from '../../lib/api'
+import { Button } from 'react-bootstrap'
+import { isOwner } from '../../lib/auth'
 
 function OnlineEventShow() {
   const { onlineEventId } = useParams()
@@ -9,6 +11,7 @@ function OnlineEventShow() {
   const [onlineEvents, setOnlineEvents] = React.useState(null)
   const [currentUser, setCurrentUser] = React.useState(null)
   const [isError, setIsError] = React.useState(false)
+  const history = useHistory()
   const isLoading = !onlineEvent && !isError
   // const [attendingToggle, setAttendingToggle] = React.useState(false)
 
@@ -35,16 +38,6 @@ function OnlineEventShow() {
     }
     getData()
   },[])
-
-  const handleClick = async () => {
-    try { 
-      await attendOnlineEvent(onlineEventId)
-      const response = await getSingleOnlineEvent(onlineEventId)
-      setOnlineEvent(response.data)
-    } catch (err) {
-      console.log(err)
-    }
-  } 
 
   React.useEffect(() => {
     const getData = async () => {
@@ -80,54 +73,92 @@ function OnlineEventShow() {
     )
   }
 
+  const handleSubmit = async () => {
+    try {
+      const response = await deleteOnlineEvent(onlineEventId)
+      window.alert('you have successfully deleted this event')
+      console.log(response)
+      history.push('/online-events')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleClick = async () => {
+    try { 
+      await attendOnlineEvent(onlineEventId)
+      const response = await getSingleOnlineEvent(onlineEventId)
+      setOnlineEvent(response.data)
+    } catch (err) {
+      console.log(err)
+      window.alert('You need to login to attend this event')
+    }
+  } 
+
   return (
-    <section className="events-show-section">
+    <section className="event-show-section">
       {isError && <p>Oops!</p>}
       {isLoading && <p>...loading</p>}
       {onlineEvent &&
         <>
           <div className="event-show-header">
-            <p>{onlineEvent.date}</p>
+            <p>{onlineEvent.date}, {onlineEvent.time}</p>
             <h1>{onlineEvent.name}</h1>
-            <div className="hosted-by">
-              <img className="hosted-by-image" src={onlineEvent.addedBy.avatar} alt={onlineEvent.addedBy.username}></img>
-              <p>Hosted by <span>{onlineEvent.addedBy.username}</span></p>
-            </div>
-          </div>
-          <div className="event-show-main">
-            <div className="event-show-left">
-              <h2>Details</h2>
-              <p>{onlineEvent.description}</p>
-              <h2>Attendees - <span>{onlineEvent.attendees.length}</span></h2>
-              <div className="attendee-card">
-                {onlineEvent.attendees.length === 0 ?
-                  <p>No attendees yet!</p>
-                  :
-                  onlineEvent.attendees.map(attendee => {
-                    return <div key={attendee._id}>
-                      <img src={attendee.avatar} alt={attendee.username}></img>
-                      <p>{attendee.username}</p>
-                    </div> 
-                  })
-                }
+            {isOwner(onlineEvent.addedBy._id) ?
+              <div className="hosted-by">
+                <img className="hosted-by-image" src={onlineEvent.addedBy.avatar} alt={onlineEvent.addedBy.username}></img>
+                <p>You are hosting this event</p>
+                <Button variant="danger"
+                  onClick={handleSubmit}>
+                Delete event
+                </Button>
               </div>
-              <h2>Comments</h2>
+              :
+              <div className="hosted-by">
+                <img className="hosted-by-image" src={onlineEvent.addedBy.avatar} alt={onlineEvent.addedBy.username}></img>
+                <p>Hosted by <span>{onlineEvent.addedBy.username}</span></p>
+              </div>
+            }
+          </div>
+
+          <div className="event-show-main">
+
+            <h2>Details</h2>
+            <p>{onlineEvent.description}</p>
+            <h2>Attendees {onlineEvent.attendees.length}</h2>
+            {onlineEvent.attendees.length === 0 ?
+              <p>No attendees yet!</p>
+              :
+              onlineEvent.attendees.map(attendee => {
+                return <div key={attendee._id} className="attendee-card">
+                  <img src={attendee.avatar} alt={attendee.username}></img>
+                  <p>{attendee.username}</p>
+                </div> 
+              })
+            }
+
+            <h2>Comments</h2>
+            <div className="comments-container">
               {onlineEvent.comments.length === 0 ?
                 <p>No comments yet!</p>
                 :
                 onlineEvent.comments.map(comment=>(
-                  <>
-                    <img src={comment.addedBy.avatar} alt={comment.addedBy.username}></img>
-                    <p>{comment.addedBy.username}</p>
-                    <p>{comment.text}</p>
-                    <p>{comment.rating}</p>
-                  </>
+                  <div key={comment._id} className="comment">
+                    <div className="comment-left">
+                      <img src={comment.addedBy.avatar} alt={comment.addedBy.username}></img>
+                      <p>{comment.addedBy.username}</p>
+                    </div>
+                    <div className="comment-right">
+                      <p>{comment.text}</p>
+                      <p>{comment.rating}</p>
+                    </div>
+                  </div>
                 ))
               }
+              <h3>Want to add a comment?</h3>
+              <button><a href={`/online-events/${onlineEventId}/create-comment`}>Add your comment here</a></button>
             </div>
-            <div className="event-show-right">
-              <p><span>⏰</span>{onlineEvent.date}</p>
-            </div>
+
           </div>
           <div className="event-show-lower">
             <h3>Similar events on Mugglemore</h3>
@@ -153,6 +184,7 @@ function OnlineEventShow() {
               }
             </div>
           </div>
+
           <div className="event-show-attend-footer">
             <div className="attend-footer-left">
               <p>{onlineEvent.date}</p>
@@ -160,7 +192,7 @@ function OnlineEventShow() {
             </div>
             <div className="attend-footer-right">
               <Button variant="danger" onClick={handleClick}>
-                {isAttending ? 'No Longer Attending' : 'I Will Be There!'}
+                {isAttending ? 'Can no longer attend' : 'I will be there!'}
               </Button>
             </div>
           </div>

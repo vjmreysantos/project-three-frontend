@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-
+import { Button } from 'react-bootstrap'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
 
@@ -67,9 +67,9 @@ function Login() {
               </p>
             )}
             <div className="field">
-              <button type="submit" className="Button">
+              <Button variant="primary" type="submit" className="Button">
                 Login!
-              </button>
+              </Button>
             </div>
           </form>
         </div>

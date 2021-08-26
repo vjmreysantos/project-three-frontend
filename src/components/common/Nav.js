@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { isAuthenticated, removeToken } from '../../lib/auth'
+import logo from './mugglemore-logo.png'
 
 function Nav() {
   const isAuth = isAuthenticated()
@@ -24,6 +25,9 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-md navbar-dark">
       <div className="container-fluid">
+        <figure>
+          <img className="logo" src={logo} alt="logo"/>
+        </figure>
         <button 
           className="navbar-toggler navbar-dark" 
           type="button" 
@@ -86,8 +90,8 @@ function Nav() {
             </div>
           </div>
         </div>
-      </div> 
-    </nav>
+      </div>
+    </nav>        
   )
 }
 export default Nav
