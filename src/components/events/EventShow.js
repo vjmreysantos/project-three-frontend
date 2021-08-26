@@ -98,6 +98,10 @@ function EventShow() {
     }
   } 
 
+  const randomIndexOne = Math.floor(Math.random() * event?.attendees.length)
+  const randomIndexTwo = Math.floor(Math.random() * event?.attendees.length)
+  const randomIndexThree = Math.floor(Math.random() * event?.attendees.length)
+
   return (
     <section className="event-show-section">
       {isError && <p>Oops!</p>}
@@ -126,21 +130,43 @@ function EventShow() {
 
         <div className="event-show-main">
           <div className="event-show-left">
-            <h2>Details</h2>
-            <p>{event.description}</p>
-            <h2>Attendees {event.attendees.length}</h2>
-            {event.attendees.length === 0 ?
-              <p>No attendees yet!</p>
-              :
-              event.attendees.map(attendee => {
-                return <div key={attendee._id} className="attendee-card">
-                  <img src={attendee.avatar} alt={attendee.username}></img>
-                  <p>{attendee.username}</p>
-                </div>
-              })
-            }
+            <div className="details">
+              <h3>Details</h3>
+              <p>{event.description}</p>
+            </div>
+            <div className="attendees">
+              <h3>Attendees: {event.attendees.length}</h3>
+              <div className="attendee-cards-container">
+                {event.attendees.length === 0 ?
+                  <p>No attendees yet!</p>
+                  :
+                  <>
+                    <div className="attendee-card">
+                      {<img src={event.attendees[randomIndexOne].avatar} alt={event.attendees[randomIndexOne].username}></img>}
+                      <p>{event.attendees[randomIndexOne].username}</p>
+                    </div>
+                    <div className="attendee-card">
+                      {<img src={event.attendees[randomIndexTwo].avatar} alt={event.attendees[randomIndexTwo].username}></img>}
+                      <p>{event.attendees[randomIndexTwo].username}</p>
+                    </div>
+                    <div className="attendee-card">
+                      {<img src={event.attendees[randomIndexThree].avatar} alt={event.attendees[randomIndexThree].username}></img>}
+                      <p>{event.attendees[randomIndexThree].username}</p>
+                    </div>
+                  </>
+                
+                // event.attendees.map(attendee => {
+                //   return <div key={attendee._id} className="attendee-card">
+                //     <img src={attendee.avatar} alt={attendee.username}></img>
+                //     <p>{attendee.username}</p>
+                //   </div>
+                // })
+                }
+              </div>
+              <p>And {event.attendees.length - 3} others</p>
+            </div>
 
-            <h2>Discussion</h2>
+            <h3>Discussion</h3>
             <div className="comments-container">
               {event.comments.length === 0 ?
                 <p>No comments yet!</p>

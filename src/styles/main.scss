@@ -188,7 +188,12 @@ nav {
   align-items: center;
   padding-top: 40px;
   .event-show-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 10px 0 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
     p, h1 {
       margin: 0;
     }
@@ -210,10 +215,34 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 800px;
+    width: 80%;
     color: white;
+    
     .event-show-left {
       width: 65%;
+      padding-right: 30px;
+      .details {
+        margin-bottom: 20px;
+      }
+      .attendee-cards-container {
+        display: flex;
+        width: 100%;
+        img {
+          max-height: 100px;
+          max-width: 100px;
+          border-radius: 55%;
+        }
+        .attendee-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+          margin: 10px;
+          img {
+            max-width: 70px;
+            max-height: 70px;
+          }
+      }
     }
     .event-show-right {
       width: 35%;
@@ -222,12 +251,6 @@ nav {
         border-top: 2px solid black;
       }
     }
-    .attendee-card {
-      display: flex;
-      img {
-        max-width: 100px;
-        max-width: 100px;
-      }
     }
     .comments-container {
       display: flex;
