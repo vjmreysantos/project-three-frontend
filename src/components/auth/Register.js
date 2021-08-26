@@ -11,7 +11,9 @@ const initialState = {
   avatar: '',
   house: '',
   details: {
-    patronus: '',
+    wand: '',
+    favoriteSweet: '',
+    pet: '',
   },
 }
 
@@ -20,9 +22,11 @@ function Register() {
   const [formData, setFormData] = React.useState(initialState)
   const [formErrors, setFormErrors] = React.useState(initialState)
 
-  const handleChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-    setFormErrors({ ...formErrors, [e.target.name]: '' })
+  const handleChange = event => {
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
+    setFormData({ ...formData, [event.target.name]: value })
+    // setFormData({ ...formData, [e.target.name]: e.target.value })
+    setFormErrors({ ...formErrors, [event.target.name]: '' })
   }
 
   const handleSubmit = async e => {
@@ -253,6 +257,75 @@ function Register() {
                         // checked={formData.trait === 'slytherin'}
                       />
                       Ambition
+                    </label>
+                  </div>
+                </div>
+                {/* FAVORITE SWEET Question */}
+                <label className="label">
+                  Which sweet do you get on the Hogwarts Express?
+                </label>
+                <div className="form-group">
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox1"
+                        name="details.favoriteSweet"
+                        value="licoriceWand"
+                        // onChange={handleChange}
+                        // checked={formData.details.favoriteSweet === 'licoriceWand'}
+                      />
+                      Licorice Wand
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox2"
+                        name="details.favoriteSweet"
+                        value="chocolateFrog"
+                      //   onChange={handleChange}
+                      //   checked={formData.details.favoriteSweet === 'chocolateFrog'}
+                      />
+                      Chocolate Frog
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox3"
+                        name="details.favoriteSweet"
+                        value="cauldronCake"
+                        // onChange={handleChange}
+                        // checked={formData.details.favoriteSweet === 'cauldronCake'}
+                      />
+                      Cauldron Cake
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      {/* <input 
+                        className="input"
+                        placeholder="Favorite Sweet"
+                        name="details.favoriteSweet"
+                        value={formData.details.favoriteSweet}
+                        onChange={handleChange}
+                      /> */}
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox4"
+                        name="details.favoriteSweet"
+                        value="pumpkinPasties"
+                        // onChange={handleChange}
+                        // checked={formData.details.favoriteSweet === 'pumpkinPasties'}
+                      />
+                      Pumpkin Pasties
                     </label>
                   </div>
                 </div>
