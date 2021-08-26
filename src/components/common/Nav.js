@@ -20,6 +20,7 @@ function Nav() {
   const handleLogout = () => {
     removeToken()
     history.push('/')
+    location.reload()
   }
 
   return (
@@ -28,30 +29,29 @@ function Nav() {
         <figure>
           <img className="logo" src={logo} alt="logo"/>
         </figure>
-        <button 
-          className="navbar-toggler navbar-dark" 
-          type="button" 
-          data-toggle="collapse" 
-          data-target="#main-navigation"
-        > 
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="main-navigation">
-          <Link to="/" className="nav-element">
-            Home
-          </Link>
-
-          <Link to="/events" className="nav-element">
-            Events
-          </Link>
-
-          <Link to="/online-events" className="nav-element">
-            Online Events
-          </Link>
-
-          <Link to="/groups" className="nav-element">
-            Groups
-          </Link>
+        <div id="main-navigation">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link to="/" className="nav-link">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/events" className="nav-link">
+                Events
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/online-events" className="nav-link">
+                Online Events
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/groups" className="nav-link">
+                Groups
+              </Link>
+            </li>
+          </ul>
         </div>
         <div className="navbar-end">
           <div className="navbar-item">
