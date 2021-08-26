@@ -11,7 +11,9 @@ const initialState = {
   avatar: '',
   house: '',
   details: {
-    patronus: '',
+    wand: '',
+    favoriteSweet: '',
+    pet: '',
   },
 }
 
@@ -253,6 +255,68 @@ function Register() {
                         // checked={formData.trait === 'slytherin'}
                       />
                       Ambition
+                    </label>
+                  </div>
+                </div>
+                {/* FAVORITE SWEET Question */}
+                <label className="label">
+                  Which sweet do you get on the Hogwarts Express?
+                </label>
+                <div className="form-group">
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox1"
+                        name="details.favoriteSweet"
+                        value="licoriceWand"
+                        // onChange={handleChange}
+                        // checked={formData.trait === 'ravenclaw'}
+                      />
+                      Licorice Wand
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox2"
+                        name="details.favoriteSweet"
+                        value="chocolateFrogs"
+                        // onChange={handleChange}
+                        // checked={formData.trait === 'gryffindor'}
+                      />
+                      Chocolate Frogs
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox3"
+                        name="details.favoriteSweet"
+                        value="cauldronCakes"
+                        // onChange={handleChange}
+                        // checked={formData.trait === 'hufflepuff'}
+                      />
+                      Cauldron Cakes
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox4"
+                        name="details.favoriteSweet"
+                        value="pumpkinPasties"
+                        // onChange={handleChange}
+                        // checked={formData.trait === 'slytherin'}
+                      />
+                      Pumpkin Pasties
                     </label>
                   </div>
                 </div>
