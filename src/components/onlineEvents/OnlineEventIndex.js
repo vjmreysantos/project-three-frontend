@@ -16,7 +16,8 @@ function OnlineEventIndex() {
   const isLoading = !onlineEvents && !isError
   const history = useHistory()
   const isAuth = isAuthenticated()
-
+  const history = useHistory()
+  
   React.useEffect(() => {
     const getData = async () => {
       try {

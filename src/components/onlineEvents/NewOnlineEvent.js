@@ -7,7 +7,7 @@ import { createOnlineEvent } from '../../lib/api'
 
 function NewOnlineEvent() {
   const history = useHistory()
-
+  
   const initialState = {
     name: '',
     image: '',
@@ -125,7 +125,7 @@ function NewOnlineEvent() {
               </div>
             </div>
             <div className="field">
-              <label className="label">Select Group Category</label>
+              <label className="label">Select Event Category</label>
               <p>Choose as many as apply!</p>
               <div className="form-group">
                 <Select 

@@ -12,6 +12,9 @@ function GroupCard({ group }) {
           </div>
           <div className="event-card-right">
             <h2>{group.name}</h2>
+            {group.category.map(item => {
+              return <span key={item}>{item} </span>
+            })}
             <p>Location: {group.location}</p>
             <p>Members: {group.members.length}</p>
           </div>
