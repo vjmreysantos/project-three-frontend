@@ -14,6 +14,8 @@ function OnlineEventIndex() {
   const history = useHistory()
   const isAuth = isAuthenticated()
 
+  const [category, setCategory] = React.useState('All')
+
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -26,9 +28,6 @@ function OnlineEventIndex() {
     getData()
   }, [])
 
-  const handleSearch = (e) => {
-    setSearchValue(e.target.value)
-  }
 
   function compareOnlineEvents(a, b) {
     const bandA = a.date
@@ -44,17 +43,31 @@ function OnlineEventIndex() {
 
   const filteredOnlineEvents = () => {
     return onlineEvents.sort(compareOnlineEvents).filter(onlineEvent => {
-      return (onlineEvent.name.toLowerCase().includes(searchValue.toLocaleLowerCase())) 
+      return (onlineEvent.name.toLowerCase().includes(searchValue.toLocaleLowerCase())) &&
+      (onlineEvent.category === category || category === 'All')
     })
+  }
+
+  const handleSearch = (e) => {
+    setSearchValue(e.target.value)
   }
 
   const handleClick = () => {
     history.push('/online-events/new-online-event')
   }
 
+  // const handleBtn = (e) => {
+  //   setCategory(e.target.value)
+  // }
+
+  function handleChange(e) {
+    setCategory(e.target.value)
+  }
+
+
   return (
     <section className="event-index-section">
-      <div className="events-page-controls">
+      <div className="events-page-controls justify-content-center">
         <div className="search">
           <input className="input"
             placeholder="Search for keywords"
@@ -62,6 +75,60 @@ function OnlineEventIndex() {
           />
         </div>
         {isAuth && <Button onClick={handleClick}>Create New Online Event</Button>}
+      </div>
+      <div>
+        <select className="category" defaultValue="All" onChange={handleChange}>
+          <option>All</option>
+          <option>Sports</option>
+          <option>Books</option>
+          <option>Movies</option>
+          <option>Games</option>
+          <option>Food</option>
+          <option>Drinks</option>
+          <option>Magic</option>
+        </select>
+        {/* <Button style={{ margin: '10px' }}
+          variant="primary"
+          value="sports"
+          onClick={handleBtn}>
+          Sports
+        </Button>
+        <Button style={{ margin: '10px' }}
+          variant="primary"
+          value="books"
+          onClick={handleBtn}>
+          Books
+        </Button>
+        <Button style={{ margin: '10px' }}
+          variant="primary"
+          value="movies"
+          onClick={handleBtn}>
+          Movies
+        </Button>
+        <Button style={{ margin: '10px' }}
+          variant="primary"
+          value="games"
+          onClick={handleBtn}>
+          Games
+        </Button>
+        <Button style={{ margin: '10px' }}
+          variant="primary"
+          value="food"
+          onClick={handleBtn}>
+          Food
+        </Button>
+        <Button style={{ margin: '10px' }}
+          variant="primary"
+          value="drinks"
+          onClick={handleBtn}>
+          Drinks
+        </Button>
+        <Button style={{ margin: '10px' }}
+          variant="primary"
+          value="magic"
+          onClick={handleBtn}>
+          Magic
+        </Button> */}
       </div>
       <div className="events-page-list">
         {isError && <p>Oops!</p>}
@@ -72,6 +139,6 @@ function OnlineEventIndex() {
           ))}
       </div>
     </section>
-  ) 
+  )
 }
 export default OnlineEventIndex

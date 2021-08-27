@@ -58,7 +58,7 @@ function GroupIndex() {
 
   return (
     <section className="event-index-section">
-      <div className="events-page-controls">
+      <div className="events-page-controls justify-content-center">
         <div className="search">
           <input 
             className="input"
