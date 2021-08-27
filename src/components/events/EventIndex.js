@@ -1,7 +1,9 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
+
 import { getAllEvents } from '../../lib/api'
 import EventCard from './EventCard'
-import { Button } from 'react-bootstrap'
+import Loading from '../common/Loading'
 import { isAuthenticated } from '../../lib/auth'
 
 function EventIndex() {
@@ -50,7 +52,7 @@ function EventIndex() {
   return (
     <section className="event-index-section">
       <div className="event-index-hero-image">
-        <h1>Explore some of the magical events happening in and around London on Mugglemore below</h1>
+        <h1>Explore some of the magical events for Muggles on Mugglemore below</h1>
       </div>
       <div className="events-page-controls justify-content-center">
         <div className="search">
@@ -66,7 +68,7 @@ function EventIndex() {
         }
       </div>
       {isError && <p>Oops!</p>}
-      {isLoading && <p>...loading</p>}
+      {isLoading && <Loading />}
       {events &&
           <div className="events-page-list">
             {filteredEvents().map(event => (

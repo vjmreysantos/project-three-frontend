@@ -1,7 +1,11 @@
 import React from 'react'
-import { getAllOnlineEvents, getAllEvents } from '../../lib/api'
+
 import { Link } from 'react-router-dom'
 import { Card, Container } from 'react-bootstrap'
+
+import { getAllOnlineEvents, getAllEvents } from '../../lib/api'
+// import Loading from '../common/Loading'
+
 
 function Home() {
 
@@ -41,17 +45,21 @@ function Home() {
       <div className="container-row">
         {isError && <p>Oops!</p>}
         {isLoading && <p>...loading</p>}
-        <div className="container-column">
-          <h1 className="display-4">Welcome to the world of Muggles!</h1>
-          <p>Meet fellow Muggles and make new friends! Explore your interests in the Wizarding World of Harry Potter. New events are happening both online and in person!</p>
+        
+        <div className="home-index-hero-image">
+          <h1 className="display-4">Welcome to the world of Muggles</h1>
+          <p>Join a group to meet fellow Muggles and make new friends! Explore your interests in the Wizarding World of Harry Potter. New events are happening both online and in person!</p>
         </div>
-        <figure className="image">
-          <img src="https://www.meetup.com/_next/image/?url=%2Fimages%2Fshared%2Fonline_events.svg&w=640&q=75" width="300" height="400" /> 
-        </figure>
+       
+      </div>
+      <div className="home-leader-filter">
+        <div className="home-leader-filter-cta">
+          <h3>Discover what is being conjured up on Mugglemore</h3>
+        </div>
       </div>
       <hr />
       <div className="container-row justify-content-center">
-        <Card style={{ margin: '25px' }}>
+        <Card className="home-leader-filter-card">
           <Link to="/events">
             <Card.Img src="https://www.maryjanevaughan.co.uk/wp-content/uploads/2016/04/middle-temple-2-2.jpg" width="200" height="300"/>
             <Card.Body>
@@ -61,9 +69,9 @@ function Home() {
             </Card.Body>
           </Link>
         </Card>
-        <Card style={{ margin: '25px' }}>
-          <Link to="/online-events">
-            <Card.Img src="https://i.ytimg.com/vi/2FDjMige9dI/maxresdefault.jpg" width="200" height="300"/>
+        <Card className="home-leader-filter-card">
+          <Link to="/online-events" id="#events">
+            <Card.Img src="https://i.ytimg.com/vi/2FDjMige9dI/maxresdefault.jpg" width="150" height="200"/>
             <Card.Body>
               <Card.Title>
               Connect over tech ➔
@@ -71,7 +79,7 @@ function Home() {
             </Card.Body>
           </Link>
         </Card>
-        <Card style={{ margin: '25px' }}>
+        <Card className="home-leader-filter-card">
           <Link to="/groups">
             <Card.Img src="https://static0.srcdn.com/wordpress/wp-content/uploads/2019/11/feature-image-every-MBTI-sorted-into-their-hogwarts-house.jpg" width="200" height="300"/>
             <Card.Body>
@@ -83,7 +91,6 @@ function Home() {
         </Card>
       </div>
       <hr />
-
 
       <div className="h3">
           Upcoming Events

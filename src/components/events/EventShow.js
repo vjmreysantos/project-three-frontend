@@ -1,10 +1,12 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router'
+import { Button } from 'react-bootstrap'
+
 import { getSingleEvent, getAllEvents, attendEvent, deleteEvent, getProfile } from '../../lib/api'
 import EventMap from './EventMap'
-import { Button } from 'react-bootstrap'
-import { isOwner } from '../../lib/auth'
+import { isOwner, isAuthenticated } from '../../lib/auth'
+import Loading from '../common/Loading'
 // import CommentForm from '../comments/CommentForm'
 
 function EventShow() {
@@ -15,7 +17,7 @@ function EventShow() {
   const [currentUser, setCurrentUser] = React.useState(null)
   const history = useHistory()
   const isLoading = !event && !isError
-  // const isAuth = isAuthenticated()
+  const isAuth = isAuthenticated()
   
 
   React.useEffect(()=> {
@@ -105,27 +107,34 @@ function EventShow() {
   return (
     <section className="event-show-section">
       {isError && <p>Oops!</p>}
-      {isLoading && <p>...loading</p>}
+      {isLoading && <Loading />}
       {event &&
       <>
         <div className="event-show-header">
-          <p>{event.date}, {event.time}</p>
-          <h1>{event.name}</h1>
-          {isOwner(event.addedBy._id) ?
-            <div className="hosted-by">
-              <img className="hosted-by-image" src={event.addedBy.avatar} alt={event.addedBy.username}></img>
-              <p>You are hosting this event</p>
-              <Button variant="danger"
-                onClick={handleSubmit}>
+          <div className="event-header-left">
+            <figure>
+              <img src={event.image} alt={event.name}></img>
+            </figure>
+          </div>
+          <div className="event-header-right">
+            <p>{event.date}, {event.time}</p>
+            <h1>{event.name}</h1>
+            {isOwner(event.addedBy._id) ?
+              <div className="hosted-by">
+                <img className="hosted-by-image" src={event.addedBy.avatar} alt={event.addedBy.username}></img>
+                <p>You are hosting this event</p>
+                <Button variant="danger"
+                  onClick={handleSubmit}>
                 Delete event
-              </Button>
-            </div>
-            :
-            <div className="hosted-by">
-              <img className="hosted-by-image" src={event.addedBy.avatar} alt={event.addedBy.username}></img>
-              <p>Hosted by <span>{event.addedBy.username}</span></p>
-            </div>
-          }
+                </Button>
+              </div>
+              :
+              <div className="hosted-by">
+                <img className="hosted-by-image" src={event.addedBy.avatar} alt={event.addedBy.username}></img>
+                <p>Hosted by <span>{event.addedBy.username}</span></p>
+              </div>
+            }
+          </div>
         </div>
 
         <div className="event-show-main">
@@ -137,8 +146,16 @@ function EventShow() {
             <div className="attendees">
               <h3>Attendees: {event.attendees.length}</h3>
               <div className="attendee-cards-container">
-                {event.attendees.length === 0 ?
+                {event.attendees.length === 0 &&
                   <p>No attendees yet!</p>
+                }
+                {event.attendees.length <= 2 ?
+                  event.attendees.map(attendee => (
+                    <div key={attendee.username} className="attendee-card">
+                      <img src={attendee.avatar} alt={attendee.username}></img>
+                      <p>{attendee.username}</p>
+                    </div>
+                  ))
                   :
                   <>
                     <div className="attendee-card">
@@ -153,44 +170,48 @@ function EventShow() {
                       {<img src={event.attendees[randomIndexThree].avatar} alt={event.attendees[randomIndexThree].username}></img>}
                       <p>{event.attendees[randomIndexThree].username}</p>
                     </div>
+                    <div className="and-other-attendees">
+                      <p>And {event.attendees.length - 3} others</p>
+                    </div>
                   </>
-                
-                // event.attendees.map(attendee => {
-                //   return <div key={attendee._id} className="attendee-card">
-                //     <img src={attendee.avatar} alt={attendee.username}></img>
-                //     <p>{attendee.username}</p>
-                //   </div>
-                // })
                 }
               </div>
-              <p>And {event.attendees.length - 3} others</p>
             </div>
 
-            <h3>Discussion</h3>
-            <div className="comments-container">
-              {event.comments.length === 0 ?
-                <p>No comments yet!</p>
-                :
-                event.comments.map(comment=>(
-                  <div key={comment._id} className="comment">
-                    <div className="comment-left">
-                      <img src={comment.addedBy.avatar} alt={comment.addedBy.username}></img>
-                      <p>{comment.addedBy.username}</p>
+            <div className="discussion">
+              <h3>Discussion</h3>
+              <div className="comments-container">
+                {event.comments.length === 0 ?
+                  <p>No comments yet!</p>
+                  :
+                  event.comments.map(comment=>(
+                    <div key={comment._id} className="comment">
+                      <div className="comment-left">
+                        <img className="comment-image" src={comment.addedBy.avatar} alt={comment.addedBy.username}></img>
+                        <p>{comment.addedBy.username}</p>
+                      </div>
+                      <div className="comment-right">
+                        <p>{comment.text}</p>
+                      </div>
                     </div>
-                    <div className="comment-right">
-                      <p>{comment.text}</p>
-                    </div>
-                  </div>
-                ))
-              }
-              <h3>Want to add a comment?</h3>
-              <button><a href={`/events/${eventId}/create-comment`}>Add your comment here</a></button>
+                  ))
+                }
+              </div>      
             </div>
+
+            <div className="add-a-comment">
+              <h3>Want to take part in the discussion?</h3>
+              {isAuth ? 
+                <Button className="comment-button"><a className="comment-button" href={`/events/${eventId}/create-comment`}>Create a comment</a></Button>
+                :
+                <Button className="comment-button"><a className="comment-button" href={'/login'}>Login to comment</a></Button>
+              }
+            </div>  
           </div>
 
           <div className="event-show-right">
-            <p><span>⏰</span>{new Date(event.date).toString().split('GMT')[0]}</p>
-            <p><span>📍</span>{event.location.placeName}  {event.location.streetNumber}  {event.location.streetName}, {event.location.postcode}</p>
+            <p><span>⏰ </span>{event.date}, {event.time}</p>
+            <p><span>📍 </span>{event.location.placeName}  {event.location.streetNumber}  {event.location.streetName}, {event.location.postcode}</p>
             <div className="map-container">
               <EventMap event={event} />
             </div>
@@ -207,7 +228,7 @@ function EventShow() {
                   <>
                     <a href={`/events/${event._id}`}>
                       <div className="similar-event">
-                        <p>{new Date(event.date).toString().split('GMT')[0]}</p>
+                        <p>{event.date}, {event.time}</p>
                         <h5>{event.name}</h5>
                         <p><span>📍</span>{event.location.placeName}</p>
                         <figure>
@@ -226,13 +247,17 @@ function EventShow() {
 
         <div className="event-show-attend-footer">
           <div className="attend-footer-left">
-            <p>{new Date(event.date).toString().split('GMT')[0]}</p>
+            <p>{event.date}, {event.time}</p>
             <h4>{event.name}</h4>
           </div>
           <div className="attend-footer-right">
-            <Button variant="primary" onClick = {handleClick}>
-              {isAttending ? 'Can no longer attend' : 'I\'ll be there!'}
-            </Button>
+            {isAuth ? 
+              <Button className="attend-button" onClick = {handleClick}>
+                {isAttending ? 'Can no longer attend' : 'I\'ll be there!'}
+              </Button>
+              :
+              <Button className="attend-button"><a className="attend-button" href={'/login'}>Login to attend</a></Button>
+            } 
           </div>
         </div>
       </>

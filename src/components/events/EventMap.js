@@ -9,7 +9,6 @@ function EventMap ({ event }) {
     zoom: 15,
   })
 
-
   return (
     <div className="map-container">
       <ReactMapGL
@@ -30,10 +29,9 @@ function EventMap ({ event }) {
             aria-label="map-marker"
             className="map-marker"
           >
-              📍
+          📍
           </span>
         </Marker>
-        ))
       </ReactMapGL>
     </div>
   )

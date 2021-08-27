@@ -1,10 +1,12 @@
 import React from 'react'
 import { useHistory } from 'react-router'
+import { Button } from 'react-bootstrap'
 
 import GroupCard from './GroupCard'
 import { getAllGroups } from '../../lib/api'
 import { isAuthenticated } from '../../lib/auth'
-import { Button } from 'react-bootstrap'
+import Loading from '../common/Loading'
+
 
 
 function GroupIndex() {
@@ -58,7 +60,10 @@ function GroupIndex() {
 
   return (
     <section className="event-index-section">
-      <div className="events-page-controls justify-content-center">
+      <div className="group-index-hero-image">
+        <h1>On Mugglemore there are groups for all kinds of Potterheads, from book lovers to bikers, Quidditch stars to potion masters. </h1>
+      </div>
+      <div className="events-page-controls">
         <div className="search">
           <input 
             className="input"
@@ -70,7 +75,7 @@ function GroupIndex() {
       </div>
       <div className="events-page-list">
         {isError && <p>Sorry, used the wrong spell.</p>}
-        {isLoading && <p>...loading groups</p>}
+        {isLoading && <Loading />}
         {groups && filteredGroups().map(group => {
           return <GroupCard key={group._id} group={group} />          
         })

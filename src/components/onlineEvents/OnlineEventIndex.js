@@ -1,9 +1,12 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+
 import { getAllOnlineEvents } from '../../lib/api'
 import { isAuthenticated } from '../../lib/auth'
 import OnlineEventCard from './OnlineEventCard'
-import { useHistory } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import Loading from '../common/Loading'
+
 
 function OnlineEventIndex() {
   
@@ -72,7 +75,10 @@ function OnlineEventIndex() {
 
   return (
     <section className="event-index-section">
-      <div className="events-page-controls justify-content-center">
+      <div className="online-event-index-hero-image">
+        <h1>Meet with fellow Mugglemore members wherever you are through our online events</h1>
+      </div>
+      <div className="events-page-controls">
         <div className="search">
           <input className="input"
             placeholder="Search for keywords"
@@ -137,7 +143,7 @@ function OnlineEventIndex() {
       </div>
       <div className="events-page-list">
         {isError && <p>Oops!</p>}
-        {isLoading && <p>...loading</p>}
+        {isLoading && <Loading />}
         {onlineEvents &&
           filteredOnlineEvents().map(onlineEvent => (
             <OnlineEventCard key={onlineEvent._id} {...onlineEvent} />
