@@ -48,6 +48,11 @@ function OnlineEventIndex() {
     })
   }
 
+  const handleChange = (selected, category) => {
+    const selectedCategory = selected ? selected.map(item => item.value) : []
+    setOnlineEvents({ ...onlineEvents, [category]: selectedCategory })
+  }
+
   const handleSearch = (e) => {
     setSearchValue(e.target.value)
   }
@@ -60,9 +65,9 @@ function OnlineEventIndex() {
   //   setCategory(e.target.value)
   // }
 
-  function handleChange(e) {
-    setCategory(e.target.value)
-  }
+  // function handleChange(e) {
+  //   setCategory(e.target.value)
+  // }
 
 
   return (
@@ -77,7 +82,7 @@ function OnlineEventIndex() {
         {isAuth && <Button onClick={handleClick}>Create New Online Event</Button>}
       </div>
       <div>
-        <select className="category" defaultValue="All" onChange={handleChange}>
+        <select name="category" value={onlineEvents.category} onChange={handleChange}>
           <option>All</option>
           <option>Sports</option>
           <option>Books</option>
