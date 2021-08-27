@@ -15,6 +15,11 @@ function OnlineEventIndex() {
   const isLoading = !onlineEvents && !isError
   const isAuth = isAuthenticated()
 
+<<<<<<< HEAD
+=======
+  // const [category, setCategory] = React.useState('All')
+
+>>>>>>> development
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -42,7 +47,11 @@ function OnlineEventIndex() {
 
   const filteredOnlineEvents = () => {
     return onlineEvents.sort(compareOnlineEvents).filter(onlineEvent => {
+<<<<<<< HEAD
       return (onlineEvent.name.toLowerCase().includes(searchValue.toLocaleLowerCase()))
+=======
+      return (onlineEvent.name.toLowerCase().includes(searchValue.toLocaleLowerCase())) 
+>>>>>>> development
     })
   }
 

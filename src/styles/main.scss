@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Yeseva+One&display=swap');
 @import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+// @import '../node_modules/mapbox-gl/dist/mapbox-gl.css';
 
 body, #root {
   background: black;
@@ -273,6 +274,11 @@ nav {
     }
   }
   }
+  .show-main {
+    .details {
+      margin-top: 30px;
+    }
+  }
   .event-show-main {
     display: flex;
     width: 80%;
@@ -324,6 +330,7 @@ nav {
       height: 400px;
       .map-container {
         height: 300px;
+        width: 300px;
         border-top: 2px solid black;
       }
     }
@@ -546,7 +553,7 @@ a.comment-button:hover {
   
 // FORMS
 .form-section {
-  padding-bottom: 70px;
+  padding-bottom: 160px;
 }
 .create-form-container , .login-form, .comments-form-container {
   width: 70%;
@@ -555,6 +562,8 @@ a.comment-button:hover {
   padding: 30px 40px 60px 40px;
   border: 1px solid gray;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
   .multiselect {
     color: black;
   }
@@ -578,6 +587,30 @@ a.comment-button:hover {
   }
   
 }
+
+.registration-form-container {
+  display: flex;
+  flex-direction: column;
+  .form-main {
+    display: flex;
+    .form-left {
+      width: 50%;
+      input {
+        width: 80%;
+        padding: 7px;
+      }
+    }
+    .form-right {
+      width: 50%;
+    }
+  }
+  .form-footer {
+    margin: 30px 0 0 0;
+    text-align: center;
+
+  }
+}
+
 
 // HOME 
 

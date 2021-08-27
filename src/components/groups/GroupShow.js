@@ -102,6 +102,10 @@ function GroupShow() {
         </div>
 
         <div className="show-main">
+<<<<<<< HEAD
+=======
+    
+>>>>>>> development
           <div className="details">
             <h2>About Group</h2>
             <p>{group.description}</p>

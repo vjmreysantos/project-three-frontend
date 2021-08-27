@@ -49,77 +49,80 @@ function NewGroup() {
   }
   
   return (
-    <section className="create-form-container">
-      <div className="container-column">
-        <h1>Create a new group!</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="field">
-            <label className="label">Group Name</label>
-            <div className="form-group">
-              <input 
-                className="form-control"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />  
+    <div className="form-section">
+      <div className="create-form-container">
+        <div className="container-column">
+          <h1>Summon a new group!</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="field">
+              <label className="label">Group Name</label>
+              <div className="form-group">
+                <input 
+                  className="form-control"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />  
+              </div>
             </div>
-          </div>
-          <div className="field">
-            <label className="label">Location</label>
-            <div className="form-group">
-              <input 
-                className="form-control"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-              />  
+            <div className="field">
+              <label className="label">Location</label>
+              <div className="form-group">
+                <input 
+                  className="form-control"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                />  
+              </div>
             </div>
-          </div>
-          <div className="field">
-            <label className="label">Upload Group Image</label>
-            <div className="form-group">
-              <input 
-                className="form-control"
-                name="image"
-                value={formData.image}
-                onChange={handleChange}
-              />  
+            <div className="field">
+              <label className="label">Upload Group Image</label>
+              <div className="form-group">
+                <input 
+                  className="form-control"
+                  name="image"
+                  value={formData.image}
+                  onChange={handleChange}
+                />  
+              </div>
             </div>
-          </div>
-          <div className="field">
-            <label className="label">Description</label>
-            <div className="form-group">
-              <textarea 
-                className="textarea form-control"
-                name="description"
-                placeholder="Tell us what your group is all about!"
-                value={formData.description}
-                onChange={handleChange}
-              />  
+            <div className="field">
+              <label className="label">Description</label>
+              <div className="form-group">
+                <textarea 
+                  className="textarea form-control"
+                  name="description"
+                  placeholder="Tell us what your group is all about!"
+                  value={formData.description}
+                  onChange={handleChange}
+                />  
+              </div>
             </div>
-          </div>
-          <div className="field">
-            <label className="label">Select Group Category</label>
-            <p>Choose as many as apply!</p>
-            <div className="form-group">
-              <Select 
-                options={categoryOptions}
-                isMulti
-                onChange={selected =>
-                  handleMultiSelectChange(selected, 'category')
-                }
-                value={formData.category.map(item => ({ label: item[0].toUpperCase() + item.substring(1), value: item }))}
-              />  
+            <div className="field">
+              <label className="label">Select Group Category</label>
+              <p>Choose as many as apply!</p>
+              <div className="form-group">
+                <Select 
+                  className="multiselect"
+                  options={categoryOptions}
+                  isMulti
+                  onChange={selected =>
+                    handleMultiSelectChange(selected, 'category')
+                  }
+                  value={formData.category.map(item => ({ label: item[0].toUpperCase() + item.substring(1), value: item }))}
+                />  
+              </div>
             </div>
-          </div>
-          <div className="field">
-            <button className="btn btn-primary btn-lg" type="submit">
-              Create Group!
-            </button>
-          </div>
-        </form>
+            <div className="field">
+              <button className="btn btn-primary btn-lg" type="submit">
+              Accio group!
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </section>
+    </div>
     
   )
 }

@@ -55,7 +55,7 @@ function NewOnlineEvent() {
     <section>
       <div className="form-section">
         <div className="create-form-container">
-          <h1>Create a new online event!</h1>
+          <h1>Summon a new online event!</h1>
           <form onSubmit={handleSubmit}>
             <div className="field">
               <label className="label">Event Name</label>
@@ -141,7 +141,7 @@ function NewOnlineEvent() {
             </div>
             <div className="field">
               <button className="btn btn-primary btn-lg" type="submit">
-              Create Event!
+              Accio event!
               </button>
             </div>
           </form>

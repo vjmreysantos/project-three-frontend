@@ -100,10 +100,6 @@ function EventShow() {
     }
   } 
 
-  const randomIndexOne = Math.floor(Math.random() * event?.attendees.length)
-  const randomIndexTwo = Math.floor(Math.random() * event?.attendees.length)
-  const randomIndexThree = Math.floor(Math.random() * event?.attendees.length)
-
   return (
     <section className="event-show-section">
       {isError && <p>Oops!</p>}
@@ -158,17 +154,18 @@ function EventShow() {
                   ))
                   :
                   <>
+                    {/* Hard coding this in because the random selection repeated users - if we had time to seed more users I would revert back to showing three random attendees */}
                     <div className="attendee-card">
-                      {<img src={event.attendees[randomIndexOne].avatar} alt={event.attendees[randomIndexOne].username}></img>}
-                      <p>{event.attendees[randomIndexOne].username}</p>
+                      {<img src={event.attendees[0].avatar} alt={event.attendees[0].username}></img>}
+                      <p>{event.attendees[0].username}</p>
                     </div>
                     <div className="attendee-card">
-                      {<img src={event.attendees[randomIndexTwo].avatar} alt={event.attendees[randomIndexTwo].username}></img>}
-                      <p>{event.attendees[randomIndexTwo].username}</p>
+                      {<img src={event.attendees[1].avatar} alt={event.attendees[1].username}></img>}
+                      <p>{event.attendees[1].username}</p>
                     </div>
                     <div className="attendee-card">
-                      {<img src={event.attendees[randomIndexThree].avatar} alt={event.attendees[randomIndexThree].username}></img>}
-                      <p>{event.attendees[randomIndexThree].username}</p>
+                      {<img src={event.attendees[2].avatar} alt={event.attendees[2].username}></img>}
+                      <p>{event.attendees[2].username}</p>
                     </div>
                     <div className="and-other-attendees">
                       <p>And {event.attendees.length - 3} others</p>
