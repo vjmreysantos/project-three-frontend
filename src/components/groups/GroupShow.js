@@ -102,12 +102,7 @@ function GroupShow() {
         </div>
 
         <div className="show-main">
-          <div className="mini-nav">
-            <a href="#about" className="mini-nav-element">About</a>
-            <a href="#members" className="mini-nav-element">Members</a>
-            <a href="#discussion" className="mini-nav-element">Discussion</a>
-          </div>
-
+    
           <div className="details">
             <h2 id="about">About Group</h2>
             <p>{group.description}</p>
