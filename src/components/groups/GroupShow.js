@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router'
 import { getSingleGroup, joinGroup, getProfile, deleteGroup } from '../../lib/api'
 import { Button } from 'react-bootstrap'
 import { isAuthenticated, isOwner } from '../../lib/auth'
+import Loading from '../common/Loading'
 
 function GroupShow() {
   const { groupId } = useParams()
@@ -69,7 +70,7 @@ function GroupShow() {
   return (
     <section className="event-show-section">
       {isError && <p>Sorry, must have used the wrong spell.</p>}
-      {isLoading && <p>...loading</p>}
+      {isLoading && <Loading />}
       {group && 
       <>
         <div className="event-show-header">

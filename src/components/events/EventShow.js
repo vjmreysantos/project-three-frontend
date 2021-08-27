@@ -1,10 +1,12 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router'
+import { Button } from 'react-bootstrap'
+
 import { getSingleEvent, getAllEvents, attendEvent, deleteEvent, getProfile } from '../../lib/api'
 import EventMap from './EventMap'
-import { Button } from 'react-bootstrap'
 import { isOwner, isAuthenticated } from '../../lib/auth'
+import Loading from '../common/Loading'
 // import CommentForm from '../comments/CommentForm'
 
 function EventShow() {
@@ -105,7 +107,7 @@ function EventShow() {
   return (
     <section className="event-show-section">
       {isError && <p>Oops!</p>}
-      {isLoading && <p>...loading</p>}
+      {isLoading && <Loading />}
       {event &&
       <>
         <div className="event-show-header">

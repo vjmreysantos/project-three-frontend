@@ -260,6 +260,54 @@ function Register() {
                     </label>
                   </div>
                 </div>
+                {/* SCHOOL PET Question */}
+                <label className="label">
+                  Which pet would you bring to school?
+                </label>
+                <div className="form-group">
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox1"
+                        name="details.pet"
+                        value="owl"
+                        // onChange={handleChange}
+                        // checked={formData.details.favoriteSweet === 'licoriceWand'}
+                      />
+                      Owl
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox2"
+                        name="details.pet"
+                        value="cat"
+                      //   onChange={handleChange}
+                      //   checked={formData.details.favoriteSweet === 'chocolateFrog'}
+                      />
+                      Cat
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox3"
+                        name="details.pet"
+                        value="toad"
+                        // onChange={handleChange}
+                        // checked={formData.details.favoriteSweet === 'cauldronCake'}
+                      />
+                      Toad
+                    </label>
+                  </div>
+                </div>  
                 {/* FAVORITE SWEET Question */}
                 <label className="label">
                   Which sweet do you get on the Hogwarts Express?
@@ -326,6 +374,68 @@ function Register() {
                         // checked={formData.details.favoriteSweet === 'pumpkinPasties'}
                       />
                       Pumpkin Pasties
+                    </label>
+                  </div>
+                </div>
+                {/* WAND WOOD Question */}
+                <label className="label">
+                  What is your wand made of?
+                </label>
+                <div className="form-group">
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox1"
+                        name="details.wand"
+                        value="elm"
+                        // onChange={handleChange}
+                        // checked={formData.details.favoriteSweet === 'licoriceWand'}
+                      />
+                      Elm
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox2"
+                        name="details.wand"
+                        value="willow"
+                      //   onChange={handleChange}
+                      //   checked={formData.details.favoriteSweet === 'chocolateFrog'}
+                      />
+                      Willow
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox3"
+                        name="details.wand"
+                        value="oak"
+                        // onChange={handleChange}
+                        // checked={formData.details.favoriteSweet === 'cauldronCake'}
+                      />
+                      Oak
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineCheckbox4"
+                        name="details.wand"
+                        value="cypress"
+                        // onChange={handleChange}
+                        // checked={formData.details.favoriteSweet === 'pumpkinPasties'}
+                      />
+                      Cypress
                     </label>
                   </div>
                 </div>

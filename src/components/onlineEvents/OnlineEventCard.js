@@ -1,5 +1,5 @@
 
-function OnlineEventCard({ _id, name, image, date, time, attendees }) {
+function OnlineEventCard({ _id, name, image, date, time, attendees, category }) {
   return (
     <div className="event-cards-container">
       <a href={`/online-events/${_id}`}>
@@ -12,6 +12,7 @@ function OnlineEventCard({ _id, name, image, date, time, attendees }) {
           <div className="event-card-right">
             <h2>{date}, {time}</h2>
             <h3>{name}</h3>
+            <p>{category}</p>
             <p><span>{attendees.length}</span> attendees</p>
           </div>
         </div>
