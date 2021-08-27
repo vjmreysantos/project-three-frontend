@@ -1,8 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
+import {  FormLabel, FormControl, Button } from 'react-bootstrap'
 
 function Login() {
   const history = useHistory()
@@ -31,46 +31,36 @@ function Login() {
   }
 
   return (
-    <section className="section">
-      <div className="container">
+    <section className="login-form">
+      <div className="login-form-container">
         <div className="columns">
           <form
-            className="column"
             onSubmit={handleSubmit}
           >
-            <div className="field">
-              <label className="label">Email</label>
-              <div className="control">
-                <input
-                  className="input"
-                  placeholder="Email"
-                  name="email"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control">
-                <input
-                  type="password"
-                  className="input"
-                  placeholder="Password"
-                  name="password"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
+            <FormLabel className="label">Email</FormLabel>
+            <FormControl
+              className="input"
+              placeholder="Email"
+              name="email"
+              onChange={handleChange}
+            />
+
+            <FormLabel className="label">Password</FormLabel>
+            <FormControl
+              type="password"
+              className="input"
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+            />
             {isError && (
               <p className="form-error">
                 Either email or password were incorrect
               </p>
             )}
-            <div className="field">
-              <Button variant="primary" type="submit" className="Button">
-                Login!
-              </Button>
-            </div>
+            <Button className="button" type="submit">
+              Alohomora!
+            </Button>
           </form>
         </div>
       </div>

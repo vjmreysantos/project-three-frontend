@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 import { createEventComment } from '../../lib/api'
-import { Button } from 'react-bootstrap'
+import { Button, FormLabel, FormControl } from 'react-bootstrap'
 
 function EventCommentForm ({ _id, comments }) {
   const history = useHistory()
@@ -35,21 +35,16 @@ function EventCommentForm ({ _id, comments }) {
       <form
         onSubmit={handleSubmit}
       >
+        <FormLabel className="label">Add your comment here</FormLabel>
+        <FormControl
+          className="input"
+          as="textarea"
+          placeholder="Add your comment here"
+          name="text"
+          onChange={handleChange}
+        />
         <div className="field">
-          <label className="label">Comment</label>
-          <div className="control">
-            <input
-              className="input"
-              placeholder="Add your comment here"
-              type="textarea"
-              name="text"
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="field">
-          <Button variant="primary" type="submit">Submit comment</Button>
+          <Button variant="primary" type="submit">Aparecium!</Button>
         </div>
       </form>
     </div>

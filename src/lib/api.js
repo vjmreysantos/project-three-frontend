@@ -73,6 +73,10 @@ export function createGroup(formData) {
   return axios.post(`${baseUrl}/groups/new-group`, formData, getHeaders())
 }
 
+export function deleteGroup(id) {
+  return axios.delete(`${baseUrl}/groups/${id}`, getHeaders())
+}
+
 export function joinGroup(groupId) {
   return axios.post(`${baseUrl}/groups/${groupId}`, null, getHeaders())
 }

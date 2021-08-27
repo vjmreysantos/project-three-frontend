@@ -63,17 +63,21 @@ function Home() {
       <div className="container-row">
         {isError && <p>Oops!</p>}
         {isLoading && <p>...loading</p>}
-        <div className="container-column">
+        
+        <div className="home-index-hero-image">
           <h1 className="display-4">Welcome to the world of Muggles</h1>
           <p>Join a group to meet fellow Muggles and make new friends! Explore your interests in the Wizarding World of Harry Potter. New events are happening both online and in person!</p>
         </div>
-        <figure className="image">
-          <img src="https://www.meetup.com/_next/image/?url=%2Fimages%2Fshared%2Fonline_events.svg&w=640&q=75" width="300" height="400" /> 
-        </figure>
+       
+      </div>
+      <div className="home-leader-filter">
+        <div className="home-leader-filter-cta">
+          <h3>Discover what is being conjured up on Mugglemore</h3>
+        </div>
       </div>
       <hr />
       <div className="container-row justify-content-center">
-        <Card>
+        <Card className="home-leader-filter-card">
           <Link to="/events">
             <Card.Img src="https://www.maryjanevaughan.co.uk/wp-content/uploads/2016/04/middle-temple-2-2.jpg" width="150" height="200"/>
             <Card.Body>
@@ -83,8 +87,8 @@ function Home() {
             </Card.Body>
           </Link>
         </Card>
-        <Card>
-          <Link to="/online-events">
+        <Card className="home-leader-filter-card">
+          <Link to="/online-events" id="#events">
             <Card.Img src="https://i.ytimg.com/vi/2FDjMige9dI/maxresdefault.jpg" width="150" height="200"/>
             <Card.Body>
               <Card.Title>
@@ -93,7 +97,7 @@ function Home() {
             </Card.Body>
           </Link>
         </Card>
-        <Card>
+        <Card className="home-leader-filter-card">
           <Link to="/groups">
             <Card.Img src="https://www.kindpng.com/picc/m/197-1976732_harry-potter-large-set-of-sorcery-wizard-icons.png" width="150" height="200"/>
             <Card.Body>
@@ -107,13 +111,13 @@ function Home() {
       <hr />
 
       <div className="btn-toolbar justify-content-center">
-        <Button variant="info" value="sports">Sports</Button>
-        <Button variant="info" value="books">Books</Button>
-        <Button variant="info" value="movies">Movies</Button>
-        <Button variant="info" value="games">Games</Button>
-        <Button variant="info" value="food">Food</Button>
-        <Button variant="info" value="drinks">Drinks</Button>
-        <Button variant="info" value="magic">Magic</Button>
+        <Button className="info" value="sports">Sports</Button>
+        <Button className="info" value="books">Books</Button>
+        <Button className="info" value="movies">Movies</Button>
+        <Button className="info" value="games">Games</Button>
+        <Button className="info" value="food">Food</Button>
+        <Button className="info" value="drinks">Drinks</Button>
+        <Button className="info" value="magic">Magic</Button>
       </div>
       <hr />
 
@@ -123,7 +127,7 @@ function Home() {
         onlineEvents.sort((a, b) => b.date < a.date).splice(0, 4).map(onlineEvent => (          
           <>
             <Link to="/online-events">  
-              <Card>
+              <Card className="home-lower-filter-card">
                 <Card.Img src={onlineEvent.image} alt={onlineEvent.name} width="100" height="200"/>
                 <Card.Body>
                   <Card.Title>{onlineEvent.name}</Card.Title>

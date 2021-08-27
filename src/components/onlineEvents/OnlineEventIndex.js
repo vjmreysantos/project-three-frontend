@@ -54,6 +54,9 @@ function OnlineEventIndex() {
 
   return (
     <section className="event-index-section">
+      <div className="online-event-index-hero-image">
+        <h1>Meet with fellow Mugglemore members wherever you are through our online events</h1>
+      </div>
       <div className="events-page-controls">
         <div className="search">
           <input className="input"

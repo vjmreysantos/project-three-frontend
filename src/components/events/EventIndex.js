@@ -50,7 +50,7 @@ function EventIndex() {
   return (
     <section className="event-index-section">
       <div className="event-index-hero-image">
-        <h1>Explore some of the magical events happening in and around London on Mugglemore below</h1>
+        <h1>Explore some of the magical events for Muggles on Mugglemore below</h1>
       </div>
       <div className="events-page-controls">
         <div className="search">

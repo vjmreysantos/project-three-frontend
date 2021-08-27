@@ -58,6 +58,9 @@ function GroupIndex() {
 
   return (
     <section className="event-index-section">
+      <div className="group-index-hero-image">
+        <h1>On Mugglemore there are groups for all kinds of Potterheads, from book lovers to bikers, Quidditch stars to potion masters. </h1>
+      </div>
       <div className="events-page-controls">
         <div className="search">
           <input 
