@@ -25,6 +25,7 @@ function Login() {
       const { data } = await loginUser(formData)
       setToken(data.token)
       history.push('/profile')
+      location.reload()
     } catch (err) {
       setIsError(true)
     }

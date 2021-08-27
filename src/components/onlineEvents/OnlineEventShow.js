@@ -96,9 +96,9 @@ function OnlineEventShow() {
     }
   } 
 
-  const randomIndexOne = Math.floor(Math.random() * onlineEvent?.attendees.length)
-  const randomIndexTwo = Math.floor(Math.random() * onlineEvent?.attendees.length)
-  const randomIndexThree = Math.floor(Math.random() * onlineEvent?.attendees.length)
+  // const randomIndexOne = Math.floor(Math.random() * onlineEvent?.attendees.length)
+  // const randomIndexTwo = Math.floor(Math.random() * onlineEvent?.attendees.length)
+  // const randomIndexThree = Math.floor(Math.random() * onlineEvent?.attendees.length)
 
   return (
     <section className="event-show-section">
@@ -154,16 +154,16 @@ function OnlineEventShow() {
                   :
                   <>
                     <div className="attendee-card">
-                      {<img src={onlineEvent.attendees[randomIndexOne].avatar} alt={onlineEvent.attendees[randomIndexOne].username}></img>}
-                      <p>{onlineEvent.attendees[randomIndexOne].username}</p>
+                      {<img src={onlineEvent.attendees[0].avatar} alt={onlineEvent.attendees[0].username}></img>}
+                      <p>{onlineEvent.attendees[0].username}</p>
                     </div>
                     <div className="attendee-card">
-                      {<img src={onlineEvent.attendees[randomIndexTwo].avatar} alt={onlineEvent.attendees[randomIndexTwo].username}></img>}
-                      <p>{onlineEvent.attendees[randomIndexTwo].username}</p>
+                      {<img src={onlineEvent.attendees[5].avatar} alt={onlineEvent.attendees[5].username}></img>}
+                      <p>{onlineEvent.attendees[3].username}</p>
                     </div>
                     <div className="attendee-card">
-                      {<img src={onlineEvent.attendees[randomIndexThree].avatar} alt={onlineEvent.attendees[randomIndexThree].username}></img>}
-                      <p>{onlineEvent.attendees[randomIndexThree].username}</p>
+                      {<img src={onlineEvent.attendees[4].avatar} alt={onlineEvent.attendees[4].username}></img>}
+                      <p>{onlineEvent.attendees[4].username}</p>
                     </div>
                     <div className="and-other-attendees">
                       <p>And {onlineEvent.attendees.length - 3} others</p>

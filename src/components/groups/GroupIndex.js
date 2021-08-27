@@ -80,7 +80,7 @@ function GroupIndex() {
           :
           <Button onClick={handleUnAuthClick}>Login to create a group</Button>}
       </div>
-      <div className="events-page-list">
+      <div className="events-page-list justify-content-center">
         {isError && <p>Sorry, used the wrong spell.</p>}
         {isLoading && <Loading />}
         {groups && filteredGroups().map(group => {

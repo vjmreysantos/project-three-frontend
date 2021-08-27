@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 import { getAllOnlineEvents } from '../../lib/api'
@@ -15,10 +15,7 @@ function OnlineEventIndex() {
   const [searchValue, setSearchValue] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvents && !isError
-  const history = useHistory()
   const isAuth = isAuthenticated()
-
-  const [category, setCategory] = React.useState('All')
 
   React.useEffect(() => {
     const getData = async () => {
@@ -47,10 +44,10 @@ function OnlineEventIndex() {
 
   const filteredOnlineEvents = () => {
     return onlineEvents.sort(compareOnlineEvents).filter(onlineEvent => {
-      return (onlineEvent.name.toLowerCase().includes(searchValue.toLocaleLowerCase())) &&
-      (onlineEvent.category === category || category === 'All')
+      return (onlineEvent.name.toLowerCase().includes(searchValue.toLocaleLowerCase()))
     })
   }
+
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value)
@@ -74,7 +71,7 @@ function OnlineEventIndex() {
 
 
   return (
-    <section className="event-index-section">
+    <section className="event-index-section justify-content-center">
       <div className="online-event-index-hero-image">
         <h1>Meet with fellow Mugglemore members wherever you are through our online events</h1>
       </div>
@@ -151,7 +148,8 @@ function OnlineEventIndex() {
         {onlineEvents &&
           filteredOnlineEvents().map(onlineEvent => (
             <OnlineEventCard key={onlineEvent._id} {...onlineEvent} />
-          ))}
+          )
+          )}
       </div>
     </section>
   )

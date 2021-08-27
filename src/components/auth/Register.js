@@ -40,15 +40,17 @@ function Register() {
   }
 
   return (
-    <section className="section">
-      <div>
-        <h1>Register and get sorted into your house</h1>
-        <div className="columns">
-          <form
-            className="registration-form-container"
-            onSubmit={handleSubmit}
-          >
-            <div className="registration-column">
+    <section className="form-section">
+      <div className="create-form-container">
+        <div className="form-header">
+          <h1>Register and get sorted into your house</h1>
+        </div>
+        <form
+          className="registration-form-container"
+          onSubmit={handleSubmit}
+        >
+          <div className="form-main">
+            <div className="form-left">
               <h3 className="label">User Details</h3>
               <div className="field">
                 <label className="label">Username</label>
@@ -132,7 +134,7 @@ function Register() {
                 )}
               </div>
             </div>
-            <div className="registration-column">
+            <div className="form-right">
               {/* SORTING QUESTIONS */}
               <div>
                 <h3 className="feature-title">Get Sorted!</h3>
@@ -502,14 +504,16 @@ function Register() {
                   </div>
                 </div>
               </div>
-            </div>         
-            <div className="field">
+            </div>
+          </div>   
+          <div className="form-footer">
+            < div className="field">
               <Button variant="primary" type="submit" className="Button">
                 Sign Me Up!
               </Button>
             </div>
-          </form>
-        </div>
+          </div>     
+        </form>
       </div>
     </section>
   )

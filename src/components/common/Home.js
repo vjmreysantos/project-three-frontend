@@ -50,7 +50,7 @@ function Home() {
           <h1 className="display-4">Welcome to the world of Muggles</h1>
           <p>Join a group to meet fellow Muggles and make new friends! Explore your interests in the Wizarding World of Harry Potter. New events are happening both online and in person!</p>
         </div>
-       
+      
       </div>
       <div className="home-leader-filter">
         <div className="home-leader-filter-cta">
@@ -71,7 +71,7 @@ function Home() {
         </Card>
         <Card className="home-leader-filter-card">
           <Link to="/online-events" id="#events">
-            <Card.Img src="https://i.ytimg.com/vi/2FDjMige9dI/maxresdefault.jpg" width="150" height="200"/>
+            <Card.Img src="https://i.ytimg.com/vi/2FDjMige9dI/maxresdefault.jpg" width="200" height="300"/>
             <Card.Body>
               <Card.Title>
               Connect over tech ➔
@@ -99,12 +99,12 @@ function Home() {
         {events &&
         events.sort((a, b) => b.date < a.date).splice(0, 4).map(event => (          
           <>
-            <Link to={`/events/${event._id}`}>  
-              <Card style={{ margin: '15px' }}>
-                <Card.Img src={event.image} alt={event.name} width="100" height="150"/>
+            <Link to={`/events/${event._id}`} className="card-text">  
+              <Card className="home-leader-filter-card">
+                <Card.Img src={event.image} alt={event.name} width="150" height="200"/>
                 <Card.Body>
-                  <Card.Title>{event.name}</Card.Title>
-                  <Card.Text>
+                  <Card.Title className="card-title">{event.name}</Card.Title>
+                  <Card.Text className="card-text">
                     {event.date}
                     <p><span>{event.attendees.length}</span> Attendees</p>
                   </Card.Text>
@@ -124,12 +124,12 @@ function Home() {
         {onlineEvents &&
         onlineEvents.sort((a, b) => a.date > b.date).splice(0, 4).map(onlineEvent => (          
           <>
-            <Link to={`/online-events/${onlineEvent._id}`}>  
-              <Card style={{ margin: '15px' }}>
-                <Card.Img src={onlineEvent.image} alt={onlineEvent.name} width="100" height="150"/>
+            <Link to={`/online-events/${onlineEvent._id}`} className="card-text">  
+              <Card className="home-leader-filter-card">
+                <Card.Img src={onlineEvent.image} alt={onlineEvent.name} width="150" height="200"/>
                 <Card.Body>
-                  <Card.Title>{onlineEvent.name}</Card.Title>
-                  <Card.Text>
+                  <Card.Title className="card-title">{onlineEvent.name}</Card.Title>
+                  <Card.Text className="card-text">
                     {onlineEvent.date}
                     <p><span>{onlineEvent.attendees.length}</span> Attendees</p>
                   </Card.Text>
@@ -143,6 +143,9 @@ function Home() {
 
       <footer>
         <div className="container-row justify-content-center">
+          <div className="container-row justify-content-center">
+            <p>Homenum Revelio</p>
+          </div>
           <div className="container-row justify-content-start">
             <a href='https://github.com/MaggieLiz' target='_blank' rel='noreferrer'>Maggie Ward</a>
             <p>&nbsp;|&nbsp;</p>
