@@ -1,5 +1,4 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 import { getAllOnlineEvents } from '../../lib/api'
@@ -14,10 +13,7 @@ function OnlineEventIndex() {
   const [searchValue, setSearchValue] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvents && !isError
-  const history = useHistory()
   const isAuth = isAuthenticated()
-
-  const [category, setCategory] = React.useState('All')
 
   React.useEffect(() => {
     const getData = async () => {
@@ -46,109 +42,46 @@ function OnlineEventIndex() {
 
   const filteredOnlineEvents = () => {
     return onlineEvents.sort(compareOnlineEvents).filter(onlineEvent => {
-      return (onlineEvent.name.toLowerCase().includes(searchValue.toLocaleLowerCase())) &&
-      (onlineEvent.category === category || category === 'All')
+      return (onlineEvent.name.toLowerCase().includes(searchValue.toLocaleLowerCase()))
     })
   }
 
-  const handleChange = (selected, category) => {
-    const selectedCategory = selected ? selected.map(item => item.value) : []
-    setOnlineEvents({ ...onlineEvents, [category]: selectedCategory })
-  }
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value)
   }
 
-  const handleClick = () => {
-    history.push('/online-events/new-online-event')
-  }
-
-  // const handleBtn = (e) => {
-  //   setCategory(e.target.value)
-  // }
-
-  // function handleChange(e) {
-  //   setCategory(e.target.value)
-  // }
 
 
   return (
-    <section className="event-index-section">
+    <section className="event-index-section justify-content-center">
       <div className="online-event-index-hero-image">
         <h1>Meet with fellow Mugglemore members wherever you are through our online events</h1>
       </div>
-      <div className="events-page-controls">
+      <div className="events-page-controls justify-content-center">
         <div className="search">
           <input className="input"
             placeholder="Search for keywords"
             onChange = {handleSearch}
           />
         </div>
-        {isAuth && <Button onClick={handleClick}>Create New Online Event</Button>}
+        {isAuth ? 
+          <Button variant="primary"><a href={'/online-events/new-online-event'}>Create an event</a></Button>
+          :
+          <Button variant="primary"><a href={'/login'}>Login to create an event</a></Button>
+        }
       </div>
-      <div>
-        <select name="category" value={onlineEvents.category} onChange={handleChange}>
-          <option>All</option>
-          <option>Sports</option>
-          <option>Books</option>
-          <option>Movies</option>
-          <option>Games</option>
-          <option>Food</option>
-          <option>Drinks</option>
-          <option>Magic</option>
-        </select>
-        {/* <Button style={{ margin: '10px' }}
-          variant="primary"
-          value="sports"
-          onClick={handleBtn}>
-          Sports
-        </Button>
-        <Button style={{ margin: '10px' }}
-          variant="primary"
-          value="books"
-          onClick={handleBtn}>
-          Books
-        </Button>
-        <Button style={{ margin: '10px' }}
-          variant="primary"
-          value="movies"
-          onClick={handleBtn}>
-          Movies
-        </Button>
-        <Button style={{ margin: '10px' }}
-          variant="primary"
-          value="games"
-          onClick={handleBtn}>
-          Games
-        </Button>
-        <Button style={{ margin: '10px' }}
-          variant="primary"
-          value="food"
-          onClick={handleBtn}>
-          Food
-        </Button>
-        <Button style={{ margin: '10px' }}
-          variant="primary"
-          value="drinks"
-          onClick={handleBtn}>
-          Drinks
-        </Button>
-        <Button style={{ margin: '10px' }}
-          variant="primary"
-          value="magic"
-          onClick={handleBtn}>
-          Magic
-        </Button> */}
-      </div>
-      <div className="events-page-list">
-        {isError && <p>Oops!</p>}
-        {isLoading && <Loading />}
-        {onlineEvents &&
-          filteredOnlineEvents().map(onlineEvent => (
+
+      {isError && <p>Oops!</p>}
+      {isLoading && <Loading />}
+      {onlineEvents &&
+        <div className="events-page-list">
+          {filteredOnlineEvents().map(onlineEvent => (
             <OnlineEventCard key={onlineEvent._id} {...onlineEvent} />
-          ))}
-      </div>
+          )
+          )}
+        </div>
+      } 
     </section>
   )
 }

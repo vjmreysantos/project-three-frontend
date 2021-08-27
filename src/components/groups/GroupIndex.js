@@ -63,7 +63,7 @@ function GroupIndex() {
       <div className="group-index-hero-image">
         <h1>On Mugglemore there are groups for all kinds of Potterheads, from book lovers to bikers, Quidditch stars to potion masters. </h1>
       </div>
-      <div className="events-page-controls">
+      <div className="events-page-controls justify-content-center">
         <div className="search">
           <input 
             className="input"
@@ -73,7 +73,7 @@ function GroupIndex() {
         </div>
         {isAuth && <Button onClick={handleClick}>Create New Group</Button>}
       </div>
-      <div className="events-page-list">
+      <div className="events-page-list justify-content-center">
         {isError && <p>Sorry, used the wrong spell.</p>}
         {isLoading && <Loading />}
         {groups && filteredGroups().map(group => {
