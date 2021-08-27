@@ -1,7 +1,9 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
+
 import { getAllEvents } from '../../lib/api'
 import EventCard from './EventCard'
-import { Button } from 'react-bootstrap'
+import Loading from '../common/Loading'
 import { isAuthenticated } from '../../lib/auth'
 
 function EventIndex() {
@@ -66,7 +68,7 @@ function EventIndex() {
         }
       </div>
       {isError && <p>Oops!</p>}
-      {isLoading && <p>...loading</p>}
+      {isLoading && <Loading />}
       {events &&
           <div className="events-page-list">
             {filteredEvents().map(event => (

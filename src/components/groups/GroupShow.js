@@ -1,7 +1,9 @@
 import React from 'react'
 import { useParams } from 'react-router'
+
 import { getSingleGroup, joinGroup, getProfile } from '../../lib/api'
 import { isAuthenticated } from '../../lib/auth'
+import Loading from '../common/Loading'
 
 function GroupShow() {
   const { groupId } = useParams()
@@ -56,7 +58,7 @@ function GroupShow() {
     <section>
       <div>
         {isError && <p>Sorry, must have used the wrong spell.</p>}
-        {isLoading && <p>...loading</p>}
+        {isLoading && <Loading />}
         {group && 
           <div className="show-container">
             <hr />

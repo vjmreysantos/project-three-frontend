@@ -1,7 +1,10 @@
 import React from 'react'
-import { getAllOnlineEvents } from '../../lib/api'
 import { Link } from 'react-router-dom'
 import { Card, Container, Button } from 'react-bootstrap'
+
+import { getAllOnlineEvents } from '../../lib/api'
+import Loading from '../common/Loading'
+
 
 function Home() {
 
@@ -26,7 +29,7 @@ function Home() {
     <Container>
       <div className="container-row">
         {isError && <p>Oops!</p>}
-        {isLoading && <p>...loading</p>}
+        {isLoading && <Loading />}
         <div className="container-column">
           <h1 className="display-4">Welcome to the world of Muggles</h1>
           <p>Join a group to meet fellow Muggles and make new friends! Explore your interests in the Wizarding World of Harry Potter. New events are happening both online and in person!</p>

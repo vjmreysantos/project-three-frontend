@@ -1,9 +1,12 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+
 import { getAllOnlineEvents } from '../../lib/api'
 import { isAuthenticated } from '../../lib/auth'
 import OnlineEventCard from './OnlineEventCard'
-import { useHistory } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import Loading from '../common/Loading'
+
 
 function OnlineEventIndex() {
   
@@ -65,7 +68,7 @@ function OnlineEventIndex() {
       </div>
       <div className="events-page-list">
         {isError && <p>Oops!</p>}
-        {isLoading && <p>...loading</p>}
+        {isLoading && <Loading />}
         {onlineEvents &&
           filteredOnlineEvents().map(onlineEvent => (
             <OnlineEventCard key={onlineEvent._id} {...onlineEvent} />

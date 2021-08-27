@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { getProfile } from '../../lib/api'
+import Loading from '../common/Loading'
 
 function Profile() {
   const [isError, setIsError] = React.useState(false)
@@ -25,7 +27,7 @@ function Profile() {
   return (
     
     <section className="profile-section">
-      {isLoading && <p>...loading</p>}
+      {isLoading && <Loading />}
       {user &&
       <div className="profile-container">
         <div className="profile-header">

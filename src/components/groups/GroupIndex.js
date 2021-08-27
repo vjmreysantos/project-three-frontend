@@ -1,10 +1,12 @@
 import React from 'react'
 import { useHistory } from 'react-router'
+import { Button } from 'react-bootstrap'
 
 import GroupCard from './GroupCard'
 import { getAllGroups } from '../../lib/api'
 import { isAuthenticated } from '../../lib/auth'
-import { Button } from 'react-bootstrap'
+import Loading from '../common/Loading'
+
 
 
 function GroupIndex() {
@@ -70,7 +72,7 @@ function GroupIndex() {
       </div>
       <div className="events-page-list">
         {isError && <p>Sorry, used the wrong spell.</p>}
-        {isLoading && <p>...loading groups</p>}
+        {isLoading && <Loading />}
         {groups && filteredGroups().map(group => {
           return <GroupCard key={group._id} group={group} />          
         })

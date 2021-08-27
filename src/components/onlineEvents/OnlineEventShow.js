@@ -1,8 +1,10 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router'
-import { getSingleOnlineEvent, getAllOnlineEvents, attendOnlineEvent, deleteOnlineEvent, getProfile } from '../../lib/api'
 import { Button } from 'react-bootstrap'
+
+import { getSingleOnlineEvent, getAllOnlineEvents, attendOnlineEvent, deleteOnlineEvent, getProfile } from '../../lib/api'
+import Loading from '../common/Loading'
 import { isOwner } from '../../lib/auth'
 
 function OnlineEventShow() {
@@ -98,7 +100,7 @@ function OnlineEventShow() {
   return (
     <section className="event-show-section">
       {isError && <p>Oops!</p>}
-      {isLoading && <p>...loading</p>}
+      {isLoading && <Loading />}
       {onlineEvent &&
         <>
           <div className="event-show-header">
