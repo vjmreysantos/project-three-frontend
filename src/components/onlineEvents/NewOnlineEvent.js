@@ -7,9 +7,7 @@ import { createOnlineEvent } from '../../lib/api'
 
 function NewOnlineEvent() {
   const history = useHistory()
-  const [formData, setFormData] = React.useState(initialState)
-  const [formErrors, setFormErrors] = React.useState(initialState)
-
+  
   const initialState = {
     name: '',
     image: '',
@@ -19,6 +17,9 @@ function NewOnlineEvent() {
     category: [],
     meetingLink: '',
   }
+
+  const [formData, setFormData] = React.useState(initialState)
+  const [formErrors, setFormErrors] = React.useState(initialState)
   
   const categoryOptions = [
     { value: 'sports', label: 'Sports' },
@@ -124,7 +125,7 @@ function NewOnlineEvent() {
               </div>
             </div>
             <div className="field">
-              <label className="label">Select Group Category</label>
+              <label className="label">Select Event Category</label>
               <p>Choose as many as apply!</p>
               <div className="form-group">
                 <Select 

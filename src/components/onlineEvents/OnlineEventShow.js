@@ -45,7 +45,6 @@ function OnlineEventShow() {
       try {
         const res = await getProfile()
         setCurrentUser(res.data)
-        console.log(res.data)
       } catch (err) {
         console.log(err)
       }
@@ -78,7 +77,6 @@ function OnlineEventShow() {
     try {
       const response = await deleteOnlineEvent(onlineEventId)
       window.alert('you have successfully deleted this event')
-      console.log(response)
       history.push('/online-events')
     } catch (err) {
       console.log(err)

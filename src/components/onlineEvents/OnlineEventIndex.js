@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 import { getAllOnlineEvents } from '../../lib/api'
@@ -16,7 +16,8 @@ function OnlineEventIndex() {
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvents && !isError
   const isAuth = isAuthenticated()
-
+  const history = useHistory()
+  
   React.useEffect(() => {
     const getData = async () => {
       try {

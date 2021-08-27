@@ -22,8 +22,6 @@ function Profile() {
     // setTimeout(getData, 3000)
   },[])
 
-  console.log(user)
-
   return (
     
     <section className="profile-section">

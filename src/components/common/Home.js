@@ -99,7 +99,7 @@ function Home() {
         {events &&
         events.sort((a, b) => b.date < a.date).splice(0, 4).map(event => (          
           <>
-            <Link to={`/events/${event._id}`} className="card-text">  
+            <Link to={`/events/${event._id}`} className="card-text" key={event._id}>  
               <Card className="home-leader-filter-card">
                 <Card.Img src={event.image} alt={event.name} width="150" height="200"/>
                 <Card.Body>
@@ -124,7 +124,7 @@ function Home() {
         {onlineEvents &&
         onlineEvents.sort((a, b) => a.date > b.date).splice(0, 4).map(onlineEvent => (          
           <>
-            <Link to={`/online-events/${onlineEvent._id}`} className="card-text">  
+            <Link to={`/online-events/${onlineEvent._id}`} className="card-text" key={onlineEvent._id}>  
               <Card className="home-leader-filter-card">
                 <Card.Img src={onlineEvent.image} alt={onlineEvent.name} width="150" height="200"/>
                 <Card.Body>

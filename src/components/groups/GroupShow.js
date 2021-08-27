@@ -44,7 +44,6 @@ function GroupShow() {
       try {
         const res = await getProfile()
         setCurrentUser(res.data)
-        console.log(res.data)
       } catch (err) {
         console.log(err)
       }
@@ -127,10 +126,10 @@ function GroupShow() {
                 <p>No comments yet!</p>
                 :
                 group.comments.map(comment=>(
-                  <div key={group._id} className="comment">
+                  <div key={comment._id} className="comment">
                     <div className="comment-left">
-                      <img className="comment-image" src={group.addedBy.avatar} alt={group.addedBy.username}></img>
-                      <p>{group.addedBy.username}</p>
+                      <img className="comment-image" src={comment.addedBy.avatar} alt={comment.addedBy.username}></img>
+                      <p>{comment.addedBy.username}</p>
                     </div>
                     <div className="comment-right">
                       <p>{comment.text}</p>

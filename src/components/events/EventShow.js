@@ -48,7 +48,6 @@ function EventShow() {
       try {
         const res = await getProfile()
         setCurrentUser(res.data)
-        console.log(res.data)
       } catch (err) {
         console.log(err)
       }
