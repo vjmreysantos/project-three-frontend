@@ -54,7 +54,7 @@ function EventIndex() {
       <div className="event-index-hero-image">
         <h1>Explore some of the magical events happening in and around London on Mugglemore below</h1>
       </div>
-      <div className="events-page-controls">
+      <div className="events-page-controls justify-content-center">
         <div className="search">
           <input className="input"
             placeholder="Search for keywords"
