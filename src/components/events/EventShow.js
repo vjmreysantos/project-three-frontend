@@ -2,7 +2,6 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router'
 import { Button } from 'react-bootstrap'
-
 import { getSingleEvent, getAllEvents, attendEvent, deleteEvent, getProfile } from '../../lib/api'
 import EventMap from './EventMap'
 import { isOwner, isAuthenticated } from '../../lib/auth'
@@ -80,8 +79,8 @@ function EventShow() {
   const handleSubmit = async () => {
     try {
       const response = await deleteEvent(eventId)
-      window.alert('you have successfully deleted this event')
       console.log(response)
+      window.alert('You have successfully deleted this event')
       history.push('/events')
     } catch (err) {
       console.log(err)

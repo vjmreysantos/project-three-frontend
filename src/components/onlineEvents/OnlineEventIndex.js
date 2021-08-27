@@ -1,7 +1,6 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
-
 import { getAllOnlineEvents } from '../../lib/api'
 import { isAuthenticated } from '../../lib/auth'
 import OnlineEventCard from './OnlineEventCard'
@@ -15,6 +14,7 @@ function OnlineEventIndex() {
   const [searchValue, setSearchValue] = React.useState('')
   const [isError, setIsError] = React.useState(false)
   const isLoading = !onlineEvents && !isError
+  const history = useHistory()
   const isAuth = isAuthenticated()
 
   React.useEffect(() => {

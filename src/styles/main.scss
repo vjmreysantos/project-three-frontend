@@ -535,20 +535,9 @@ a.comment-button:hover {
 }
 
 // GROUPS
-.mini-nav {
+.attendee-cards-container {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin: 50px;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
-  padding: 15px 20px;
-  .mini-nav-element {
-    text-transform: uppercase;
-    color: #f5f5f5;
-    text-decoration: none;
-    font-family: sans-serif;
-  }
+  flex-wrap: wrap;
 }
   
 // FORMS
@@ -630,7 +619,7 @@ a.comment-button:hover {
 
 .home-leader-filter-cta {
   text-align: center;
-  margin-bottom: 10px;
+  margin: 30px 0 30px 0;
 }
 
 .home-leader-filter-card.card {
@@ -654,14 +643,35 @@ a.comment-button:hover {
   }
 }
 
-.home-lower-filter-card.card {
-  background: none;
-  margin: 0 20px;
+.home-lower-filter {
+  .home-lower-filter-cta {
+    text-align: center;
+    margin: 30px 0 0 0;
+  }
+  .card {
+    background: none;
+  }
   a {
-    color:#f5f5f5;
     text-decoration: none;
   }
+    a.home-lower-filter-card{
+      width: 22%;
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      img {
+        max-height: 200px;
+        max-width: 90%;
+        margin: 10px auto;
+      }
+    }
 }
+
+// div.card {
+//   margin: 20px;
+// }
 
 // PROFILE PAGE
 .profile-section {

@@ -53,11 +53,11 @@ function Home() {
       
       </div>
       <div className="home-leader-filter">
+        <hr />
         <div className="home-leader-filter-cta">
           <h3>Discover what is being conjured up on Mugglemore</h3>
         </div>
       </div>
-      <hr />
       <div className="container-row justify-content-center">
         <Card className="home-leader-filter-card">
           <Link to="/events">
@@ -92,52 +92,51 @@ function Home() {
       </div>
       <hr />
 
-      <div className="h3">
-          Upcoming Events
-      </div>
-      <div className="container-row justify-content-center">
-        {events &&
+      <div className="home-lower-filter">
+        <div className="home-lower-filter-cta">
+          <h3>Upcoming Events</h3>
+        </div>
+        <div className="container-row justify-content-center">
+          {events &&
         events.sort((a, b) => b.date < a.date).splice(0, 4).map(event => (          
-          <>
-            <Link to={`/events/${event._id}`} className="card-text">  
-              <Card className="home-leader-filter-card">
-                <Card.Img src={event.image} alt={event.name} width="150" height="200"/>
-                <Card.Body>
-                  <Card.Title className="card-title">{event.name}</Card.Title>
-                  <Card.Text className="card-text">
-                    {event.date}
-                    <p><span>{event.attendees.length}</span> Attendees</p>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Link>
-          </>
+          <Link key={event._id} to={`/events/${event._id}`} className="home-lower-filter-card">  
+            <Card>
+              <Card.Img src={event.image} alt={event.name}/>
+              <Card.Body>
+                <Card.Title className="card-title">{event.name}</Card.Title>
+                <Card.Text className="card-text">
+                  {event.date}
+                  <p><span>{event.attendees.length}</span> Attendees</p>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Link>
         ))}
+        </div>
       </div>
       <hr />
 
-
-      <div className="h3">
-          Upcoming Online Events
-      </div>
-      <div className="container-row justify-content-center">
-        {onlineEvents &&
+      <div className="home-lower-filter">
+        <div className="home-lower-filter-cta">
+          <h3>Upcoming Online Events</h3>
+        </div>
+        <div className="container-row justify-content-center">
+          {onlineEvents &&
         onlineEvents.sort((a, b) => a.date > b.date).splice(0, 4).map(onlineEvent => (          
-          <>
-            <Link to={`/online-events/${onlineEvent._id}`} className="card-text">  
-              <Card className="home-leader-filter-card">
-                <Card.Img src={onlineEvent.image} alt={onlineEvent.name} width="150" height="200"/>
-                <Card.Body>
-                  <Card.Title className="card-title">{onlineEvent.name}</Card.Title>
-                  <Card.Text className="card-text">
-                    {onlineEvent.date}
-                    <p><span>{onlineEvent.attendees.length}</span> Attendees</p>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Link>
-          </>
+          <Link key={onlineEvent._id} to={`/online-events/${onlineEvent._id}`} className="home-lower-filter-card">  
+            <Card>
+              <Card.Img src={onlineEvent.image} alt={onlineEvent.name}/>
+              <Card.Body>
+                <Card.Title className="card-title">{onlineEvent.name}</Card.Title>
+                <Card.Text className="card-text">
+                  {onlineEvent.date}
+                  <p><span>{onlineEvent.attendees.length}</span> Attendees</p>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Link>
         ))}
+        </div>
       </div>
       <hr />
 
