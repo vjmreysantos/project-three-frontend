@@ -80,6 +80,7 @@ function EventIndex() {
             )}
           </div>
       }
+      <hr />
     </section>
   )
   

@@ -18,7 +18,7 @@ import JoinGroup from './components/groups/JoinGroup'
 import CreateEventComment from './components/events/CreateEventComment'
 import CreateOnlineEventComment from './components/onlineEvents/CreateOnlineEventComment'
 import CreateGroupComment from './components/groups/CreateGroupComment'
-
+import Footer from './components/common/Footer'
 
 function App() {
   return (
@@ -81,6 +81,7 @@ function App() {
             <Profile />
           </Route>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </>
   )

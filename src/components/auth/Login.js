@@ -32,40 +32,42 @@ function Login() {
   }
 
   return (
-    <section className="login-form">
-      <div className="login-form-container">
-        <div className="columns">
-          <form
-            onSubmit={handleSubmit}
-          >
-            <FormLabel className="label">Email</FormLabel>
-            <FormControl
-              className="input"
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-            />
+    <>
+      <section className="login-form">
+        <div className="login-form-container">
+          <div className="columns">
+            <form
+              onSubmit={handleSubmit}
+            >
+              <FormLabel className="label">Email</FormLabel>
+              <FormControl
+                className="input"
+                placeholder="Email"
+                name="email"
+                onChange={handleChange}
+              />
 
-            <FormLabel className="label">Password</FormLabel>
-            <FormControl
-              type="password"
-              className="input"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-            />
-            {isError && (
-              <p className="form-error">
+              <FormLabel className="label">Password</FormLabel>
+              <FormControl
+                type="password"
+                className="input"
+                placeholder="Password"
+                name="password"
+                onChange={handleChange}
+              />
+              {isError && (
+                <p className="form-error">
                 Either email or password were incorrect
-              </p>
-            )}
-            <Button className="button" type="submit">
+                </p>
+              )}
+              <Button className="button" type="submit">
               Alohomora!
-            </Button>
-          </form>
+              </Button>
+            </form>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 
