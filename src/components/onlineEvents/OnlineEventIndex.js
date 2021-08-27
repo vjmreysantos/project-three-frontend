@@ -17,7 +17,7 @@ function OnlineEventIndex() {
   const history = useHistory()
   const isAuth = isAuthenticated()
 
-  const [category, setCategory] = React.useState('All')
+  // const [category, setCategory] = React.useState('All')
 
   React.useEffect(() => {
     const getData = async () => {
@@ -46,8 +46,7 @@ function OnlineEventIndex() {
 
   const filteredOnlineEvents = () => {
     return onlineEvents.sort(compareOnlineEvents).filter(onlineEvent => {
-      return (onlineEvent.name.toLowerCase().includes(searchValue.toLocaleLowerCase())) &&
-      (onlineEvent.category === category || category === 'All')
+      return (onlineEvent.name.toLowerCase().includes(searchValue.toLocaleLowerCase())) 
     })
   }
 
