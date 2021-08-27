@@ -5,8 +5,11 @@ import { getAllEvents } from '../../lib/api'
 import EventCard from './EventCard'
 import Loading from '../common/Loading'
 import { isAuthenticated } from '../../lib/auth'
+import { useLocation } from 'react-router'
 
 function EventIndex() {
+  useLocation
+
   const [events, setEvents] = React.useState(null)
   const [searchValue, setSearchValue] = React.useState('')
   const [isError, setIsError] = React.useState(false)
@@ -57,7 +60,7 @@ function EventIndex() {
       <div className="events-page-controls justify-content-center">
         <div className="search">
           <input className="input"
-            placeholder="Search for keywords"
+            placeholder="Search for events"
             onChange = {handleSearch}
           />
         </div>

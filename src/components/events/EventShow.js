@@ -19,7 +19,6 @@ function EventShow() {
   const isLoading = !event && !isError
   const isAuth = isAuthenticated()
   
-
   React.useEffect(()=> {
     const getData = async () => {
       try {

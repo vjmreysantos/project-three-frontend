@@ -1,6 +1,6 @@
 
 
-function EventCard({ _id, name, image, date, time, location, attendees }) {
+function EventCard({ _id, name, image, date, time, location, attendees, category }) {
 
   return (
     <div className="event-cards-container">
@@ -12,8 +12,9 @@ function EventCard({ _id, name, image, date, time, location, attendees }) {
             </figure>
           </div>
           <div className="event-card-right">
-            <h3>{date}, {time}</h3>
-            <h4>{name}</h4>
+            <h2>{date}, {time}</h2>
+            <h3>{name}</h3>
+            <p>{category}</p>
             <p>{location.placeName}, {location.streetName}</p>
             <p><span>{attendees.length}</span> attendees</p>
           </div>

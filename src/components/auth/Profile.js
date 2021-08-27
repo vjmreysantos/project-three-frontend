@@ -105,7 +105,7 @@ function Profile() {
               <p>You have not signed up for any online events yet!</p>
               :
               user.joinedOnlineEvent.map(onlineEvent => {
-                <a className="joined-online-events" key={onlineEvent.name}href={`/online-events/${onlineEvent._id}`}>
+                return <a className="joined-online-events" key={onlineEvent.name}href={`/online-events/${onlineEvent._id}`}>
                   <p>{onlineEvent.date}</p>
                   <p>{onlineEvent.name}</p>
                   <figure className="attended-event-image">

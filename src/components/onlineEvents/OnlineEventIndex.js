@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 import { getAllOnlineEvents } from '../../lib/api'
@@ -9,7 +9,8 @@ import Loading from '../common/Loading'
 
 
 function OnlineEventIndex() {
-  
+  useLocation
+
   const [onlineEvents, setOnlineEvents] = React.useState('')
   const [searchValue, setSearchValue] = React.useState('')
   const [isError, setIsError] = React.useState(false)
@@ -55,17 +56,21 @@ function OnlineEventIndex() {
     setSearchValue(e.target.value)
   }
 
-  const handleClick = () => {
+  const handleAuthClick = () => {
     history.push('/online-events/new-online-event')
+  }
+
+  const handleUnAuthClick = () => {
+    history.push('/login')
   }
 
   // const handleBtn = (e) => {
   //   setCategory(e.target.value)
   // }
 
-  function handleChange(e) {
-    setCategory(e.target.value)
-  }
+  // function handleChange(e) {
+  //   setCategory(e.target.value)
+  // }
 
 
   return (
@@ -73,16 +78,20 @@ function OnlineEventIndex() {
       <div className="online-event-index-hero-image">
         <h1>Meet with fellow Mugglemore members wherever you are through our online events</h1>
       </div>
-      <div className="events-page-controls">
+      <div className="events-page-controls justify-content-center">
         <div className="search">
           <input className="input"
-            placeholder="Search for keywords"
+            placeholder="Search for online events"
             onChange = {handleSearch}
           />
         </div>
-        {isAuth && <Button onClick={handleClick}>Create New Online Event</Button>}
+        {isAuth ? 
+          <Button onClick={handleAuthClick}>Create New Online Event</Button>
+          :
+          <Button onClick={handleUnAuthClick}>Login to create an event</Button>
+        }
       </div>
-      <div>
+      {/* <div>
         <select className="category" defaultValue="All" onChange={handleChange}>
           <option>All</option>
           <option>Sports</option>
@@ -92,8 +101,8 @@ function OnlineEventIndex() {
           <option>Food</option>
           <option>Drinks</option>
           <option>Magic</option>
-        </select>
-        {/* <Button style={{ margin: '10px' }}
+        </select> */}
+      {/* /* <Button style={{ margin: '10px' 
           variant="primary"
           value="sports"
           onClick={handleBtn}>
@@ -134,8 +143,8 @@ function OnlineEventIndex() {
           value="magic"
           onClick={handleBtn}>
           Magic
-        </Button> */}
-      </div>
+        </Button> */} 
+      {/* </div> */}
       <div className="events-page-list">
         {isError && <p>Oops!</p>}
         {isLoading && <Loading />}

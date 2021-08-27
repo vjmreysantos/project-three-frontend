@@ -28,7 +28,7 @@ function Register() {
     // setFormData({ ...formData, [e.target.name]: e.target.value })
     setFormErrors({ ...formErrors, [event.target.name]: '' })
   }
-
+  
   const handleSubmit = async e => {
     e.preventDefault()
     try {
@@ -321,8 +321,8 @@ function Register() {
                         id="inlineCheckbox1"
                         name="details.favoriteSweet"
                         value="licoriceWand"
-                        // onChange={handleChange}
-                        // checked={formData.details.favoriteSweet === 'licoriceWand'}
+                        onChange={handleChange}
+                        checked={formData.details.favoriteSweet === 'licoriceWand'}
                       />
                       Licorice Wand
                     </label>
@@ -335,8 +335,8 @@ function Register() {
                         id="inlineCheckbox2"
                         name="details.favoriteSweet"
                         value="chocolateFrog"
-                      //   onChange={handleChange}
-                      //   checked={formData.details.favoriteSweet === 'chocolateFrog'}
+                        onChange={handleChange}
+                        checked={formData.details.favoriteSweet === 'chocolateFrog'}
                       />
                       Chocolate Frog
                     </label>
@@ -349,8 +349,8 @@ function Register() {
                         id="inlineCheckbox3"
                         name="details.favoriteSweet"
                         value="cauldronCake"
-                        // onChange={handleChange}
-                        // checked={formData.details.favoriteSweet === 'cauldronCake'}
+                        onChange={handleChange}
+                        checked={formData.details.favoriteSweet === 'cauldronCake'}
                       />
                       Cauldron Cake
                     </label>
@@ -370,8 +370,8 @@ function Register() {
                         id="inlineCheckbox4"
                         name="details.favoriteSweet"
                         value="pumpkinPasties"
-                        // onChange={handleChange}
-                        // checked={formData.details.favoriteSweet === 'pumpkinPasties'}
+                        onChange={handleChange}
+                        checked={formData.details.favoriteSweet === 'pumpkinPasties'}
                       />
                       Pumpkin Pasties
                     </label>

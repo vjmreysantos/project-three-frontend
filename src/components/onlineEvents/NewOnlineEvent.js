@@ -6,7 +6,10 @@ import Select from 'react-select'
 import { createOnlineEvent } from '../../lib/api'
 
 function NewOnlineEvent() {
-  
+  const history = useHistory()
+  const [formData, setFormData] = React.useState(initialState)
+  const [formErrors, setFormErrors] = React.useState(initialState)
+
   const initialState = {
     name: '',
     image: '',
@@ -16,11 +19,7 @@ function NewOnlineEvent() {
     category: [],
     meetingLink: '',
   }
-
-  const history = useHistory()
-  const [formData, setFormData] = React.useState(initialState)
-  const [formErrors, setFormErrors] = React.useState(initialState)
-
+  
   const categoryOptions = [
     { value: 'sports', label: 'Sports' },
     { value: 'food', label: 'Food' },

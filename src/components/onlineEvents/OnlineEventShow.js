@@ -15,7 +15,6 @@ function OnlineEventShow() {
   const history = useHistory()
   const isLoading = !onlineEvent && !isError
   const isAuth = isAuthenticated()
-  // const [attendingToggle, setAttendingToggle] = React.useState(false)
 
   React.useEffect(()=> {
     const getData = async () => {

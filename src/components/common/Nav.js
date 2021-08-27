@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { isAuthenticated, removeToken } from '../../lib/auth'
 import logo from './mugglemore-logo.png'
 
 function Nav() {
+  useLocation()
   const isAuth = isAuthenticated()
   // const { pathname } = useLocation()
   const history = useHistory()

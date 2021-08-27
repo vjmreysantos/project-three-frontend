@@ -54,8 +54,12 @@ function GroupIndex() {
     })
   }
 
-  const handleClick = () => {
+  const handleAuthClick = () => {
     history.push('/groups/new-group')
+  }
+
+  const handleUnAuthClick = () => {
+    history.push('/login')
   }
 
   return (
@@ -63,7 +67,7 @@ function GroupIndex() {
       <div className="group-index-hero-image">
         <h1>On Mugglemore there are groups for all kinds of Potterheads, from book lovers to bikers, Quidditch stars to potion masters. </h1>
       </div>
-      <div className="events-page-controls">
+      <div className="events-page-controls justify-content-center">
         <div className="search">
           <input 
             className="input"
@@ -71,7 +75,10 @@ function GroupIndex() {
             onChange={handleSearch}
           />  
         </div>
-        {isAuth && <Button onClick={handleClick}>Create New Group</Button>}
+        {isAuth ? 
+          <Button onClick={handleAuthClick}>Create New Group</Button>
+          :
+          <Button onClick={handleUnAuthClick}>Login to create a group</Button>}
       </div>
       <div className="events-page-list">
         {isError && <p>Sorry, used the wrong spell.</p>}
