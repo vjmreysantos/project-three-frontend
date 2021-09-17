@@ -73,7 +73,6 @@ function EventForm () {
             name="name"
             onChange={handleChange}
           />
-       
           <FormLabel className="label">Event image</FormLabel>
           <FormControl
             className="input"
