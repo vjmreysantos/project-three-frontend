@@ -99,7 +99,7 @@ function Home() {
         </div>
         <div className="container-row justify-content-center">
           {events &&
-        events.sort((a, b) => b.date < a.date).splice(0, 4).map(event => (          
+        events.sort((a, b) => a.date > b.date).splice(0, 4).map(event => (          
           <Link key={event._id} to={`/events/${event._id}`} className="home-lower-filter-card">  
             <Card>
               <Card.Img src={event.image} alt={event.name}/>

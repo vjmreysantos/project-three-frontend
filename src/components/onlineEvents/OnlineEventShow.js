@@ -75,7 +75,7 @@ function OnlineEventShow() {
 
   const handleSubmit = async () => {
     try {
-      const response = await deleteOnlineEvent(onlineEventId)
+      await deleteOnlineEvent(onlineEventId)
       window.alert('you have successfully deleted this event')
       history.push('/online-events')
     } catch (err) {
