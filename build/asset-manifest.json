@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.82840ea2.chunk.css",
+    "main.js": "/static/js/main.68169205.chunk.js",
+    "main.js.map": "/static/js/main.68169205.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.54cf774c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.54cf774c.js.map",
+    "static/css/2.79e6faa8.chunk.css": "/static/css/2.79e6faa8.chunk.css",
+    "static/js/2.23bc7989.chunk.js": "/static/js/2.23bc7989.chunk.js",
+    "static/js/2.23bc7989.chunk.js.map": "/static/js/2.23bc7989.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.79e6faa8.chunk.css.map": "/static/css/2.79e6faa8.chunk.css.map",
+    "static/css/main.82840ea2.chunk.css.map": "/static/css/main.82840ea2.chunk.css.map",
+    "static/js/2.23bc7989.chunk.js.LICENSE.txt": "/static/js/2.23bc7989.chunk.js.LICENSE.txt",
+    "static/media/mugglemore-logo.7ffda468.png": "/static/media/mugglemore-logo.7ffda468.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.54cf774c.js",
+    "static/css/2.79e6faa8.chunk.css",
+    "static/js/2.23bc7989.chunk.js",
+    "static/css/main.82840ea2.chunk.css",
+    "static/js/main.68169205.chunk.js"
+  ]
+}
