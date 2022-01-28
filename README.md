@@ -26,9 +26,11 @@ Project 3 - MUGGLES
 Link: https://sei-muggles.netlify.app/
 
 Brief
+
 This is project three for Software Engineering Immersive at General Assembly by Victor Reysantos, Vanessa Swanson and Maggie Ward. We were assigned to build a MERN app within one week.
 
 Overview and Concept
+
 The idea is to build an app like a MeetUp clone website. We decided to focus on a specific group and went with a Harry Potter theme that lets the fans connect through the app. Users will have to register to join groups and attend events whether online or in person. Users are also able to create their own group or events as well as leave comments.
 
 Technologies Used
@@ -50,6 +52,7 @@ Node
 
 
 Approach taken
+
 We first started working on the backend as a team with one person writing the code and the others contributing and editing. We took our time and we all took turns throughout the day working together through problems we encountered as we went along. It allowed us to build a robust database with a lot of relationships between Schemas. It also helped me learn some aspects of backend that I didn’t fully understand at the time.
 
 <img width="435" alt="Screenshot 2022-01-28 at 11 46 50" src="https://user-images.githubusercontent.com/86128330/151541841-e40a5552-5008-4cd0-aaee-935e48109678.png">
@@ -84,15 +87,19 @@ Visuals
 ![Screenshot 2021-09-24 at 16 07 04](https://user-images.githubusercontent.com/86128330/151542568-3d696c2a-cb69-439d-b638-f0972f214273.png)
 
 Struggles
+
 I originally planned to have a keyword search filter on the home page or some button category filters but I had a hard time fetching all data from the database. We also had some issues with the mapbox requests and some of the pages did not load properly upon deployment.
 
 Wins
+
 We were able to add a stretch goal which sorts out which house the user belongs to based on a few questions upon registration.
 
 Improvements
+
 For users to have the ability to follow other users
 For groups to add events
 For comments to stay on event / group page
 
 Key Learnings
+
 For me, it was the right decision to work together on backend first. We were able to make a strong foundation for the app. Using a Trello board was also very useful for keeping track of the work.
